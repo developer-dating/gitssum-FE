@@ -21,7 +21,7 @@ const Kakao = () => {
         localStorage.setItem("userId", res.data.data.userId);
         localStorage.setItem("userImgUrl", res.data.data.userImgUrl);
 
-        window.location.replace("/mypage");
+        window.location.replace("/");
       }
     },
     onError: (res) => {

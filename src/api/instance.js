@@ -1,8 +1,8 @@
 import axios from "axios";
-import { getCookie } from "../cookie/cookie";
+// import { getCookie } from "../cookie/cookie";
 
 export const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: "https://gitssum.com",
   headers: {
     Access_Token:
       localStorage.getItem("token") === undefined
@@ -12,17 +12,43 @@ export const instance = axios.create({
 
   withCredentials: true,
 });
-
-// 요청 인터셉터 추가하기
-// instance.interceptors.request.use(function (config) {
-//     // 요청이 전달되기 전에 작업 수행
-//     return config;
-// }, function (error) {
-//     // 요청 오류가 있는 작업 수행
-//     return Promise.reject(error);
+// export const instance = axios.create({
+//   withCredentials: true,
+//   baseURL: "https://gitssum.com",
+//   headers: {
+//     // "content-type": "application/json;charset=UTF-8",
+//     //accept: "application/json,",
+//     "Access-Control-Allow-Origin": "*",
+//     //"Content-type": "application/json",
+//   },
 // });
 
+// 요청 인터셉터 추가하기
+// instance.interceptors.request.use(
+//   function (config) {
+//     // 요청이 전달되기 전에 작업 수행
+//     return config;
+//   },
+//   function (error) {
+//     // 요청 오류가 있는 작업 수행
+//     return Promise.reject(error);
+//   }
+// );
+
 // 응답 인터셉터 추가하기
+// instance.interceptors.request.use(
+//   (config) => {
+//     const token = localStorage.getItem("is_login");
+//     if (token) {
+//       config.headers = { authorization: token };
+//       return config;
+//     }
+//     return config;
+//   },
+//   () => {
+//     return;
+//   }
+// );
 instance.interceptors.response.use(
   function (response) {
     switch (response.data?.status) {

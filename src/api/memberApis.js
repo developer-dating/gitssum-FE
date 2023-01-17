@@ -2,7 +2,7 @@ import { instance } from "./instance";
 
 export const memberApis = {
   /**카카오 로그인 */
-  kakaoLoginAX: (code) => instance.get(`/member/signup/kakao?code=${code}`),
+  kakaoLoginAX: (code) => instance.get(`/login/oauth2/kakao1?code=${code}`),
   /**네이버 로그인 */
   naverLoginAX: (loginInfo) =>
     instance.get(

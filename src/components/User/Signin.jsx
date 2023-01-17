@@ -36,15 +36,15 @@ const Login = () => {
           <div>
             <img
               className="mx-auto h-32 w-42"
-              src="./img/sighin_logo.png"
+              src="./img/signin_logo.png"
               alt="Your Company"
             />
-            <h2 class="mt-6 text-center text-l font-bold tracking-tight text-gray-900">
+            <h2 className="mt-6 text-center text-l font-bold tracking-tight text-gray-900">
               갓생 사는 개발자를 위한 소셜 데이팅 앱
             </h2>
           </div>
 
-          <div class="space-y-4 flex flex-col items-center justify-center">
+          <div className="space-y-4 flex flex-col items-center justify-center">
             <button
               className="group relative flex w-80 h-12 justify-center items-center rounded-md border border-transparent bg-[#EFDB30] py-2 px-4 text-sm font-medium text-[#000000] focus:outline-none focus:ring-2  focus:ring-offset-2"
               onClick={() => onClickHandler("kakao")}

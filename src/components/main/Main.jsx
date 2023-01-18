@@ -31,7 +31,7 @@ const Main = () => {
       <div className="ml-8">
         <div className="mt-6 flex relative">
           <img
-            src="./img/homelogo.png"
+            src="/img/homelogo.png"
             alt="HomeLogo"
             className="w-24 h-8 ml-3"
           />
@@ -50,7 +50,7 @@ const Main = () => {
                   </p>
                 </div>
                 <img
-                  src="./img/detailicon.png"
+                  src="/img/detailicon.png"
                   alt="DetailIcon"
                   className="w-5 h-5 cursor-pointer"
                 />
@@ -71,7 +71,7 @@ const Main = () => {
               <div className="flex absolute bottom-6 right-4">
                 <div className="bg-[#fff] w-14 h-14 rounded-full flex items-center">
                   <img
-                    src="./img/hearticon1.png"
+                    src="/img/hearticon1.png"
                     alt="HomeLogo"
                     className="w-8 h-7 ml-3"
                   />

@@ -1,16 +1,23 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import { useNavigate } from "react-router";
 import SignIn from "../pages/SignIn";
 import Main from "../pages/Main";
 import Kakao from "../components/User/Kakao";
+import Recommend from "../pages/Recommend";
 
 const Router = () => {
+  // let isAuthorized = localStorage.getItem("isAuthorized");
+  // const navigate = useNavigate();
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="signin" element={<SignIn />} />
+        {/* {!isAuthorized ? navigate("/signin") : navigate("/")} */}
+
+        <Route path="/signin" element={<SignIn />} />
         <Route path="/" element={<Main />} />
         <Route path="/login/oauth2/kakao1" element={<Kakao />} />
+        <Route path="/recommend" element={<Recommend />} />
       </Routes>
     </BrowserRouter>
   );

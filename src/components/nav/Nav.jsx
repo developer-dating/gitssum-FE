@@ -9,26 +9,28 @@ const Nav = () => {
       <div className="fixed bottom-0">
         <div className="w-[390px] h-[95px] bg-[#fff]">
           <div className="flex flex-row">
-            <div className="w-[78px] h-[95px] flex items-center justify-center cursor-pointer hover:bg-[#e3dfddd2] duration-300 text-sm font-medium">
+            <a
+              href="/"
+              className="w-[78px] h-[95px] flex items-center justify-center cursor-pointer hover:bg-[#e3dfddd2] duration-300 text-sm font-medium"
+            >
               홈
-            </div>
-            <div className="w-[78px] h-[95px] flex items-center justify-center cursor-pointer hover:bg-[#e3dfddd2] duration-300 text-sm font-medium">
+            </a>
+            <a
+              href="/recommend"
+              className="w-[78px] h-[95px] flex items-center justify-center cursor-pointer hover:bg-[#e3dfddd2] duration-300 text-sm font-medium"
+            >
               추천
-            </div>
+            </a>
             <div className="w-[78px] h-[95px] flex items-center justify-center cursor-pointer hover:bg-[#e3dfddd2] duration-300 text-sm font-medium flex-col">
               <img
-                src="../img/navheartlogo.png"
+                src="/img/navheartlogo.png"
                 alt="HeartLogo"
                 className="mb-1"
               />
               <p className="mb-5">좋아요</p>
             </div>
             <div className="w-[78px] h-[95px] flex items-center justify-center cursor-pointer hover:bg-[#e3dfddd2] duration-300 text-sm font-medium flex-col">
-              <img
-                src="../img/navmsglogo1.png"
-                alt="MsgLogo"
-                className="mb-1"
-              />
+              <img src="/img/navmsglogo1.png" alt="MsgLogo" className="mb-1" />
               <p className="mb-5">메세지</p>
             </div>
             <div className="w-[78px] h-[95px] flex items-center justify-center cursor-pointer hover:bg-[#e3dfddd2] duration-300 text-sm font-medium">

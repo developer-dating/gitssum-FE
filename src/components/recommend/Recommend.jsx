@@ -1,4 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 const Recommend = () => {
+  const navigate = useNavigate();
+
+  const onClickHandler = () => {
+    navigate("/addrecommend");
+  };
   // const [currentPage, setCurrentPage] = useState(0);
   // const [selectedPost, setSelectedPost] = useState(null);
 
@@ -26,8 +33,11 @@ const Recommend = () => {
               <img src="/img/signin_logo.png" alt="NotARecommendLogo" />
             </div>
             <div className="w-[350px] h-[100px] flex items-center justify-center">
-              <button className="flex w-[200px] h-[48px] justify-center items-center rounded-md border border-[#28CC9E] text-[#28CC9E] font-bold hover:bg-[#28CC9E] hover:text-[#fff] duration-300">
-                <p className="">취향 설정하기</p>
+              <button
+                onClick={onClickHandler}
+                className="flex w-[200px] h-[48px] justify-center items-center rounded-md border border-[#28CC9E] text-[#28CC9E] font-bold hover:bg-[#28CC9E] hover:text-[#fff] duration-300"
+              >
+                <p>취향 설정하기</p>
               </button>
             </div>
           </div>

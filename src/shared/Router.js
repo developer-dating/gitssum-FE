@@ -5,6 +5,8 @@ import SignIn from "../pages/SignIn";
 import Main from "../pages/Main";
 import Kakao from "../components/User/Kakao";
 import Recommend from "../pages/Recommend";
+import AddRecommend from "../pages/AddRecommend";
+import LikeMe from "../pages/LikeMe";
 
 const Router = () => {
   // let isAuthorized = localStorage.getItem("isAuthorized");
@@ -18,6 +20,8 @@ const Router = () => {
         <Route path="/" element={<Main />} />
         <Route path="/login/oauth2/kakao1" element={<Kakao />} />
         <Route path="/recommend" element={<Recommend />} />
+        <Route path="/addrecommend" element={<AddRecommend />} />
+        <Route path="/likeme" element={<LikeMe />} />
       </Routes>
     </BrowserRouter>
   );

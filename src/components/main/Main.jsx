@@ -36,7 +36,7 @@ const Main = () => {
             className="w-24 h-8 ml-3"
           />
         </div>
-        {data.map((post) => (
+        {data.map((post, index) => (
           <div className="w-96 flex flex-wrap reletive mb-20">
             <div
               className="w-[350px] h-[572px] mt-10 bg-cover bg-no-repeat relative mr-7 cursor-pointer hover:scale-110 duration-300 rounded-xl"

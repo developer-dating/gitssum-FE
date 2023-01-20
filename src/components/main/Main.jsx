@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 // import { PostDetail } from "./PostDetail";
 
 async function fetchPosts() {
-  const response = await fetch("http://localhost:3001/posts");
+  const response = await fetch("http://localhost:3004/posts");
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }

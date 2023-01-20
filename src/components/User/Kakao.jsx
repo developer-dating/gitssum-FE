@@ -20,7 +20,7 @@ const Kakao = () => {
         localStorage.setItem("accessToken", res.headers.authorization);
         setCookie("refreshToken", res.headers.authorization);
 
-        window.location.replace("/");
+        window.location.replace("/setprofile");
       }
     },
     onError: (res) => {

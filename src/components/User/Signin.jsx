@@ -51,7 +51,7 @@ const Login = () => {
             >
               <img
                 className="mr-2"
-                src="/img/kakaoTalk.png"
+                src="/img/KakaoTalk.png"
                 alt="KakaotalkLogo Logo"
               ></img>
               카카오 로그인

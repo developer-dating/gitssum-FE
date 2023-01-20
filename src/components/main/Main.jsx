@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 // import { PostDetail } from "./PostDetail";
 
 async function fetchPosts() {
-  const response = await fetch("http://localhost:3004/posts");
+  const response = await fetch("http://localhost:3001/posts");
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
@@ -26,6 +26,7 @@ const Main = () => {
       </>
     );
 
+  console.log(data.myImage);
   return (
     <div className="flex items-center justify-center py-5">
       <div className="ml-8">
@@ -40,25 +41,27 @@ const Main = () => {
           <div className="w-96 flex flex-wrap reletive mb-20">
             <div
               className="w-[350px] h-[572px] mt-10 bg-cover bg-no-repeat relative mr-7 cursor-pointer hover:scale-110 duration-300 rounded-xl"
-              style={{ backgroundImage: `url(${post.url}})` }}
+              style={{ backgroundImage: `url(${post.myImage[0]}})` }}
             >
               <div className="flex text-[#fff] absolute bottom-48 left-5 space-x-[198px]">
                 <div className="flex space-x-2">
-                  <p className="text-2xl font-bold">{post.user}</p>
+                  <p className="text-2xl font-bold">{post.username}</p>
                   <p className="text-xl flex items-center justify-center">
                     {post.age}
                   </p>
                 </div>
-                <img
-                  src="/img/detailicon.png"
-                  alt="DetailIcon"
-                  className="w-5 h-5 cursor-pointer"
-                />
+                <a href="/userdetail">
+                  <img
+                    src="/img/detailicon.png"
+                    alt="DetailIcon"
+                    className="w-5 h-5 cursor-pointer"
+                  />
+                </a>
               </div>
               <div className="flex text-[#fff] absolute bottom-40 left-5 space-x-2 text-sm">
-                <p>{post.job}</p>
+                <p>{post.job} 개발자</p>
                 <p className="mr-2 ml-2 ">.</p>
-                <p>{post.home}</p>
+                <p>{post.residence}</p>
               </div>
               <div className="flex text-[#fff] absolute bottom-28 left-5 space-x-2 text-xs flex-wrap">
                 {post.stack.map((stack) => (

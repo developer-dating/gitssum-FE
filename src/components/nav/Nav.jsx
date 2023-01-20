@@ -36,9 +36,12 @@ const Nav = () => {
               <img src="/img/navmsglogo1.png" alt="MsgLogo" className="mb-1" />
               <p className="mb-5">메세지</p>
             </div>
-            <div className="w-[78px] h-[95px] flex items-center justify-center cursor-pointer hover:bg-[#e3dfddd2] duration-300 text-sm font-medium">
+            <a
+              href="/mypage"
+              className="w-[78px] h-[95px] flex items-center justify-center cursor-pointer hover:bg-[#e3dfddd2] duration-300 text-sm font-medium"
+            >
               설정
-            </div>
+            </a>
           </div>
         </div>
       </div>

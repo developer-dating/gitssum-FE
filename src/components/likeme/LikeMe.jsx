@@ -58,17 +58,42 @@ const LikeMe = () => {
             <div className="w-[390px] h-[130px] border-b-[2px] ml-[-15px] flex items-center">
               <div className="flex flex-row ml-[10px]">
                 <img
-                  src="/img/person1.png"
+                  src="/img/bg-person.png"
                   alt="person1"
                   className="w-[90px] h-[90px] rounded-[10px]"
                 />
                 <div className="flex flex-col ml-2 mb-[4px]">
                   <div className="flex flex-row">
-                    <p className="mr-2 font-bold text-[20px]">정규민</p>
-                    <span className="font-normal text-[18px] mr-2">29</span>
+                    <p className="mr-2 font-bold text-[20px]">정현규</p>
+                    <span className="font-normal text-[18px] mr-2">26</span>
                   </div>
+                  <p className="text-[14px]">디자이너 . 서울특별시 강서구</p>
+                  <div className="flex flex-row mt-[5px]">
+                    <button className="w-[90px] h-[32px] bg-[#28CC9E] text-[#fff] rounded-[8px] mr-[8px] hover:bg-[#fff] border hover:border-[#28CC9E] hover:text-[#28CC9E] duration-300">
+                      <p>연결하기</p>
+                    </button>
+                    <button className="w-[90px] h-[32px] rounded-[8px] border border-gray text-[#000] hover:bg-[grey] hover:text-[#fff] duration-300">
+                      <p>관심 없음</p>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="w-[390px] h-[130px] border-b-[2px] ml-[-15px] flex items-center">
+              <div className="flex flex-row ml-[10px]">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuu-lX95MTp5GArTlHR71PwUEcZ0N9zYdUfA&usqp=CAU"
+                  alt="person1"
+                  className="w-[90px] h-[90px] rounded-[10px]"
+                />
+                <div className="flex flex-col ml-2 mb-[4px]">
+                  <div className="flex flex-row">
+                    <p className="mr-2 font-bold text-[20px]">송민호</p>
+                    <span className="font-normal text-[18px] mr-2">30</span>
+                  </div>
+
                   <p className="text-[14px]">
-                    프리랜서 개발자 . 서울특별시 강서구
+                    백엔드 개발자 . 서울특별시 강서구
                   </p>
                   <div className="flex flex-row mt-[5px]">
                     <button className="w-[90px] h-[32px] bg-[#28CC9E] text-[#fff] rounded-[8px] mr-[8px] hover:bg-[#fff] border hover:border-[#28CC9E] hover:text-[#28CC9E] duration-300">
@@ -84,45 +109,18 @@ const LikeMe = () => {
             <div className="w-[390px] h-[130px] border-b-[2px] ml-[-15px] flex items-center">
               <div className="flex flex-row ml-[10px]">
                 <img
-                  src="/img/person1.png"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO9cSWlp0jnM8pIsmuaHWWVXxI-kRe4jgpbw&usqp=CAU"
                   alt="person1"
                   className="w-[90px] h-[90px] rounded-[10px]"
                 />
                 <div className="flex flex-col ml-2 mb-[4px]">
                   <div className="flex flex-row">
-                    <p className="mr-2 font-bold text-[20px]">정규민</p>
-                    <span className="font-normal text-[18px] mr-2">29</span>
+                    <p className="mr-2 font-bold text-[20px]">류준열</p>
+                    <span className="font-normal text-[18px] mr-2">31</span>
                   </div>
 
                   <p className="text-[14px]">
-                    프리랜서 개발자 . 서울특별시 강서구
-                  </p>
-                  <div className="flex flex-row mt-[5px]">
-                    <button className="w-[90px] h-[32px] bg-[#28CC9E] text-[#fff] rounded-[8px] mr-[8px] hover:bg-[#fff] border hover:border-[#28CC9E] hover:text-[#28CC9E] duration-300">
-                      <p>연결하기</p>
-                    </button>
-                    <button className="w-[90px] h-[32px] rounded-[8px] border border-gray text-[#000] hover:bg-[grey] hover:text-[#fff] duration-300">
-                      <p>관심 없음</p>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-[390px] h-[130px] border-b-[2px] ml-[-15px] flex items-center">
-              <div className="flex flex-row ml-[10px]">
-                <img
-                  src="/img/person1.png"
-                  alt="person1"
-                  className="w-[90px] h-[90px] rounded-[10px]"
-                />
-                <div className="flex flex-col ml-2 mb-[4px]">
-                  <div className="flex flex-row">
-                    <p className="mr-2 font-bold text-[20px]">정규민</p>
-                    <span className="font-normal text-[18px] mr-2">29</span>
-                  </div>
-
-                  <p className="text-[14px]">
-                    프리랜서 개발자 . 서울특별시 강서구
+                    프론트 개발자 . 서울특별시 강서구
                   </p>
                   <div className="flex flex-row mt-[5px]">
                     <button className="w-[90px] h-[32px] bg-[#28CC9E] text-[#fff] rounded-[8px] mr-[8px] hover:bg-[#fff] border hover:border-[#28CC9E] hover:text-[#28CC9E] duration-300">

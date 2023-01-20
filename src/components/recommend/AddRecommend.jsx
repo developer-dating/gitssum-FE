@@ -1,7 +1,17 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+import { Navigate } from "react-router";
 
 const AddRecommend = () => {
+  const mutation = useMutation((rocm) => {
+    return axios.post("http://localhost:3001/recommends", rocm);
+  });
+
   const [checkedItems, setCheckedItems] = useState([]);
+  const [age, setAge] = useState("");
+  const [residence, setResidence] = useState("");
+
   const datas = [
     { title: "Python", content: "Python" },
     { title: "C", content: "C" },
@@ -54,37 +64,49 @@ const AddRecommend = () => {
 
             <div className="space-x-[10px]">
               <select
+                value={residence}
+                onChange={(e) => setResidence(e.target.value)}
                 type="text"
                 className="w-[170px] h-[40px] border border-[#28CC9E] rounded-[8px] mt-8 text-[#28CC9E] font-[14px] text-center"
               >
-                <option>--- 지역 ---</option>
-                <option value="서울특별시 강동구">서울특별시 강동구</option>
-                <option value="서울특별시 강남구">서울특별시 강남구</option>
-                <option value="서울특별시 강북구">서울특별시 강북구</option>
-                <option value="서울특별시 강서구">서울특별시 강서구</option>
-                <option value="서울특별시 송파구">서울특별시 송파구</option>
-                <option value="서울특별시 은평구">서울특별시 은평구</option>
-                <option value="서울특별시 서대문구">서울특별시 서대문구</option>
-                <option value="서울특별시 서초구">서울특별시 서초구</option>
+                <option value="" disabled selected hidden>
+                  --- 지역 ---
+                </option>
+                <option value="서울">서울</option>
+                <option value="서울">경기</option>
+                <option value="경북">경북</option>
+                <option value="경남">경남</option>
+                <option value="전북">전북</option>
+                <option value="전남">전남</option>
+                <option value="충북">충북</option>
+                <option value="충남">충남</option>
+                <option value="강원">강원</option>
+                <option value="제주">제주</option>
+                <option value="인천">인천</option>
               </select>
               <select
                 type="text"
                 className="w-[170px] h-[40px] border border-[#28CC9E] rounded-[8px] mt-8 text-[#28CC9E] font-[14px] text-center"
               >
                 <option>--- 지역 ---</option>
-                <option value="서울특별시 강동구">서울특별시 강동구</option>
-                <option value="서울특별시 강남구">서울특별시 강남구</option>
-                <option value="서울특별시 강북구">서울특별시 강북구</option>
-                <option value="서울특별시 강서구">서울특별시 강서구</option>
-                <option value="서울특별시 송파구">서울특별시 송파구</option>
-                <option value="서울특별시 은평구">서울특별시 은평구</option>
-                <option value="서울특별시 서대문구">서울특별시 서대문구</option>
-                <option value="서울특별시 서초구">서울특별시 서초구</option>
+                <option value="서울">서울</option>
+                <option value="서울">경기</option>
+                <option value="경북">경북</option>
+                <option value="경남">경남</option>
+                <option value="전북">전북</option>
+                <option value="전남">전남</option>
+                <option value="충북">충북</option>
+                <option value="충남">충남</option>
+                <option value="강원">강원</option>
+                <option value="제주">제주</option>
+                <option value="인천">인천</option>
               </select>
             </div>
             <p className="text-[#333] text-xl font-bold mt-[40px]">나이 설정</p>
             <div className="text-[#555] font[14px]">
               <input
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
                 type="text"
                 className="w-[350px] h-[40px] bg-[#eee] rounded-[8px] mt-[8px] pl-2"
                 placeholder="나이 입력"
@@ -107,7 +129,15 @@ const AddRecommend = () => {
                   </p>
                 ))}
               </div>
-              <button className="flex w-[350px] h-[48px] justify-center items-center rounded-md border hover:border-[#28CC9E] text-[#fff] font-bold bg-[#28CC9E] hover:bg-[#fff] hover:text-[#28CC9E] duration-300 mt-[80px]">
+              <button
+                className="flex w-[350px] h-[48px] justify-center items-center rounded-md border hover:border-[#28CC9E] text-[#fff] font-bold bg-[#28CC9E] hover:bg-[#fff] hover:text-[#28CC9E] duration-300 mt-[80px]"
+                onClick={() =>
+                  mutation.mutate({
+                    age: age,
+                    residence: residence,
+                  })
+                }
+              >
                 <p>취향 설정하기</p>
               </button>
             </div>

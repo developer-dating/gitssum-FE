@@ -1,10 +1,14 @@
 export const Detail = () => {
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center mt-10">
       <div>
-        <img className="w-[390px] h-[390px]" src="img/gyumin.png " alt="logo" />
+        <img
+          className="w-[390px] h-[390px] rounded-[8px]"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuu-lX95MTp5GArTlHR71PwUEcZ0N9zYdUfA&usqp=CAU"
+          alt="logo"
+        />
         <div className="mx-auto flex items-center  text-2xl pl-2 pt-3 md:flex-row">
-          <div className="mr-1 font-bold pr-1">정규민</div>
+          <div className="mr-1 font-bold pr-1">송민호</div>
           <div>29</div>
         </div>
         <span className="pl-2 pt-1 text-sm">

@@ -1,9 +1,19 @@
-import React from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+// import { createGlobalStyle } from "styled-components";
 import Router from "./shared/Router";
-import "./App.css";
+
+const queryClient = new QueryClient();
 
 function App() {
-  return <Router />;
+  return (
+    <>
+      <QueryClientProvider client={queryClient}>
+        <Router />
+        <ReactQueryDevtools />
+      </QueryClientProvider>
+    </>
+  );
 }
 
 export default App;

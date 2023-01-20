@@ -36,7 +36,7 @@ const Login = () => {
           <div>
             <img
               className="mx-auto h-32 w-42"
-              src="./img/signin_logo.png"
+              src="/img/signin_logo.png"
               alt="Your Company"
             />
             <h2 className="mt-6 text-center text-l font-bold tracking-tight text-gray-900">
@@ -51,7 +51,7 @@ const Login = () => {
             >
               <img
                 className="mr-2"
-                src="./img/kakaoTalk.png"
+                src="/img/kakaoTalk.png"
                 alt="KakaotalkLogo Logo"
               ></img>
               카카오 로그인
@@ -60,7 +60,7 @@ const Login = () => {
               className="group relative flex w-80 h-12 justify-center items-center rounded-md border border-transparent bg-[#FFFFFF] py-2 px-4 text-sm font-medium text-black focus:outline-none focus:ring-2  focus:ring-offset-2 border border-[#000000]"
               onClick={() => onClickHandler("google")}
             >
-              <img src="./img/Logo.png" alt="Google Logo"></img>
+              <img src="/img/Logo.png" alt="Google Logo"></img>
               Google로 로그인
             </button>
             <button
@@ -69,7 +69,7 @@ const Login = () => {
             >
               <img
                 className="mr-2"
-                src="./img/Github.png"
+                src="/img/Github.png"
                 alt="Github Logo"
               ></img>
               Github으로 계속하기

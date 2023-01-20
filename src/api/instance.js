@@ -59,7 +59,7 @@ instance.interceptors.response.use(
       case 403:
         alert("로그인 시간이 만료되었습니다.\n다시 로그인 해주세요.");
         localStorage.clear();
-        window.location.replace("/login");
+        window.location.replace("/");
         break;
       default:
         return response;
@@ -78,7 +78,7 @@ instance.interceptors.response.use(
         // if (token !== null && refreshToken !== null) {
         alert("로그인 시간이 만료되었습니다.\n다시 로그인 해주세요.");
         localStorage.clear();
-        window.location.replace("/login");
+        window.location.replace("/signin");
         // }
         //     // const res = await axios.get(`${process.env.REACT_APP_API_URL}/member/signup/issue/token`, {
         //     //     headers: {

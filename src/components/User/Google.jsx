@@ -1,19 +1,17 @@
 import React from "react";
-// import PageState from "../common/PageState";
 import Main from "../../pages/Main";
 import { useQuery } from "@tanstack/react-query";
 import { memberApis } from "../../api/memberApis";
-import { Cookies } from "react-cookie";
 import { setCookie } from "../../cookie/cookie";
 
 // 리다이렉트될 화면
-const Kakao = () => {
-  const cookies = new Cookies();
-  // 인가코드
+const Google = () => {
+  // 인가 코드
+
   let code = new URL(window.location.href).searchParams.get("code");
   console.log(code);
 
-  useQuery(["kakaoLogin", code], () => memberApis.kakaoLoginAX(code), {
+  useQuery(["googleLogin", code], () => memberApis.googleLoginAX(code), {
     //options
     refetchOnWindowFocus: false,
     onSuccess: (res) => {
@@ -40,5 +38,4 @@ const Kakao = () => {
     />
   );
 };
-
-export default Kakao;
+export default Google;

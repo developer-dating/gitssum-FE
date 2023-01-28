@@ -5,7 +5,9 @@ import { Navigate } from "react-router";
 
 export default function Profile() {
   const mutation = useMutation((prof) => {
-    return axios.post("http://localhost:3001/posts", prof);
+    return (
+      axios.post("http://localhost:3001/posts", prof), alert("프로필 설정 성공")
+    );
   });
 
   const [username, setUsername] = useState("");

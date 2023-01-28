@@ -5,12 +5,16 @@ import { Navigate } from "react-router";
 
 const AddRecommend = () => {
   const mutation = useMutation((rocm) => {
-    return axios.post("http://localhost:3001/recommends", rocm);
+    return (
+      axios.post("http://localhost:3001/recommends", rocm),
+      alert("프로필 설정 성공")
+    );
   });
 
   const [checkedItems, setCheckedItems] = useState([]);
   const [age, setAge] = useState("");
   const [residence, setResidence] = useState("");
+  const [stack, setStack] = useState("Java");
 
   const datas = [
     { title: "Python", content: "Python" },
@@ -131,12 +135,14 @@ const AddRecommend = () => {
               </div>
               <button
                 className="flex w-[350px] h-[48px] justify-center items-center rounded-md border hover:border-[#28CC9E] text-[#fff] font-bold bg-[#28CC9E] hover:bg-[#fff] hover:text-[#28CC9E] duration-300 mt-[80px]"
-                onClick={() =>
+                onClick={() => {
+                  alert("설정 완료");
                   mutation.mutate({
                     age: age,
                     residence: residence,
-                  })
-                }
+                    stack: stack,
+                  });
+                }}
               >
                 <p>취향 설정하기</p>
               </button>

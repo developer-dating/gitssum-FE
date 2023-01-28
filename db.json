@@ -133,27 +133,24 @@
       ]
     },
     {
-      "username": "항해",
-      "age": "24",
+      "username": "정현규",
+      "age": "26",
       "introduction": "안녕하세요",
-      "link": "http://localhost:3000/a60d200a-5207-4d77-8567-6bd34f7c2f71",
+      "link": "https://github.com/MJ-Dev92",
       "gender": "남자",
-      "education": "초대졸",
-      "job": "풀스택",
-      "residence": "경남",
+      "education": "대졸",
+      "job": "백엔드",
+      "residence": "경기",
       "stack": [
         {
-          "content": "Java"
+          "content": "REACT"
         },
         {
-          "content": "SQL"
-        },
-        {
-          "content": "Swift"
+          "content": "JavaScript"
         }
       ],
       "myImage": [
-        "http://localhost:3000/a60d200a-5207-4d77-8567-6bd34f7c2f71"
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToyNPrD7KV2I-6l5KJfV1LzwnGBE_iVIgjvQ&usqp=CAU"
       ],
       "id": 7
     }
@@ -163,16 +160,6 @@
       "id": 1,
       "age": "26",
       "residence": "서울"
-    },
-    {
-      "age": "24",
-      "residence": "전북",
-      "id": 2
-    },
-    {
-      "age": "24",
-      "residence": "전북",
-      "id": 3
     }
   ]
 }

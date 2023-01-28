@@ -1,21 +1,26 @@
-// import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
 // import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 // import { PostDetail } from "./PostDetail";
 
 async function fetchPosts() {
-  const response = await fetch("http://localhost:3001/posts");
+  const response = await fetch("https://gitssum.com/api/user/get/profiles");
+  console.log(response);
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
-  return response.json();
+  return response;
 }
 
 const Main = () => {
   // const [currentPage, setCurrentPage] = useState(0);
   // const [selectedPost, setSelectedPost] = useState(null);
-
   const { data, isError, error, isLoading } = useQuery(["posts"], fetchPosts);
+  console.log(data);
+  const queryClient = useQueryClient();
+  queryClient.clear();
+  // const queryCache = queryClient.getQueryCache();
 
   if (isLoading) return <h3>Loading...</h3>;
   if (isError)
@@ -26,7 +31,6 @@ const Main = () => {
       </>
     );
 
-  console.log(data.myImage);
   return (
     <div className="flex items-center justify-center py-5">
       <div className="ml-8">
@@ -41,7 +45,7 @@ const Main = () => {
           <div className="w-96 flex flex-wrap reletive mb-20">
             <div
               className="w-[350px] h-[572px] mt-10 bg-cover bg-no-repeat relative mr-7 cursor-pointer hover:scale-110 duration-300 rounded-xl"
-              style={{ backgroundImage: `url(${post.myImage[0]}})` }}
+              style={{ backgroundImage: `url(${post.imageList[0]}})` }}
             >
               <div className="flex text-[#fff] absolute bottom-48 left-5 space-x-[198px]">
                 <div className="flex space-x-2">
@@ -64,13 +68,12 @@ const Main = () => {
                 <p>{post.residence}</p>
               </div>
               <div className="flex text-[#fff] absolute bottom-28 left-5 space-x-2 text-xs flex-wrap">
-                {post.stack.map((stack) => (
+                {post.stackList.map((stack) => (
                   <p className=" bg-[#000]/[.3] px-3 py-2 rounded-full mt-2">
-                    {stack.content}
+                    {stack}
                   </p>
                 ))}
               </div>
-
               <div className="flex absolute bottom-6 right-4">
                 <div className="bg-[#fff] w-14 h-14 rounded-full flex items-center">
                   <img

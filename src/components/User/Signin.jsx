@@ -35,7 +35,7 @@ const Login = () => {
         <div className="w-full max-w-md h-full space-y-20 mt-40">
           <div>
             <img
-              className="mx-auto h-32 w-42"
+              className="mx-auto h-[121px] w-[169px]"
               src="/img/signin_logo.png"
               alt="Your Company"
             />

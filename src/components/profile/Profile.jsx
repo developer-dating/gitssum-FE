@@ -2,11 +2,15 @@ import { useState } from "react";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { Navigate } from "react-router";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Profile() {
+  const { id } = useParams();
+
   const mutation = useMutation((prof) => {
     return (
-      axios.post("http://localhost:3001/posts", prof), alert("프로필 설정 성공")
+      axios.post(`http://3.39.175.168/api/user/get/otherprofile/${id}`, prof),
+      alert("프로필 설정 성공")
     );
   });
 

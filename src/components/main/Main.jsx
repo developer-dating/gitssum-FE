@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import ModalBasic from "./Modal";
 // import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 // import { PostDetail } from "./PostDetail";
 
@@ -22,6 +23,13 @@ const Main = () => {
   // const [currentPage, setCurrentPage] = useState(0);
   // const [selectedPost, setSelectedPost] = useState(null);
   const { data, isError, error, isLoading } = useQuery(["posts"], fetchPosts);
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  // 모달창 노출
+  const showModal = () => {
+    setModalOpen(true);
+  };
 
   // const queryClient = useQueryClient();
   // queryClient.clear();
@@ -92,7 +100,9 @@ const Main = () => {
                   src="/img/buttton_like.png"
                   alt="HomeLogo"
                   className="w-[52px] h-[52px] rounded-full flex items-center ml-3"
+                  onClick={showModal}
                 />
+                {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
               </div>
             </div>
           </div>

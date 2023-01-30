@@ -56,7 +56,6 @@ export const Detail = () => {
         </span>
         <p className="ml-[12px]  bg-[#EEEEEE] rounded-xl p-3 w-[350px] text-xs my-3 ">
           {datas.introduction}
-
         </p>
         <div className="mr-1 font-bold py-1 pl-2 ml-[10px] ">기본 정보</div>
         <div className="flex justify-between px-8 py-1 text-sm ml-[-13px] ">
@@ -77,12 +76,6 @@ export const Detail = () => {
           ))}
         </div>
         <button className="ml-[12px]  group relative flex justify-center items-center text-sm rounded-lg bg-[#28CC9E] text-white w-[350px] h-[40px] font-bold mt-8 mb-28">
-          <img
-            className="mr-2"
-            src="/img/navheartlogo.png"
-            alt="heartLogo"
-          ></img>
-
           좋아요
         </button>
       </div>

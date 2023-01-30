@@ -6,12 +6,17 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 async function fetchLikes() {
-  const response = await fetch("https://gitssum.com/api/like/get/likeme");
-  console.log(response);
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
+  try {
+    const response = await axios.get(
+      "http://3.39.175.168/api/user/get/all/profiles"
+    );
+    // if (!response.ok) {
+    //   throw new Error("Network response was not ok");
+    // }
+    return response;
+  } catch (error) {
+    console.log(error);
   }
-  return response;
 }
 
 const LikeMe = () => {

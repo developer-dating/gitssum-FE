@@ -160,6 +160,12 @@
       "id": 1,
       "age": "26",
       "residence": "서울"
+    },
+    {
+      "age": "25-29세",
+      "residence": "경남",
+      "stack": "Java",
+      "id": 2
     }
   ]
 }

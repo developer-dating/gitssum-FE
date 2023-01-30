@@ -11,7 +11,7 @@ const AddRecommend = () => {
     );
   });
 
-  const [checkedItems, setCheckedItems] = useState([]);
+  const [checkedItems, setCheckedItems] = useState("");
   const [age, setAge] = useState("");
   const [residence, setResidence] = useState("");
   const [stack, setStack] = useState("Java");
@@ -71,28 +71,11 @@ const AddRecommend = () => {
                 value={residence}
                 onChange={(e) => setResidence(e.target.value)}
                 type="text"
-                className="w-[170px] h-[40px] border border-[#28CC9E] rounded-[8px] mt-8 text-[#28CC9E] font-[14px] text-center"
+                className="w-[350px] h-[40px] border border-gray rounded-[8px] mt-3 font-[14px] pl-2"
               >
-                <option value="" disabled selected hidden>
-                  --- 지역 ---
+                <option value="서울" disabled selected hidden>
+                  지역 선택
                 </option>
-                <option value="서울">서울</option>
-                <option value="서울">경기</option>
-                <option value="경북">경북</option>
-                <option value="경남">경남</option>
-                <option value="전북">전북</option>
-                <option value="전남">전남</option>
-                <option value="충북">충북</option>
-                <option value="충남">충남</option>
-                <option value="강원">강원</option>
-                <option value="제주">제주</option>
-                <option value="인천">인천</option>
-              </select>
-              <select
-                type="text"
-                className="w-[170px] h-[40px] border border-[#28CC9E] rounded-[8px] mt-8 text-[#28CC9E] font-[14px] text-center"
-              >
-                <option>--- 지역 ---</option>
                 <option value="서울">서울</option>
                 <option value="서울">경기</option>
                 <option value="경북">경북</option>
@@ -107,14 +90,21 @@ const AddRecommend = () => {
               </select>
             </div>
             <p className="text-[#333] text-xl font-bold mt-[40px]">나이 설정</p>
-            <div className="text-[#555] font[14px]">
-              <input
+            <div>
+              <select
                 value={age}
                 onChange={(e) => setAge(e.target.value)}
                 type="text"
-                className="w-[350px] h-[40px] bg-[#eee] rounded-[8px] mt-[8px] pl-2"
-                placeholder="나이 입력"
-              />
+                className="w-[350px] h-[40px] border border-grey rounded-[8px] mt-3 font-[14px] pl-2"
+              >
+                <option value="" disabled selected hidden>
+                  나이대 선택
+                </option>
+                <option value="20-24세">20-24세</option>
+                <option value="25-29세">25-29세</option>
+                <option value="30-34세">30-34세</option>
+                <option value="35-39세">35-39세</option>
+              </select>
             </div>
             <p className="text-[#333] text-xl font-bold mt-[40px]">
               선호 기술스택
@@ -125,12 +115,14 @@ const AddRecommend = () => {
             <div>
               <div className="flex text-[#555] left-5 text-xs flex-wrap">
                 {datas.map((item) => (
-                  <p
+                  <button
                     key={item.title}
-                    className=" bg-[#eee]/[.3] px-3 py-2 mr-2 rounded-full mt-2"
+                    value={item.title}
+                    onClick={checkedItemHandler}
+                    className="bg-[#eee]/[.3] px-3 py-2 mr-2 rounded-full mt-2"
                   >
                     {item.title}
-                  </p>
+                  </button>
                 ))}
               </div>
               <button

@@ -45,7 +45,7 @@ const Main = () => {
     );
 
   const datas = data.data;
-  console.log(datas.profileList[0].imageList[0]);
+
   return (
     <div className="flex items-center justify-center py-5">
       <div className="ml-8">

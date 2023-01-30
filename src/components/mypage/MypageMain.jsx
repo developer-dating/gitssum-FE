@@ -1,33 +1,56 @@
+import { Link } from "react-router-dom";
+
 export const MypageMain = () => {
   return (
-    <div>
-      <p className="w-[390px] mx-auto flex  text-3xl font-bold mb-7 pt-10 pl-5">
-        <div className="mx-1 flex title-font font-medium items-center  text-gray-900 md:mb-0">
-          <img class="" src="img/heart.png " alt="logo" />
+    <div className="font-SUIT">
+      <p className="w-[390px] mx-auto flex  text-[24px] font-bold mb-2 pt-10 pl-4">
+        <div className="mx-1 flex title-font font-medium items-center pr-1 text-gray-900 md:mb-0">
+          <img className="w-[34px] h-[30px]" src="img/heart.png " alt="logo" />
         </div>
         내 프로필
       </p>
-      <div className="flex items-center justify-center">
-        <div className="p-2 flex">
+      <div className="flex justify-center pr-16 ml-4 items-center ">
+        <div className="p-5 flex">
           <img
-            className="w-[90px] h-[90px] rounded-full"
+            className="w-[80px] h-[80px]  mr-2 rounded-xl"
             src="img/gyumin.png "
             alt="profilePhoto"
           />
           <div>
-            <div className="mx-auto flex items-center  text-2xl pl-2 pt-3 md:flex-row">
-              <div className="mr-1 font-bold pr-1">정규민</div>
-              <div>29</div>
+            <div className="mx-auto flex items-center pl-2 ">
+              <div className="mr-1 font-bold text-[18px] pr-1">정규민</div>
+              <div className="text-[16px]">29</div>
             </div>
-            <span className="pl-2 pt-1 text-sm">
+            <span className="pl-2 text-[12px]">
               프리랜서 개발자 ∙ 서울특별시 강서구
             </span>
+            <div className="text-[12px]">
+              <div className="flex pl-1.5">
+                <button className="bg-[#EEEEEE] px-2 py-0.5 mr-0.5 rounded-full">
+                  Python
+                </button>
+                <button className="bg-[#EEEEEE] px-2 py-0.5 mr-0.5 rounded-full">
+                  C
+                </button>
+                <button className="bg-[#EEEEEE] px-2 py-0.5 mr-0.5 rounded-full">
+                  Java
+                </button>
+                <button className="bg-[#EEEEEE] px-2 py-0.5 mr-0.5 rounded-full">
+                  C++
+                </button>
+                <button className="bg-[#EEEEEE] px-2 py-0.5 mr-0.5 rounded-full">
+                  C#
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <button className="mx-auto group relative flex justify-center items-center text-sm rounded-lg bg-[#28CC9E] text-white w-[350px] h-[40px] font-bold mt-5 mb-20">
-        정보 수정하기
-      </button>
+      <Link to="/editmyprofile" style={{ textDecoration: "none" }}>
+        <button className="mx-auto group relative flex justify-center items-center text-[16px] rounded-lg bg-[#28CC9E] text-white w-[350px] h-[48px]  mt-5 mb-20">
+          정보 수정하기
+        </button>{" "}
+      </Link>
     </div>
   );
 };

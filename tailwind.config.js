@@ -17,6 +17,9 @@ module.exports = {
         180: "180px",
         177: "177px",
       },
+      fontFamily: {
+        SUIT: ["SUIT"],
+      },
     },
   },
   plugins: [],

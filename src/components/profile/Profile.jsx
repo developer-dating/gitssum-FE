@@ -8,10 +8,12 @@ export default function Profile() {
   const { id } = useParams();
 
   const mutation = useMutation((prof) => {
+
     return (
       axios.post(`http://3.39.175.168/api/user/get/otherprofile/${id}`, prof),
       alert("프로필 설정 성공")
     );
+
   });
 
   const [username, setUsername] = useState("");
@@ -23,13 +25,15 @@ export default function Profile() {
   const [residence, setResidence] = useState("");
   const [education, setEducation] = useState("");
   const [myImage, setMyImage] = useState("");
+  const [stack, setStack] = useState("");
 
   const addImage = (e) => {
-    const nowSelectImageList = e.target.files;
-    const nowImageURLList = [...myImage];
+    const nowSelectImageList = e.target.files; // 한꺼번에 업로드한 이미지 파일 리스트
+    const nowImageURLList = [...myImage]; // 현재 myImage 복사
     for (let i = 0; i < nowSelectImageList.length; i += 1) {
-      const nowImageUrl = URL.createObjectURL(nowSelectImageList[i]);
-      nowImageURLList.push(nowImageUrl);
+      // nowSelectImageList object를 i를 사용해 돌림
+      const nowImageUrl = URL.createObjectURL(nowSelectImageList[i]); // 미리보기를 위한 변수화
+      nowImageURLList.push(nowImageUrl); // 복사한 myImage에 추가
     }
     setMyImage(nowImageURLList);
   };
@@ -45,11 +49,11 @@ export default function Profile() {
           ) : null}
 
           {mutation.isSuccess ? <Navigate to="/"></Navigate> : null}
-          <div className="flex items-center justify-center py-5">
+          <div className="font-SUIT flex items-center justify-center py-5">
             <div className="ml-8">
               <p className="mx-auto mt-5 flex flex-wrap  md:flex-row items-center text-3xl font-bold mb-10">
                 <div className="mx-1 flex title-font font-medium items-center  text-gray-900 md:mb-0">
-                  <img class="" src="img/heart.png " alt="logo" />
+                  <img className="pr-1" src="img/heart.png " alt="logo" />
                 </div>
                 내 프로필 설정
               </p>
@@ -211,15 +215,20 @@ export default function Profile() {
                     </option>
                     <option value="서울">서울</option>
                     <option value="경기">경기</option>
-                    <option value="경북">경북</option>
-                    <option value="경남">경남</option>
-                    <option value="전북">전북</option>
-                    <option value="전남">전남</option>
-                    <option value="충북">충북</option>
-                    <option value="충남">충남</option>
-                    <option value="강원">강원</option>
-                    <option value="제주">제주</option>
                     <option value="인천">인천</option>
+                    <option value="강원">강원</option>
+                    <option value="대전">대전</option>
+                    <option value="충남">충남</option>
+                    <option value="충북">충북</option>
+                    <option value="부산">부산</option>
+                    <option value="울산">울산</option>
+                    <option value="경남">경남</option>
+                    <option value="경북">경북</option>
+                    <option value="대구">대구</option>
+                    <option value="광주">광주</option>
+                    <option value="전남">전남</option>
+                    <option value="전북">전북</option>
+                    <option value="제주">제주</option>
                   </select>
                 </div>
                 <div className="mt-6 mx-auto flex flex-wrap md:flex-row items-center mb-1">
@@ -234,88 +243,95 @@ export default function Profile() {
                 <hr className="w-[350px] h-0.5 bg-gray-200 rounded-3xl my-6"></hr>
                 <div className="mt-2 mx-auto flex flex-wrap md:flex-row items-center mb-4">
                   <div className="mr-1 font-bold text-sm">선호 기술스택</div>
+                  <div className="text-xs text-[#FF4E4E]">
+                    (※최대 5개까지 선택)
+                  </div>
                 </div>
-                <div className="flex mb-3">
-                  <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
-                    Python
-                  </button>
-                  <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                    C
-                  </button>
-                  <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                    Java
-                  </button>
-                  <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                    C++
-                  </button>
-                  <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                    C#
-                  </button>
-                </div>
-                <div className="flex mb-3">
-                  <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
-                    Visual Basic
-                  </button>
-                  <button className="bg-[#EEEEEE] px-3 py-1  rounded-full">
-                    JavaScript
-                  </button>
-                  <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                    Assembly Language
-                  </button>
-                </div>
-                <div className="flex mb-3">
-                  <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
-                    SQL
-                  </button>
-                  <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                    PHP
-                  </button>
-                  <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                    Objective-C
-                  </button>
-                  <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                    Go
-                  </button>
-                </div>
-                <div className="flex mb-3">
-                  <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
-                    Delphi/Objective Pascal
-                  </button>
-                  <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                    MATLAB
-                  </button>
-                  <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                    Fortran
-                  </button>
-                </div>
-                <div className="flex mb-2">
-                  <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
-                    Swift
-                  </button>
-                  <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                    Classic Visual Basic
-                  </button>
-                  <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                    R
-                  </button>
-                  <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                    Pearl
-                  </button>
+
+                <div className="text-[14px]">
+                  <div className="flex mb-3">
+                    <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
+                      Python
+                    </button>
+                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
+                      C
+                    </button>
+                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
+                      Java
+                    </button>
+                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
+                      C++
+                    </button>
+                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
+                      C#
+                    </button>
+                  </div>
+                  <div className="flex mb-3">
+                    <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
+                      Visual Basic
+                    </button>
+                    <button className="bg-[#EEEEEE] px-3 py-1  rounded-full">
+                      JavaScript
+                    </button>
+                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
+                      Assembly Language
+                    </button>
+                  </div>
+                  <div className="flex mb-3">
+                    <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
+                      SQL
+                    </button>
+                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
+                      PHP
+                    </button>
+                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
+                      Objective-C
+                    </button>
+                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
+                      Go
+                    </button>
+                  </div>
+                  <div className="flex mb-3">
+                    <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
+                      Delphi/Objective Pascal
+                    </button>
+                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
+                      MATLAB
+                    </button>
+                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
+                      Fortran
+                    </button>
+                  </div>
+                  <div className="flex mb-2">
+                    <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
+                      Swift
+                    </button>
+                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
+                      Classic Visual Basic
+                    </button>
+                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
+                      R
+                    </button>
+                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
+                      Pearl
+                    </button>
+                  </div>
                 </div>
 
                 <button
                   className=" text-sm rounded-lg bg-[#28CC9E] text-white w-[350px] h-[40px] font-bold mt-10 mb-20"
                   onClick={() =>
                     mutation.mutate({
-                      username: username,
+                      user: username,
                       age: age,
                       introduction: introduction,
-                      link: link,
+                      url: link,
                       gender: gender,
                       education: education,
                       job: job,
-                      residence: residence,
-                      myImage: myImage,
+                      home: residence,
+                      url: myImage,
+                      stack: stack,
                     })
                   }
                 >

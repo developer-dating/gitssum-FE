@@ -13,6 +13,9 @@ import Recommend from "../pages/Recommend";
 import AddRecommend from "../pages/AddRecommend";
 import LikeMe from "../pages/LikeMe";
 
+import EditMyProfile from "../pages/EditMyProfile";
+
+
 const Router = () => {
   // let isAuthorized = localStorage.getItem("isAuthorized");
   // const navigate = useNavigate();
@@ -30,6 +33,7 @@ const Router = () => {
         <Route path="/recommend" element={<Recommend />} />
         <Route path="/addrecommend" element={<AddRecommend />} />
         <Route path="/likeme" element={<LikeMe />} />
+        <Route path="/editmyprofile" element={<EditMyProfile />} />
       </Routes>
     </BrowserRouter>
   );

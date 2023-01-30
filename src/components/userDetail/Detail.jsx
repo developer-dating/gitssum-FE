@@ -37,13 +37,14 @@ export const Detail = () => {
   console.log(datas);
 
   return (
-    <div className="flex items-center justify-center mt-10">
+    <div className="font-SUIT flex items-center justify-center mt-10">
       <div>
         <img
           className="w-[390px] h-[390px] rounded-[8px]"
           src={datas.imageList[0]}
           alt="logo"
         />
+
         <div className="ml-[10px] flex items-center text-2xl pl-2 pt-3 md:flex-row">
           <div className="mr-1 font-bold pr-1 text-[26px]">
             {datas.username}
@@ -55,6 +56,7 @@ export const Detail = () => {
         </span>
         <p className="ml-[12px]  bg-[#EEEEEE] rounded-xl p-3 w-[350px] text-xs my-3 ">
           {datas.introduction}
+
         </p>
         <div className="mr-1 font-bold py-1 pl-2 ml-[10px] ">기본 정보</div>
         <div className="flex justify-between px-8 py-1 text-sm ml-[-13px] ">
@@ -65,6 +67,7 @@ export const Detail = () => {
           <span className="text-[#555555]">깃헙/블로그링크</span>
           <span>{datas.link}</span>
         </div>
+
         <div className="mr-1 font-bold ml-[10px]  p-2">기술스택</div>
         <div className="pl-2 flex mb-3 ml-[10px] ">
           {datas.stackList.map((stack) => (
@@ -79,6 +82,7 @@ export const Detail = () => {
             src="/img/navheartlogo.png"
             alt="heartLogo"
           ></img>
+
           좋아요
         </button>
       </div>

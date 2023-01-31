@@ -166,6 +166,26 @@
       "residence": "경남",
       "stack": "Java",
       "id": 2
+    },
+    {
+      "age": "25-29세",
+      "residence": "경남",
+      "stack": [
+        "Python",
+        "Object-C",
+        "GO"
+      ],
+      "id": 3
+    },
+    {
+      "age": "30-34세",
+      "residence": "전북",
+      "stack": [
+        "C",
+        "C++",
+        "Assembly language"
+      ],
+      "id": 4
     }
   ]
 }

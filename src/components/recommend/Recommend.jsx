@@ -74,12 +74,14 @@ const Recommend = () => {
                   <div className="flex w-[400px] flex-wrap">
                     {data.data.profileList.map((post) => (
                       <div className="flex flex-col mb-[34px]">
-                        <div
-                          className="w-[167px] h-[167px]  bg-center bg-cover bg-no-repeat relative mr-[16px] cursor-pointer  duration-300 rounded-xl"
-                          style={{
-                            backgroundImage: `url(${post.imageList[0]})`,
-                          }}
-                        ></div>
+                        <a href={`/userdetail/${post.userId}`}>
+                          <div
+                            className="w-[167px] h-[167px]  bg-center bg-cover bg-no-repeat relative mr-[16px] cursor-pointer  duration-300 rounded-xl"
+                            style={{
+                              backgroundImage: `url(${post.imageList[0]})`,
+                            }}
+                          ></div>
+                        </a>
                         <div className="flex flex-row items-center">
                           <div className="text-[18px] font-bold mr-1">
                             {post.username}

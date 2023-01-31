@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { Navigate } from "react-router";
+import StackCard from "./StackCard";
 
 const AddRecommend = () => {
   const mutation = useMutation((rocm) => {
@@ -11,31 +12,31 @@ const AddRecommend = () => {
     );
   });
 
-  const [checkedItems, setCheckedItems] = useState("");
+  const [checkedItems, setCheckedItems] = useState([]);
   const [age, setAge] = useState("");
   const [residence, setResidence] = useState("");
   const [stack, setStack] = useState("Java");
 
   const datas = [
-    { title: "Python", content: "Python" },
-    { title: "C", content: "C" },
-    { title: "C++", content: "C++" },
-    { title: "C#", content: "C#" },
-    { title: "Java", content: "Java" },
-    { title: "React", content: "React" },
-    { title: "JavaScript", content: "JavaScript" },
-    { title: "Assembly language", content: "Assembly language" },
-    { title: "SQL", content: "SQL" },
-    { title: "PHP", content: "PHP" },
-    { title: "Object-C", content: "Object-C" },
-    { title: "GO", content: "GO" },
-    { title: "Delphi/Objective Pascal", content: "Delphi/Objective Pascal" },
-    { title: "MATLAB", content: "MATLAB" },
-    { title: "Fortran", content: "Fortran" },
-    { title: "R", content: "R" },
-    { title: "Perl", content: "Perl" },
-    { title: "Ruby", content: "Ruby" },
-    { title: "Classic Visual Basic", content: "Classic Visual Basic" },
+    { title: "Python", stack: "Python" },
+    { title: "C", stack: "C" },
+    { title: "C++", stack: "C++" },
+    { title: "C#", stack: "C#" },
+    { title: "Java", stack: "Java" },
+    { title: "React", stack: "React" },
+    { title: "JavaScript", stack: "JavaScript" },
+    { title: "Assembly language", stack: "Assembly language" },
+    { title: "SQL", stack: "SQL" },
+    { title: "PHP", stack: "PHP" },
+    { title: "Object-C", stack: "Object-C" },
+    { title: "GO", stack: "GO" },
+    { title: "Delphi/Objective Pascal", stack: "Delphi/Objective Pascal" },
+    { title: "MATLAB", stack: "MATLAB" },
+    { title: "Fortran", stack: "Fortran" },
+    { title: "R", stack: "R" },
+    { title: "Perl", stack: "Perl" },
+    { title: "Ruby", stack: "Ruby" },
+    { title: "Classic Visual Basic", stack: "Classic Visual Basic" },
   ];
 
   const checkedItemHandler = (code, isChecked) => {
@@ -71,9 +72,9 @@ const AddRecommend = () => {
                 value={residence}
                 onChange={(e) => setResidence(e.target.value)}
                 type="text"
-                className="w-[350px] h-[40px] border border-gray rounded-[8px] mt-3 font-[14px] pl-2"
+                className="w-[350px] h-[40px] border border-[#eee] rounded-[8px] mt-3 font-[14px] pl-3 bg-[#eee]"
               >
-                <option value="서울" disabled selected hidden>
+                <option value="" disabled selected hidden>
                   지역 선택
                 </option>
                 <option value="서울">서울</option>
@@ -95,7 +96,7 @@ const AddRecommend = () => {
                 value={age}
                 onChange={(e) => setAge(e.target.value)}
                 type="text"
-                className="w-[350px] h-[40px] border border-grey rounded-[8px] mt-3 font-[14px] pl-2"
+                className="w-[350px] h-[40px] border border-[#eee] rounded-[8px] mt-3 font-[14px] pl-3 bg-[#eee]"
               >
                 <option value="" disabled selected hidden>
                   나이대 선택
@@ -113,18 +114,16 @@ const AddRecommend = () => {
               선호 개발 언어를 5개 미만으로 선택해주세요.
             </p>
             <div>
-              <div className="flex text-[#555] left-5 text-xs flex-wrap">
-                {datas.map((item) => (
-                  <button
-                    key={item.title}
-                    value={item.title}
-                    onClick={checkedItemHandler}
-                    className="bg-[#eee]/[.3] px-3 py-2 mr-2 rounded-full mt-2"
-                  >
-                    {item.title}
-                  </button>
+              <ul className="flex text-[#555] left-5 text-xs flex-wrap">
+                {datas.map((data, index) => (
+                  <StackCard
+                    key={index}
+                    data={data.title}
+                    checkedItem={checkedItems}
+                    checkedItemHandler={checkedItemHandler}
+                  />
                 ))}
-              </div>
+              </ul>
               <button
                 className="flex w-[350px] h-[48px] justify-center items-center rounded-md border hover:border-[#28CC9E] text-[#fff] font-bold bg-[#28CC9E] hover:bg-[#fff] hover:text-[#28CC9E] duration-300 mt-[80px]"
                 onClick={() => {
@@ -132,7 +131,7 @@ const AddRecommend = () => {
                   mutation.mutate({
                     age: age,
                     residence: residence,
-                    stack: stack,
+                    stack: checkedItems,
                   });
                 }}
               >

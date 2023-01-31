@@ -5,9 +5,9 @@ export const instance = axios.create({
   baseURL: "https://gitssum.com",
   headers: {
     Access_Token:
-      localStorage.getItem("token") === undefined
+      localStorage.getItem("accessToken") === undefined
         ? ""
-        : localStorage.getItem("token"),
+        : localStorage.getItem("accessToken"),
   },
 
   withCredentials: true,

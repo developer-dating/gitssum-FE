@@ -21,12 +21,12 @@ const Recommend = () => {
   // );
 
   return (
-    <div className="flex items-center justify-center py-5">
+    <div className="font-SUIT flex items-center justify-center py-5">
       <div className="ml-8">
-        <div className="w-96 flex flex-wrap reletive mb-20">
-          <div className="flex flex-col mt-20">
+        <div className="w-96 flex flex-wrap relative mb-10">
+          <div className="flex flex-col mt-5">
             <p className="text-[#000] text-2xl font-bold ">For You</p>
-            <p className="text-[#333] text-normal font-normal mt-2 ">
+            <p className="text-[#333]  font-normal mt-2 ">
               원하는 상대의 조건을 설정하고 추천받으세요.
             </p>
             <div className="w-[350px] h-[450px] flex items-center justify-center">

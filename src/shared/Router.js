@@ -12,9 +12,9 @@ import Mypage from "../pages/Mypage";
 import Recommend from "../pages/Recommend";
 import AddRecommend from "../pages/AddRecommend";
 import LikeMe from "../pages/LikeMe";
+import Message from "../pages/Message";
 
 import EditMyProfile from "../pages/EditMyProfile";
-
 
 const Router = () => {
   // let isAuthorized = localStorage.getItem("isAuthorized");
@@ -34,6 +34,7 @@ const Router = () => {
         <Route path="/addrecommend" element={<AddRecommend />} />
         <Route path="/likeme" element={<LikeMe />} />
         <Route path="/editmyprofile" element={<EditMyProfile />} />
+        <Route path="/message" element={<Message />} />
       </Routes>
     </BrowserRouter>
   );

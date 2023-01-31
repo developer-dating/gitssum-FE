@@ -8,7 +8,7 @@ const AddRecommend = () => {
   const mutation = useMutation((rocm) => {
     return (
       axios.post("http://localhost:3001/recommends", rocm),
-      alert("프로필 설정 성공")
+      alert("추천 설정 완료")
     );
   });
 

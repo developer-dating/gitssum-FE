@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import ModalBasic from "../main/Modal";
+import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
 
 async function fetchRecomend() {
@@ -11,7 +12,8 @@ async function fetchRecomend() {
     );
     // if (!response.ok) {
     //   throw new Error("Network response was not ok");
-    // }
+    // }const myPromise = fetchData();
+
     return response;
   } catch (error) {
     console.log(error);
@@ -33,7 +35,7 @@ const Recommend = () => {
     setModalOpen(true);
   };
 
-  if (isLoading) return <h3>Loading...</h3>;
+  if (isLoading) return toast("Wating...");
   if (isError)
     return (
       <>
@@ -48,6 +50,9 @@ const Recommend = () => {
 
   return (
     <>
+      <div>
+        <Toaster />
+      </div>
       <div className="flex items-center justify-center ">
         <div className=" shadow-xl">
           <div className="ml-[20px]">

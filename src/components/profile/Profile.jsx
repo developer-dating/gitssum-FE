@@ -3,6 +3,7 @@ import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { Navigate } from "react-router";
 import { useNavigate, useParams } from "react-router-dom";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function Profile() {
   const { id } = useParams();
@@ -10,7 +11,7 @@ export default function Profile() {
   const mutation = useMutation((prof) => {
     return (
       axios.post(`http://3.39.175.168/api/user/get/otherprofile/${id}`, prof),
-      alert("프로필 설정 성공")
+      toast.success("프로필 등록 성공!")
     );
   });
 

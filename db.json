@@ -166,6 +166,24 @@
       "residence": "경남",
       "stack": "Java",
       "id": 2
+    },
+    {
+      "age": "",
+      "residence": "",
+      "stack": [
+        "Perl"
+      ],
+      "id": 3
+    },
+    {
+      "age": "30-34세",
+      "residence": "경북",
+      "stack": [
+        "C",
+        "Delphi/Objective Pascal",
+        "Assembly language"
+      ],
+      "id": 4
     }
   ]
 }

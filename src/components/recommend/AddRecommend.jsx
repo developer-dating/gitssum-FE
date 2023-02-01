@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { Navigate } from "react-router";
+import { useNavigate, useParams } from "react-router-dom";
 import StackCard from "./StackCard";
 import { Toaster, toast } from "react-hot-toast";
 
 const AddRecommend = () => {
+  const navigate = useNavigate();
+
   const mutation = useMutation((rocm) => {
     return (
       axios.post("http://localhost:3001/recommends", rocm),
@@ -141,6 +143,7 @@ const AddRecommend = () => {
                       residence: residence,
                       stack: checkedItems,
                     });
+                    navigate(`/recommend`);
                   }}
                 >
                   <p>취향 설정하기</p>

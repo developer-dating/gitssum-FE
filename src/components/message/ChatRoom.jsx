@@ -3,6 +3,7 @@ import axios from "axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Navigate } from "react-router";
 import { Toaster, toast } from "react-hot-toast";
+
 async function fetchLikes() {
   try {
     const response = await axios.get(

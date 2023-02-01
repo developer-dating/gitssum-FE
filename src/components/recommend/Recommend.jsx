@@ -38,9 +38,8 @@ const Recommend = () => {
   };
 
   return (
-
     <>
-      <div className="flex items-center justify-center py-5">
+      <div className="font-SUIT flex items-center justify-center py-5">
         <div className="ml-8">
           <div className="w-96 flex flex-wrap reletive mb-20">
             <div className="flex flex-col mt-20">

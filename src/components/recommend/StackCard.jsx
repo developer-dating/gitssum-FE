@@ -17,7 +17,7 @@ const StackCard = ({ data, chekedItems, checkedItemHandler }) => {
   // }, [chekedItems]);
 
   return (
-    <li>
+    <li className="font-SUIT">
       <input
         type="checkbox"
         id={data}

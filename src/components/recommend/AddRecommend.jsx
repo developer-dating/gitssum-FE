@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Navigate } from "react-router";
 import StackCard from "./StackCard";
+import { Toaster, toast } from "react-hot-toast";
 
 const AddRecommend = () => {
   const mutation = useMutation((rocm) => {
     return (
       axios.post("http://localhost:3001/recommends", rocm),
-      alert("추천 설정 완료")
+      toast.success("취향 설정 완료!")
     );
   });
 
@@ -50,6 +51,9 @@ const AddRecommend = () => {
 
   return (
     <div className="font-SUIT flex items-center justify-center">
+      <div>
+        <Toaster />
+      </div>
       <div className="shadow-xl pb-10">
         <div className="ml-5">
           <div className="w-96 flex lex items-center justify-center flex-wrap">
@@ -132,7 +136,6 @@ const AddRecommend = () => {
                 <button
                   className="flex w-[350px] h-[48px] justify-center items-center rounded-md border hover:border-[#28CC9E] text-[#fff] font-bold bg-[#28CC9E] hover:bg-[#fff] hover:text-[#28CC9E] duration-300 mt-[80px]"
                   onClick={() => {
-                    alert("설정 완료");
                     mutation.mutate({
                       age: age,
                       residence: residence,

@@ -168,22 +168,64 @@
       "id": 2
     },
     {
-      "age": "",
-      "residence": "",
+      "age": "25-29세",
+      "residence": "서울",
       "stack": [
-        "Perl"
+        "C",
+        "C++",
+        "C#"
       ],
       "id": 3
     },
     {
       "age": "30-34세",
-      "residence": "경북",
+      "residence": "경남",
       "stack": [
         "C",
-        "Delphi/Objective Pascal",
-        "Assembly language"
+        "C++",
+        "C#"
       ],
       "id": 4
+    },
+    {
+      "age": "30-34세",
+      "residence": "경북",
+      "stack": [
+        "Python",
+        "C",
+        "C++"
+      ],
+      "id": 5
+    },
+    {
+      "age": "30-34세",
+      "residence": "전남",
+      "stack": [
+        "C",
+        "C++",
+        "C#"
+      ],
+      "id": 6
+    },
+    {
+      "age": "30-34세",
+      "residence": "경남",
+      "stack": [
+        "Python",
+        "C",
+        "C++"
+      ],
+      "id": 7
+    },
+    {
+      "age": "25-29세",
+      "residence": "서울",
+      "stack": [
+        "Python",
+        "Java",
+        "Assembly language"
+      ],
+      "id": 8
     }
   ]
 }

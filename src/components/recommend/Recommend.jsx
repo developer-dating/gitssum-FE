@@ -146,7 +146,7 @@ const Recommend = () => {
           </div>
         </div>
       </div>
-      <div className="fixed bottom-6 z-10 w-[760px] min-w-[2160px] m-auto">
+      <div className="fixed bottom-6 z-10 w-[760px] min-w-[2030px] m-auto">
         {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
       </div>
     </>

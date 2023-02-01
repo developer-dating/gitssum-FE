@@ -48,7 +48,6 @@ const Recommend = () => {
 
   return (
     <>
-
       <div className="flex items-center justify-center ">
         <div className=" shadow-xl">
           <div className="ml-[20px]">
@@ -94,10 +93,6 @@ const Recommend = () => {
                         <div className="flex flex-col mb-[34px]">
                           <a
                             href={`/userdetail/${post.userId}`}
-
-
-                          <div
-
                             className="w-[167px] h-[167px]  bg-center bg-cover bg-no-repeat relative mr-[16px] cursor-pointer  duration-300 rounded-xl"
                             style={{
                               backgroundImage: `url(${post.imageList[0]})`,

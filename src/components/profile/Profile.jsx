@@ -3,19 +3,18 @@ import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { Navigate } from "react-router";
 import { useNavigate, useParams } from "react-router-dom";
+import StackCard from "../recommend/StackCard";
 
 export default function Profile() {
   const { id } = useParams();
 
   const mutation = useMutation((prof) => {
-
     return (
-      axios.post(`http://3.39.175.168/api/user/get/otherprofile/${id}`, prof),
-      alert("프로필 설정 성공")
+      axios.post(`http://localhost:4000/posts`, prof), alert("프로필 설정 성공")
     );
-
   });
 
+  const [checkedItems, setCheckedItems] = useState([]);
   const [username, setUsername] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
@@ -24,18 +23,58 @@ export default function Profile() {
   const [job, setJob] = useState("");
   const [residence, setResidence] = useState("");
   const [education, setEducation] = useState("");
-  const [myImage, setMyImage] = useState("");
   const [stack, setStack] = useState("");
+  const [showImages, setShowImages] = useState([]);
 
-  const addImage = (e) => {
-    const nowSelectImageList = e.target.files; // 한꺼번에 업로드한 이미지 파일 리스트
-    const nowImageURLList = [...myImage]; // 현재 myImage 복사
-    for (let i = 0; i < nowSelectImageList.length; i += 1) {
-      // nowSelectImageList object를 i를 사용해 돌림
-      const nowImageUrl = URL.createObjectURL(nowSelectImageList[i]); // 미리보기를 위한 변수화
-      nowImageURLList.push(nowImageUrl); // 복사한 myImage에 추가
+  const handleAddImages = (event) => {
+    const imageLists = event.target.files;
+    let imageUrlLists = [...showImages];
+
+    for (let i = 0; i < imageLists.length; i++) {
+      const currentImageUrl = URL.createObjectURL(imageLists[i]);
+      imageUrlLists.push(currentImageUrl);
     }
-    setMyImage(nowImageURLList);
+
+    if (imageUrlLists.length > 10) {
+      imageUrlLists = imageUrlLists.slice(0, 10);
+    }
+
+    setShowImages(imageUrlLists);
+  };
+
+  const handleDeleteImage = (id) => {
+    setShowImages(showImages.filter((_, index) => index !== id));
+  };
+
+  const datas = [
+    { title: "Python", stack: "Python" },
+    { title: "C", stack: "C" },
+    { title: "C++", stack: "C++" },
+    { title: "C#", stack: "C#" },
+    { title: "Java", stack: "Java" },
+    { title: "React", stack: "React" },
+    { title: "JavaScript", stack: "JavaScript" },
+    { title: "Assembly language", stack: "Assembly language" },
+    { title: "SQL", stack: "SQL" },
+    { title: "PHP", stack: "PHP" },
+    { title: "Object-C", stack: "Object-C" },
+    { title: "GO", stack: "GO" },
+    { title: "Delphi/Objective Pascal", stack: "Delphi/Objective Pascal" },
+    { title: "MATLAB", stack: "MATLAB" },
+    { title: "Fortran", stack: "Fortran" },
+    { title: "R", stack: "R" },
+    { title: "Pearl", stack: "Pearl" },
+    { title: "Ruby", stack: "Ruby" },
+    { title: "Classic Visual Basic", stack: "Classic Visual Basic" },
+  ];
+
+  const checkedItemHandler = (code, isChecked) => {
+    if (isChecked) {
+      setCheckedItems([...checkedItems, code]);
+    } else if (!isChecked && checkedItems.find((one) => one === code)) {
+      const filter = checkedItems.filter((one) => one !== code);
+      setCheckedItems([...filter]);
+    }
   };
 
   return (
@@ -64,27 +103,42 @@ export default function Profile() {
                     (※프로필에 표시되는 이미지로, 3장 이상 업로드해주세요.)
                   </div>
                 </div>
-                <button>
-                  <img
-                    className="w-[90px] h-[90px]"
-                    src="img/photo_add.png "
-                    alt="logo"
-                  />
-                </button>
-                <div>
-                  <label
-                    htmlFor="input-file"
-                    className="OOTDWrite-input-file"
-                    onChange={addImage}
-                  >
+                <div className="inline-grid grid-cols-3 w-[350px]">
+                  {showImages.map((image, id) => (
+                    <div key={id}>
+                      <img
+                        className="w-[90px] h-[90px] flex relative"
+                        src={image}
+                        alt={`${image}-${id}`}
+                      />
+                      <button
+                        className=" absolute "
+                        onClick={() => handleDeleteImage(id)}
+                      >
+                        <img
+                          src="img/delete_pic.png"
+                          className=" "
+                          alt="delete"
+                        />
+                      </button>
+                    </div>
+                  ))}
+                  <label htmlFor="input-file" onChange={handleAddImages}>
                     <input
+                      className="hidden"
                       type="file"
-                      multiple="multiple"
                       id="input-file"
-                      accept=".jpg,.jpeg,.png"
+                      multiple
+                    />
+
+                    <img
+                      className="w-[90px] h-[90px] m-1 cursor-pointer"
+                      src="img/photo_add.png "
+                      alt="logo"
                     />
                   </label>
                 </div>
+
                 <hr className="w-[350px] h-0.5 bg-[#D9D9D9] rounded-3xl my-6"></hr>
                 <div className="mx-auto flex flex-wrap  items-center mt-3 mb-1">
                   <div className="mr-1 font-bold text-sm">성별</div>
@@ -95,7 +149,7 @@ export default function Profile() {
                 <select
                   value={gender}
                   onChange={(e) => setGender(e.target.value)}
-                  className=" w-[350px] h-[40px] rounded-md bg-neutral-200 outline-1 p-1.5 br-8 focus:outline-[#28CC9E] text-xs"
+                  className="w-[350px] h-[40px] rounded-md bg-neutral-200 outline-1 p-1.5 br-8 focus:outline-[#28CC9E] text-xs"
                   name="성별 선택"
                 >
                   <option
@@ -248,90 +302,31 @@ export default function Profile() {
                   </div>
                 </div>
 
-                <div className="text-[14px]">
-                  <div className="flex mb-3">
-                    <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
-                      Python
-                    </button>
-                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                      C
-                    </button>
-                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                      Java
-                    </button>
-                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                      C++
-                    </button>
-                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                      C#
-                    </button>
-                  </div>
-                  <div className="flex mb-3">
-                    <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
-                      Visual Basic
-                    </button>
-                    <button className="bg-[#EEEEEE] px-3 py-1  rounded-full">
-                      JavaScript
-                    </button>
-                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                      Assembly Language
-                    </button>
-                  </div>
-                  <div className="flex mb-3">
-                    <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
-                      SQL
-                    </button>
-                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                      PHP
-                    </button>
-                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                      Objective-C
-                    </button>
-                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                      Go
-                    </button>
-                  </div>
-                  <div className="flex mb-3">
-                    <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
-                      Delphi/Objective Pascal
-                    </button>
-                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                      MATLAB
-                    </button>
-                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                      Fortran
-                    </button>
-                  </div>
-                  <div className="flex mb-2">
-                    <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
-                      Swift
-                    </button>
-                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                      Classic Visual Basic
-                    </button>
-                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                      R
-                    </button>
-                    <button className="bg-[#EEEEEE] px-3 py-1 mx-1 rounded-full">
-                      Pearl
-                    </button>
-                  </div>
-                </div>
+                <ul className="flex text-[#555] left-5 text-xs flex-wrap w-[350px]">
+                  {datas.map((data, index) => (
+                    <StackCard
+                      key={index}
+                      data={data.title}
+                      checkedItem={checkedItems}
+                      checkedItemHandler={checkedItemHandler}
+                    />
+                  ))}
+                </ul>
 
                 <button
                   className=" text-sm rounded-lg bg-[#28CC9E] text-white w-[350px] h-[40px] font-bold mt-10 mb-20"
                   onClick={() =>
                     mutation.mutate({
-                      user: username,
+                      username: username,
                       age: age,
                       introduction: introduction,
-                      url: link,
+                      link: link,
                       gender: gender,
                       education: education,
                       job: job,
                       home: residence,
-                      url: myImage,
-                      stack: stack,
+                      stack: checkedItems,
+                      imageList: showImages,
                     })
                   }
                 >

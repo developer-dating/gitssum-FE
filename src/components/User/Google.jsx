@@ -3,6 +3,7 @@ import Main from "../../pages/Main";
 import { useQuery } from "@tanstack/react-query";
 import { memberApis } from "../../api/memberApis";
 import { setCookie } from "../../cookie/cookie";
+import { Toaster, toast } from "react-hot-toast";
 
 // 리다이렉트될 화면
 const Google = () => {
@@ -18,12 +19,12 @@ const Google = () => {
       if (res.data.statusCode === 200) {
         localStorage.setItem("accessToken", res.headers.authorization);
         setCookie("refreshToken", res.headers.authorization);
-        alert("로그인 성공");
+        toast.success("로그인 성공!");
         window.location.replace("/setprofile");
       }
     },
     onError: (res) => {
-      alert("로그인 실패");
+      toast.error("로그인 실패!");
       window.location.replace("/signin");
     },
   });

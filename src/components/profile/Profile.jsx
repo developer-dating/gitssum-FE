@@ -6,13 +6,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import StackCard from "../recommend/StackCard";
 import { Toaster, toast } from "react-hot-toast";
 
-
 export default function Profile() {
   const { id } = useParams();
 
   const mutation = useMutation((prof) => {
     return (
-
       axios.post(`http://3.39.175.168/api/user/get/otherprofile/${id}`, prof),
       toast.success("프로필 등록 성공!")
     );
@@ -99,7 +97,7 @@ export default function Profile() {
                   <div className="mx-1 flex title-font font-medium items-center  text-gray-900 md:mb-0">
                     <img className="pr-1" src="img/heart.png " alt="logo" />
                   </div>
-                    내 프로필 설정
+                  내 프로필 설정
                 </p>
                 <form onSubmit={(e) => e.preventDefault()}>
                   <div className="mx-auto  items-center mb-3">
@@ -110,41 +108,41 @@ export default function Profile() {
                       (※프로필에 표시되는 이미지로, 3장 이상 업로드해주세요.)
                     </div>
                   </div>
-                   <div className="inline-grid grid-cols-3 w-[350px]">
-                  {showImages.map((image, id) => (
-                    <div key={id}>
-                      <img
-                        className="w-[90px] h-[90px] flex relative"
-                        src={image}
-                        alt={`${image}-${id}`}
-                      />
-                      <button
-                        className=" absolute "
-                        onClick={() => handleDeleteImage(id)}
-                      >
+                  <div className="inline-grid grid-cols-3 w-[350px]">
+                    {showImages.map((image, id) => (
+                      <div key={id}>
                         <img
-                          src="img/delete_pic.png"
-                          className=" "
-                          alt="delete"
+                          className="w-[90px] h-[90px] flex relative"
+                          src={image}
+                          alt={`${image}-${id}`}
                         />
-                      </button>
-                    </div>
-                  ))}
-                  <label htmlFor="input-file" onChange={handleAddImages}>
-                    <input
-                      className="hidden"
-                      type="file"
-                      id="input-file"
-                      multiple
-                    />
+                        <button
+                          className=" absolute "
+                          onClick={() => handleDeleteImage(id)}
+                        >
+                          <img
+                            src="img/delete_pic.png"
+                            className=" "
+                            alt="delete"
+                          />
+                        </button>
+                      </div>
+                    ))}
+                    <label htmlFor="input-file" onChange={handleAddImages}>
+                      <input
+                        className="hidden"
+                        type="file"
+                        id="input-file"
+                        multiple
+                      />
 
-                    <img
-                      className="w-[90px] h-[90px] m-1 cursor-pointer"
-                      src="img/photo_add.png "
-                      alt="logo"
-                    />
-                  </label>
-                </div>
+                      <img
+                        className="w-[90px] h-[90px] m-1 cursor-pointer"
+                        src="img/photo_add.png "
+                        alt="logo"
+                      />
+                    </label>
+                  </div>
                   <hr className="w-[350px] h-0.5 bg-[#D9D9D9] rounded-3xl my-6"></hr>
                   <div className="mx-auto flex flex-wrap  items-center mt-3 mb-1">
                     <div className="mr-1 font-bold text-sm">성별</div>
@@ -309,38 +307,39 @@ export default function Profile() {
                       (※최대 5개까지 선택)
                     </div>
                   </div>
-                <ul className="flex text-[#555] left-5 text-xs flex-wrap w-[350px]">
-                  {datas.map((data, index) => (
-                    <StackCard
-                      key={index}
-                      data={data.title}
-                      checkedItem={checkedItems}
-                      checkedItemHandler={checkedItemHandler}
-                    />
-                  ))}
-                </ul>
+                  <ul className="flex text-[#555] left-5 text-xs flex-wrap w-[350px]">
+                    {datas.map((data, index) => (
+                      <StackCard
+                        key={index}
+                        data={data.title}
+                        checkedItem={checkedItems}
+                        checkedItemHandler={checkedItemHandler}
+                      />
+                    ))}
+                  </ul>
 
-                <button
-                  className=" text-sm rounded-lg bg-[#28CC9E] text-white w-[350px] h-[40px] font-bold mt-10 mb-20"
-                  onClick={() =>
-                    mutation.mutate({
-                      username: username,
-                      age: age,
-                      introduction: introduction,
-                      link: link,
-                      gender: gender,
-                      education: education,
-                      job: job,
-                      home: residence,
-                      stack: checkedItems,
-                      imageList: showImages,
-                    })
-                  }
-                >
-                  설정 완료
-                </button>
-              </form>
+                  <button
+                    className=" text-[16px] rounded-lg bg-[#28CC9E] text-white w-[350px] h-[40px] font-bold mt-10 mb-20"
+                    onClick={() =>
+                      mutation.mutate({
+                        username: username,
+                        age: age,
+                        introduction: introduction,
+                        link: link,
+                        gender: gender,
+                        education: education,
+                        job: job,
+                        home: residence,
+                        stack: checkedItems,
+                        imageList: showImages,
+                      })
+                    }
+                  >
+                    설정 완료
+                  </button>
+                </form>
               </div>
+            </div>
           </div>
         </>
       )}

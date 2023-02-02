@@ -35,7 +35,7 @@ const Recommend = () => {
     setModalOpen(true);
   };
 
-  if (isLoading) return toast("Wating...");
+  if (isLoading) return toast("Waiting...");
   if (isError)
     return (
       <>
@@ -53,7 +53,7 @@ const Recommend = () => {
       <div>
         <Toaster />
       </div>
-      <div className="flex items-center justify-center ">
+      <div className="font-SUIT flex items-center justify-center ">
         <div className=" shadow-xl">
           <div className="ml-[20px]">
             <div className="w-[371px] flex flex-wrap reletive mb-20 drop-shadow-md">

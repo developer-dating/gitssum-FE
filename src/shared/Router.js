@@ -13,6 +13,9 @@ import Recommend from "../pages/Recommend";
 import AddRecommend from "../pages/AddRecommend";
 import LikeMe from "../pages/LikeMe";
 import Message from "../pages/Message";
+
+import MessageRoom from "../pages/MessageRoom";
+
 import EditMyProfile from "../pages/EditMyProfile";
 
 const Router = () => {
@@ -34,6 +37,7 @@ const Router = () => {
         <Route path="/likeme" element={<LikeMe />} />
         <Route path="/editmyprofile" element={<EditMyProfile />} />
         <Route path="/message" element={<Message />} />
+        <Route path="/messageRoom" element={<MessageRoom />} />
       </Routes>
     </BrowserRouter>
   );

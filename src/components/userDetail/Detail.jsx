@@ -11,7 +11,7 @@ export const Detail = () => {
   async function detailPosts() {
     try {
       const response = await axios.get(
-        `http://3.39.175.168/api/user/get/otherprofile/${id}`
+        `https://gitssum.com/api/user/get/otherprofile/${id}`
       );
       // if (!response.ok) {
       //   throw new Error("Network response was not ok");
@@ -41,7 +41,7 @@ export const Detail = () => {
       <div className=" shadow-xl">
         <div>
           <img
-            className="w-[390px] h-[390px]"
+            className="w-[390px] h-[410px]"
             src={datas.imageList[0]}
             alt="logo"
           />

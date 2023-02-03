@@ -8,7 +8,7 @@ import axios from "axios";
 async function fetchRecomend() {
   try {
     const response = await axios.get(
-      "http://3.39.175.168/api/user/get/all/profiles"
+      "https://gitssum.com/api/user/get/all/profiles"
     );
     // if (!response.ok) {
     //   throw new Error("Network response was not ok");

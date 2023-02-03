@@ -23,9 +23,9 @@ const Login = () => {
   };
   return (
     <>
-      <div className="flex min-h-full items-center justify-center py-12">
-        <div className="shadow-xl">
-          <div className="w-[380px] h-[700px] max-w-md space-y-20 mt-40">
+      <div className="flex items-center justify-center">
+        <div className="shadow-xl ">
+          <div className="w-[380px] space-y-20 h-[100vh] flex flex-col justify-center items-center">
             <div>
               <img
                 className="mx-auto h-[121px] w-[169px]"

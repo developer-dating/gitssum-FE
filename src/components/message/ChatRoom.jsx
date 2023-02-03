@@ -34,7 +34,7 @@ const Chat = () => {
 
   return (
     <div className="flex items-center justify-center">
-      <div className=" shadow-xl h-[850px] relative">
+      <div className=" shadow-xl h-[100vh] relative">
         <div className="ml-[20px]">
           <div className="w-[372px] flex flex-wrap ">
             <div className="flex flex-col mt-[40px]">
@@ -67,7 +67,7 @@ const Chat = () => {
                 <div className="mb-[8px] mt-[16px]">대화를 시작해보세요</div>
                 <div>2023년 1월 13일</div>
               </div>
-              <div className="mt-[65px]">
+              <div className="mt-[65px] relative">
                 <div className="flex flex-col items-end mb-[20px] mr-[10px]">
                   <div>
                     <span className="inline-block px-[20px] py-[12px] bg-[#28CC9E] rounded-[12px] rounded-br-[2px] text-[14px] text-[#fff] text-left">
@@ -96,6 +96,18 @@ const Chat = () => {
                       <span className="inline-block px-[20px] py-[12px] bg-[#E8E8E8] rounded-[12px] rounded-bl-[2px] text-[14px] text-[#000] text-left">
                         그러니까 가입 했겠죠 ㅎㅎ
                       </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="fixed bottom-[45px] mr-[2px]  ml-[5px] border-t-[2px]">
+                  <div className="mt-[20px] flex flex-row items-center">
+                    <input
+                      type="text"
+                      className="w-[312px] h-[40px] rounded-lg bg-neutral-200 outline-1 p-2 focus:outline-[#28CC9E] text-xs"
+                      placeholder="메세지 보내기"
+                    />
+                    <div className="cursor-pointer w-[36px] h-[35px]">
+                      <img src="/img/msgcheckbtn.png" alt="MSGCheck" />
                     </div>
                   </div>
                 </div>

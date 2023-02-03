@@ -38,7 +38,7 @@ export const Detail = () => {
 
   return (
     <div className="font-SUIT flex items-center justify-center">
-      <div className=" shadow-xl">
+      <div className=" shadow-xl h-[100vh]">
         <div>
           <img
             className="w-[390px] h-[410px]"
@@ -76,7 +76,7 @@ export const Detail = () => {
               </button>
             ))}
           </div>
-          <button className="ml-[20px]  group relative flex justify-center items-center text-sm rounded-lg bg-[#28CC9E] text-white w-[350px] h-[40px] font-bold mt-8 mb-28">
+          <button className="ml-[20px]  group relative flex justify-center items-center text-sm rounded-lg bg-[#28CC9E] text-white w-[350px] h-[40px] font-bold mt-[55px] mb-10">
             좋아요
           </button>
         </div>

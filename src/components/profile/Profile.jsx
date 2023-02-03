@@ -11,7 +11,7 @@ export default function Profile() {
 
   const mutation = useMutation((prof) => {
     return (
-      axios.post(`https://gitssum.com/api/user/get/otherprofile/${id}`, prof),
+      axios.put("https://gitssum.com/api/user/modify/mypage", prof),
       toast.success("프로필 등록 성공!")
     );
   });
@@ -329,7 +329,7 @@ export default function Profile() {
                         gender: gender,
                         education: education,
                         job: job,
-                        home: residence,
+                        residence: residence,
                         stack: checkedItems,
                         imageList: showImages,
                       })

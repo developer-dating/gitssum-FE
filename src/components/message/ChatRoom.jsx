@@ -7,7 +7,7 @@ import { Toaster, toast } from "react-hot-toast";
 async function fetchLikes() {
   try {
     const response = await axios.get(
-      "http://3.39.175.168/api/user/get/all/profiles"
+      "https://gitssum.com/api/user/get/all/profiles"
     );
     // if (!response.ok) {
     //   throw new Error("Network response was not ok");
@@ -68,17 +68,19 @@ const Chat = () => {
                 <div>2023년 1월 13일</div>
               </div>
               <div className="mt-[65px]">
-                <div className="flex flex-col items-end mb-[20px]">
+                <div className="flex flex-col items-end mb-[20px] mr-[10px]">
                   <div>
                     <span className="inline-block px-[20px] py-[12px] bg-[#28CC9E] rounded-[12px] rounded-br-[2px] text-[14px] text-[#fff] text-left">
                       개발 좋아하시나요?
                     </span>
                   </div>
                 </div>
-                <div className="flex flex-col items-end mb-[20px]">
+                <div className="flex flex-col items-end mb-[20px] mr-[10px]">
                   <div>
                     <span className="inline-block px-[20px] py-[12px] bg-[#28CC9E] rounded-[12px] rounded-br-[2px] text-[14px] text-[#fff] text-left">
-                      개발 좋아하시나요?
+                      개발 좋아하시나요?개발 좋아하시나요?개발 좋아하시나요?개발
+                      좋아하시나요?개발 좋아하시나요?개발 좋아하시나요?개발
+                      좋아하시나요?개발 좋아하시나요?개발 좋아하시나요?
                     </span>
                   </div>
                 </div>
@@ -92,7 +94,7 @@ const Chat = () => {
                     ></div>
                     <div>
                       <span className="inline-block px-[20px] py-[12px] bg-[#E8E8E8] rounded-[12px] rounded-bl-[2px] text-[14px] text-[#000] text-left">
-                        개발 좋아하시나요?
+                        그러니까 가입 했겠죠 ㅎㅎ
                       </span>
                     </div>
                   </div>

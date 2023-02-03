@@ -6,7 +6,7 @@ import { Toaster, toast } from "react-hot-toast";
 async function fetchLikes() {
   try {
     const response = await axios.get(
-      "http://3.39.175.168/api/user/get/all/profiles"
+      "https://gitssum.com/api/user/get/all/profiles"
     );
     // if (!response.ok) {
     //   throw new Error("Network response was not ok");
@@ -40,17 +40,17 @@ const Chat = () => {
                 <p className="text-[#000] text-2xl font-bold ">메세지</p>
               </div>
               {data.data.profileList.map((post, index) => (
-                <div className="w-[370px] h-[130px] ml-[-10px] flex items-center hover:bg-slate-100 cursor-pointer">
+                <div className="w-[370px] h-[100px] ml-[-10px] flex items-center hover:bg-slate-100 cursor-pointer">
                   <div className="flex flex-row ml-[20px]">
                     <div
                       style={{
                         backgroundImage: `url(${post.imageList[0]})`,
                       }}
-                      className="w-[90px] h-[90px] rounded-full bg-cover"
+                      className="w-[65px] h-[65px] rounded-full bg-cover"
                     />
                     <div className="flex flex-col ml-[15px] mb-[4px] justify-center">
                       <div className="flex flex-row">
-                        <p className="mr-2 font-bold text-[20px]">
+                        <p className="mr-2 font-bold text-[18px]">
                           {post.username}
                         </p>
                       </div>

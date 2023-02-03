@@ -22,7 +22,7 @@ const Chat = () => {
   // const [selectedPost, setSelectedPost] = useState(null);
 
   const { data, isError, error, isLoading } = useQuery(["likes"], fetchLikes);
-  console.log(data);
+
   if (isLoading) return <h3>Loading...</h3>;
   if (isError)
     return (
@@ -31,37 +31,73 @@ const Chat = () => {
         <p>{error.toString()}</p>
       </>
     );
+
   return (
     <div className="flex items-center justify-center">
-      <div className=" shadow-xl">
+      <div className=" shadow-xl h-[850px] relative">
         <div className="ml-[20px]">
           <div className="w-[372px] flex flex-wrap ">
             <div className="flex flex-col mt-[40px]">
-              <div className="flex flex-row mb-[20px] ml-[20px]">
-                <p className="text-[#000] text-2xl font-bold ">메세지</p>
+              <div className="flex flex-row mb-[20px] ml-[20px] items-center space-x-[115px]">
+                <a href="/message">
+                  <img
+                    src="/img/backarrow.png"
+                    alt="BackArrowIcon"
+                    className="w-[8px] h-[16px]"
+                  />
+                </a>
+                <div className="flex space-x-1 items-center">
+                  <div
+                    style={{
+                      backgroundImage: `url(${data.data.profileList[0].imageList[0]})`,
+                    }}
+                    className="w-[32px] h-[32px] rounded-full bg-cover"
+                  ></div>
+                  <p className="text-[16px] font-bold">
+                    {data.data.profileList[0].username}
+                  </p>
+                </div>
+                <img
+                  src="/img/togglebtn.png"
+                  alt="ToggleBtn"
+                  className="w-[18px] h-[4px]"
+                />
               </div>
-              {data.data.profileList.map((post, index) => (
-                <div className="w-[370px] h-[130px] ml-[-10px] flex items-center hover:bg-slate-100 cursor-pointer">
-                  <div className="flex flex-row ml-[20px]">
+              <div className="flex flex-col items-center text-[14px] text-[#555]">
+                <div className="mb-[8px] mt-[16px]">대화를 시작해보세요</div>
+                <div>2023년 1월 13일</div>
+              </div>
+              <div className="mt-[65px]">
+                <div className="flex flex-col items-end mb-[20px]">
+                  <div>
+                    <span className="inline-block px-[20px] py-[12px] bg-[#28CC9E] rounded-[12px] rounded-br-[2px] text-[14px] text-[#fff] text-left">
+                      개발 좋아하시나요?
+                    </span>
+                  </div>
+                </div>
+                <div className="flex flex-col items-end mb-[20px]">
+                  <div>
+                    <span className="inline-block px-[20px] py-[12px] bg-[#28CC9E] rounded-[12px] rounded-br-[2px] text-[14px] text-[#fff] text-left">
+                      개발 좋아하시나요?
+                    </span>
+                  </div>
+                </div>
+                <div className="flex flex-col mb-[20px]">
+                  <div className="flex items-center space-x-3">
                     <div
                       style={{
-                        backgroundImage: `url(${post.imageList[0]})`,
+                        backgroundImage: `url(${data.data.profileList[0].imageList[0]})`,
                       }}
-                      className="w-[90px] h-[90px] rounded-full bg-cover"
-                    />
-                    <div className="flex flex-col ml-[15px] mb-[4px] justify-center">
-                      <div className="flex flex-row">
-                        <p className="mr-2 font-bold text-[20px]">
-                          {post.username}
-                        </p>
-                      </div>
-                      <p className="text-[14px]">
-                        정말요? 아하하 좀 귀여우시네요^^
-                      </p>
+                      className="w-[43px] h-[43px] rounded-full bg-cover"
+                    ></div>
+                    <div>
+                      <span className="inline-block px-[20px] py-[12px] bg-[#E8E8E8] rounded-[12px] rounded-bl-[2px] text-[14px] text-[#000] text-left">
+                        개발 좋아하시나요?
+                      </span>
                     </div>
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </div>

@@ -52,7 +52,7 @@ const AddRecommend = () => {
   };
 
   return (
-    <div className="font-SUIT flex items-center justify-center">
+    <div className="font-SUIT flex items-center justify-center h-[100vh]">
       <div>
         <Toaster />
       </div>

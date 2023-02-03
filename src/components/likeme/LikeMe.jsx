@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 async function fetchLikes() {
   try {
     const response = await axios.get(
-      "http://3.39.175.168/api/user/get/all/profiles"
+      "https://gitssum.com/api/user/get/all/profiles"
     );
     // if (!response.ok) {
     //   throw new Error("Network response was not ok");

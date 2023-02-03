@@ -11,7 +11,7 @@ export default function Profile() {
 
   const mutation = useMutation((prof) => {
     return (
-      axios.post(`http://3.39.175.168/api/user/get/otherprofile/${id}`, prof),
+      axios.post(`https://gitssum.com/api/user/get/otherprofile/${id}`, prof),
       toast.success("프로필 등록 성공!")
     );
   });
@@ -108,16 +108,16 @@ export default function Profile() {
                       (※프로필에 표시되는 이미지로, 3장 이상 업로드해주세요.)
                     </div>
                   </div>
-                  <div className="inline-grid grid-cols-3 w-[350px]">
+                  <div className="inline-grid grid-cols-3 w-[350px] ">
                     {showImages.map((image, id) => (
-                      <div key={id}>
+                      <div key={id} className="relative">
                         <img
-                          className="w-[90px] h-[90px] flex relative"
+                          className="w-[90px] h-[90px] flex"
                           src={image}
                           alt={`${image}-${id}`}
                         />
                         <button
-                          className=" absolute "
+                          className="absolute top-0 right-[27px]"
                           onClick={() => handleDeleteImage(id)}
                         >
                           <img
@@ -304,7 +304,7 @@ export default function Profile() {
                   <div className="mt-2 mx-auto flex flex-wrap md:flex-row items-center mb-4">
                     <div className="mr-1 font-bold text-sm">선호 기술스택</div>
                     <div className="text-xs text-[#FF4E4E]">
-                      (※최대 5개까지 선택)
+                      (※최대 3개까지 선택)
                     </div>
                   </div>
                   <ul className="flex text-[#555] left-5 text-xs flex-wrap w-[350px]">
@@ -319,7 +319,7 @@ export default function Profile() {
                   </ul>
 
                   <button
-                    className=" text-[16px] rounded-lg bg-[#28CC9E] text-white w-[350px] h-[40px] font-bold mt-10 mb-20"
+                    className=" text-[16px] rounded-lg bg-[#28CC9E] text-white w-[350px] h-[40px] font-bold mt-10 mb-[120px]"
                     onClick={() =>
                       mutation.mutate({
                         username: username,

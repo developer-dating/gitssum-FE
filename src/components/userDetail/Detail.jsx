@@ -53,7 +53,7 @@ export const Detail = () => {
             <div className="text-2xl font-medium">{datas.age}</div>
           </div>
           <span className="pl-2 pt-1 text-sm ml-[18px] ">
-            {datas.job} 개발자 ∙ {datas.residence}
+            {datas.job} ∙ {datas.residence}
           </span>
           <p className="ml-[22px]  bg-[#EEEEEE] rounded-xl p-3 w-[350px] text-xs my-3 ">
             {datas.introduction}

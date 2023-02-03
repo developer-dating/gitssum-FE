@@ -93,9 +93,13 @@ export default function Profile() {
           <div className="font-SUIT flex items-center justify-center py-5">
             <div className=" shadow-xl">
               <div className="ml-[20px]">
-                <p className="w-[372px] mt-5 flex flex-wrap  md:flex-row items-center text-3xl font-bold mb-10">
+                <p className="w-[372px] mt-5 flex flex-wrap  md:flex-row items-center text-[24px] font-bold mb-10">
                   <div className="mx-1 flex title-font font-medium items-center  text-gray-900 md:mb-0">
-                    <img className="pr-1" src="img/heart.png " alt="logo" />
+                    <img
+                      className="mr-1 w-[34px] h-[30px]"
+                      src="img/heart.png "
+                      alt="logo"
+                    />
                   </div>
                   내 프로필 설정
                 </p>

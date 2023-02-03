@@ -47,7 +47,7 @@ const Main = () => {
   const datas = data.data;
 
   return (
-    <div className="flex items-center justify-center py-5">
+    <div className="font-SUIT flex items-center justify-center py-5">
       <div className=" shadow-xl">
         <div className="ml-8 drop-shadow-xl">
           <div className="mt-[24px] flex relative">
@@ -85,7 +85,7 @@ const Main = () => {
                 </a>
 
                 <div className="flex text-[#fff] absolute bottom-[125px] left-[20px] space-x-2 text-sm">
-                  <p>{post.job} 개발자</p>
+                  <p>{post.job}</p>
                   <p className="mr-2 ml-2 ">.</p>
                   <p>{post.residence}</p>
                 </div>

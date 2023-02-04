@@ -229,6 +229,27 @@
         "blob:http://localhost:3000/e1985823-20f9-4a9e-abf3-42e3ab207e5f"
       ],
       "id": 11
+    },
+    {
+      "username": "안뇽",
+      "age": "22",
+      "introduction": "ㅇㄹㅇㄹ",
+      "link": "ㄹㅇㄴㄹㅇㄹㅇㄹ",
+      "gender": "여자",
+      "education": "초대졸",
+      "job": "백엔드",
+      "residence": "광주",
+      "stacks": [
+        "GO",
+        "Assembly language",
+        "C++"
+      ],
+      "multipartFile": [
+        "blob:http://localhost:3000/a16470fa-c5bb-433c-8118-8d084bb0197b",
+        "blob:http://localhost:3000/edf91767-27cc-4dc1-aec6-e6a4cd3e90ce",
+        "blob:http://localhost:3000/926cd0bb-1bd4-4502-8c33-ac32d99fd4a3"
+      ],
+      "id": 12
     }
   ],
   "recommends": [

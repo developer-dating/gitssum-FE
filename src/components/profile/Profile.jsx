@@ -80,6 +80,12 @@ export default function Profile() {
     }
   };
 
+  // const onChange = (e) => {
+  //   const img = e.target.files[0];
+  //   const formData = new FormData();
+  //   formData.append("file", img);
+  // };
+
   return (
     <div>
       {mutation.isLoading ? (
@@ -116,6 +122,12 @@ export default function Profile() {
                       (※프로필에 표시되는 이미지로, 3장 이상 업로드해주세요.)
                     </div>
                   </div>
+                  {/* <input
+                    type="file"
+                    accept="image/jpg,image/png,image/jpeg,image/gif"
+                    name="profile_img"
+                    onChange={onChange}
+                  ></input> */}
                   <div className="inline-grid grid-cols-3 w-[350px] ">
                     {showImages.map((image, id) => (
                       <div key={id} className="relative">
@@ -308,6 +320,7 @@ export default function Profile() {
                     className="w-[350px] h-[40px] rounded-md mb-3 bg-neutral-200 outline-1 p-2 br-8 focus:outline-[#28CC9E] text-xs"
                     placeholder="자신에 대해 간단히 소개해주세요~"
                   ></input>
+
                   <hr className="w-[350px] h-0.5 bg-gray-200 rounded-3xl my-6"></hr>
                   <div className="mt-2 mx-auto flex flex-wrap md:flex-row items-center mb-4">
                     <div className="mr-1 font-bold text-sm">선호 기술스택</div>
@@ -325,27 +338,26 @@ export default function Profile() {
                       />
                     ))}
                   </ul>
-
-                  <button
-                    className=" text-[16px] rounded-lg bg-[#28CC9E] text-white w-[350px] h-[40px] font-bold mt-10 mb-[120px]"
-                    onClick={() =>
-                      mutation.mutate({
-                        username: username,
-                        age: age,
-                        introduction: introduction,
-                        link: link,
-                        gender: gender,
-                        education: education,
-                        job: job,
-                        residence: residence,
-                        stacks: checkedItems,
-                        imageList: showImages,
-                      })
-                    }
-                  >
-                    설정 완료
-                  </button>
                 </form>
+                <button
+                  className=" text-[16px] rounded-lg bg-[#28CC9E] text-white w-[350px] h-[40px] font-bold mt-10 mb-[120px]"
+                  onClick={() =>
+                    mutation.mutate({
+                      username: username,
+                      age: age,
+                      introduction: introduction,
+                      link: link,
+                      gender: gender,
+                      education: education,
+                      job: job,
+                      residence: residence,
+                      stacks: checkedItems,
+                      multipartFile: showImages,
+                    })
+                  }
+                >
+                  설정 완료
+                </button>
               </div>
             </div>
           </div>

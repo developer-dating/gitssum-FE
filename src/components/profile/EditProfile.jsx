@@ -5,14 +5,15 @@ import { Navigate } from "react-router";
 import { useNavigate, useParams } from "react-router-dom";
 import StackCard from "../recommend/StackCard";
 import { Toaster, toast } from "react-hot-toast";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
-export default function Profile() {
+export default function EditProfile() {
   const { id } = useParams();
 
   const mutation = useMutation((prof) => {
     return (
-      axios.put("https://gitssum.com/api/user/modify/mypage", prof),
-      toast.success("프로필 등록 성공!")
+      axios.put("https://gitssum.com/api/user/get/otherprofile/1", prof),
+      toast.success("프로필 수정 성공!")
     );
   });
 
@@ -334,7 +335,7 @@ export default function Profile() {
                         education: education,
                         job: job,
                         residence: residence,
-                        stacks: checkedItems,
+                        stack: checkedItems,
                         imageList: showImages,
                       })
                     }

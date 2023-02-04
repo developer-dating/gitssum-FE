@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { instance } from "../../api/instance";
 import ModalBasic from "./Modal";
 // import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 // import { PostDetail } from "./PostDetail";
 
 async function fetchPosts() {
   try {
-    const response = await axios.get(
-      "https://gitssum.com/api/user/get/all/profiles"
+    const response = await instance.get(
+      "https://gitssum.com/api/user/get/profiles"
     );
     // if (!response.ok) {
     //   throw new Error("Network response was not ok");

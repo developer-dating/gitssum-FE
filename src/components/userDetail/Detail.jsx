@@ -4,13 +4,14 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useMutation } from "@tanstack/react-query";
 import { Navigate } from "react-router";
 import { useNavigate, useParams } from "react-router-dom";
+import { instance } from "../../api/instance";
 
 export const Detail = () => {
   const { id } = useParams();
 
   async function detailPosts() {
     try {
-      const response = await axios.get(
+      const response = await instance.get(
         `https://gitssum.com/api/user/get/otherprofile/${id}`
       );
       // if (!response.ok) {

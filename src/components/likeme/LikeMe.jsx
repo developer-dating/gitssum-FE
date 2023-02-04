@@ -4,10 +4,11 @@ import axios from "axios";
 // import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 // import { PostDetail } from "./PostDetail";
 import { useNavigate } from "react-router-dom";
+import { instance } from "../../api/instance";
 
 async function fetchLikes() {
   try {
-    const response = await axios.get(
+    const response = await instance.get(
       "https://gitssum.com/api/user/get/all/profiles"
     );
     // if (!response.ok) {

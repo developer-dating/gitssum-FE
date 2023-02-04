@@ -4,13 +4,14 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import StackCard from "./StackCard";
 import { Toaster, toast } from "react-hot-toast";
+import { instance } from "../../api/instance";
 
 const AddRecommend = () => {
   const navigate = useNavigate();
 
   const mutation = useMutation((rocm) => {
     return (
-      axios.post("http://localhost:3001/recommends", rocm),
+      instance.post("http://localhost:3001/recommends", rocm),
       toast.success("취향 설정 완료!")
     );
   });
@@ -52,11 +53,8 @@ const AddRecommend = () => {
   };
 
   return (
-    <div className="font-SUIT flex items-center justify-center h-[100vh]">
-      <div>
-        <Toaster />
-      </div>
-      <div className="shadow-xl pb-10">
+    <div className="font-SUIT flex items-center justify-center">
+      <div className="shadow-xl pb-10 h-[100vh]">
         <div className="ml-5">
           <div className="w-96 flex lex items-center justify-center flex-wrap">
             <div className="flex flex-col mt-10">

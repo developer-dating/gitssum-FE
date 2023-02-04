@@ -3,12 +3,13 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import ModalBasic from "../main/Modal";
 import { Toaster, toast } from "react-hot-toast";
+import { instance } from "../../api/instance";
 import axios from "axios";
 
 async function fetchRecomend() {
   try {
-    const response = await axios.get(
-      "https://gitssum.com/api/user/get/all/profiles"
+    const response = await instance.get(
+      "https://gitssum.com/api/user/get/profiles"
     );
     // if (!response.ok) {
     //   throw new Error("Network response was not ok");

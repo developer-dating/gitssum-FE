@@ -1,17 +1,81 @@
 import axios from "axios";
 // import { getCookie } from "../cookie/cookie";
 
+export const baseURL = axios.create({
+  baseURL: "https://gitssum.com",
+  headers: {
+    "content-type": "application/json;charset=UTF-8",
+    accept: "application/json",
+    "Access-Control-Allow-Origin": "*",
+  },
+});
+
+// export const instance = axios.create({
+//   baseURL: "https://gitssum.com",
+//   headers: {
+//     Access_Token:
+//       localStorage.getItem("accessToken") === undefined
+//         ? ""
+//         : localStorage.getItem("accessToken"),
+//   },
+
+//   withCredentials: true,
+// });
+
 export const instance = axios.create({
   baseURL: "https://gitssum.com",
   headers: {
-    Access_Token:
-      localStorage.getItem("accessToken") === undefined
-        ? ""
-        : localStorage.getItem("accessToken"),
+    "content-type": "application/json;charset=UTF-8",
+    accept: "application/json",
+    "Access-Control-Allow-Origin": "*",
   },
-
-  withCredentials: true,
 });
+
+instance.interceptors.request.use((config) => {
+  if (config.headers === undefined) return;
+  const token = localStorage.getItem("accessToken");
+
+  config.headers["Authorization"] = token;
+  // 혹시 3항 연산자가 안먹히면 수정
+  return config;
+});
+
+baseURL.interceptors.request.use((config) => {
+  if (config.headers === undefined) return;
+  const token = localStorage.getItem("accessToken");
+
+  config.headers["Authorization"] = token;
+  // 혹시 3항 연산자가 안먹히면 수정
+  return config;
+});
+// instance.interceptors.request.use((config) => {
+//   if (config.headers === undefined) return;
+//   const token = localStorage.getItem("accessToken");
+//   console.log(token);
+//   config.headers["Authorization"] = `Bearer ${token}`;
+//   return config;
+// });
+
+export const createChatRoom = async (payload) => {
+  const res = await instance.post(`/api/room${payload}`);
+  console.log(res);
+  return res.data;
+};
+
+export const quitChatRoom = async (payload) => {
+  const res = await instance.delete(`/api/chat${payload}`);
+  return (window.location.href = "/messageroom");
+};
+
+export const getChatList = async () => {
+  const res = await instance.get("/api/chat/rooms");
+  return res;
+};
+
+export const getDetailChat = async (payload) => {
+  const res = await instance.get(`/api/chats${payload}`);
+  return res;
+};
 // export const instance = axios.create({
 //   withCredentials: true,
 //   baseURL: "https://gitssum.com",

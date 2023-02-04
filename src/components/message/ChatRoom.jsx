@@ -3,25 +3,147 @@ import axios from "axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Navigate } from "react-router";
 import { Toaster, toast } from "react-hot-toast";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import SockJS from "sockjs-client";
+import Stomp, { Message } from "stompjs";
+import { baseURL } from "../../api/instance";
+import { getDetailChat } from "../../api/instance";
+import { otherNickName } from "../../atoms";
 
-async function fetchLikes() {
-  try {
-    const response = await axios.get(
-      "https://gitssum.com/api/user/get/all/profiles"
+// async function fetchLikes() {
+//   try {
+//     const response = await axios.get(
+//       "https://gitssum.com/api/user/get/all/profiles"
+//     );
+//     // if (!response.ok) {
+//     //   throw new Error("Network response was not ok");
+//     // }
+//     return response;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+const ChatRoom = () => {
+  const { id } = useParams();
+  const otherName = useRecoilValue(otherNickName);
+  const myNickName = localStorage.getItem("nickname");
+  const url = baseURL;
+  //----------------------------------------------
+
+  // 입력받은 message값
+  const [message, setMessage] = useState("");
+  // chat내용 리스트
+  const [chatList, setChatList] = useState([]);
+  // 서버에서 get해온 이전 채팅 조회부분
+  const { data, isSuccess, isLoading, isError, error } = useQuery(
+    ["chat", id],
+    () => getDetailChat(id),
+    {
+      onSuccess: (data) => {
+        setChatList(data.data);
+      },
+    }
+  );
+
+  // 스크롤 최하단으로 내리기
+  // const scrollToBot = () => {
+  //   window.scrollTo(0, document.body.scrollHeight);
+  // };
+
+  //------------------------------------------------
+
+  // stompclient생성부분
+  const sock = new SockJS("https://gitssum.com/webSocket");
+  const client = Stomp.over(sock);
+
+  const connectStomp = () => {
+    client.connect({ myNickName }, onConnect, onError);
+  };
+
+  useEffect(() => {
+    connectStomp();
+    // scrollToBot();
+    if (isSuccess) {
+      setChatList(data?.data);
+    }
+  }, [isSuccess, data?.data]);
+
+  const onConnect = () => {
+    userEnter();
+    // scrollToBot();
+    setChatList(data?.data);
+    onSub();
+    // 연결되면 이전데이터로 chatlist 설정
+    console.log("connected");
+  };
+
+  const onError = () => {
+    console.log("error");
+  };
+
+  const onSub = () => {
+    client.subscribe(`/sub/chat/room/${id}`, (e) => onMessageRecieve(e));
+  };
+
+  //-------------------------------------------------
+
+  const onMessageRecieve = (e) => {
+    // 메세지가 오면 받아온 데이터의 body를 json.parse해서 data 라는 변수에 넣음
+    let data = JSON.parse(e.body);
+    if (data.type === "TALK") {
+      getDetailChat(id).then((res) => {
+        return setChatList([...res.data]);
+      });
+    }
+    // scrollToBot();
+  };
+
+  const userEnter = () => {
+    let payload = {
+      type: "ENTER",
+      roomId: id,
+      sender: myNickName,
+      message: "입장",
+    };
+    client.send(
+      `/pub/api/chat/message`,
+      { myNickName },
+      JSON.stringify(payload)
     );
-    // if (!response.ok) {
-    //   throw new Error("Network response was not ok");
-    // }
-    return response;
-  } catch (error) {
-    console.log(error);
-  }
-}
-const Chat = () => {
-  // const [currentPage, setCurrentPage] = useState(0);
-  // const [selectedPost, setSelectedPost] = useState(null);
+    // scrollToBot();
+    console.log("유저입장");
+  };
 
-  const { data, isError, error, isLoading } = useQuery(["likes"], fetchLikes);
+  const sendMessage = () => {
+    if (message) {
+      let payload = {
+        type: "TALK",
+        roomId: id,
+        sender: myNickName,
+        message: message,
+      };
+      client.send(
+        `/pub/api/chat/message`,
+        { myNickName },
+        JSON.stringify(payload)
+      );
+      setMessage("");
+      // scrollToBot();
+    }
+  };
+
+  const enterMessage = (e) => {
+    e.preventDefault();
+    sendMessage();
+  };
+
+  useEffect(() => {
+    // scrollToBot();
+  }, [chatList]);
+
+  // const { data, isError, error, isLoading } = useQuery(["likes"], fetchLikes);
 
   if (isLoading) return <h3>Loading...</h3>;
   if (isError)
@@ -105,8 +227,13 @@ const Chat = () => {
                       type="text"
                       className="w-[312px] h-[40px] rounded-lg bg-neutral-200 outline-1 p-2 focus:outline-[#28CC9E] text-xs"
                       placeholder="메세지 보내기"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
                     />
-                    <div className="cursor-pointer w-[36px] h-[35px]">
+                    <div
+                      onClick={enterMessage}
+                      className="cursor-pointer w-[36px] h-[35px]"
+                    >
                       <img src="/img/msgcheckbtn.png" alt="MSGCheck" />
                     </div>
                   </div>
@@ -120,4 +247,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export default ChatRoom;

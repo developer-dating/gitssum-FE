@@ -3,9 +3,11 @@ import axios from "axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Navigate } from "react-router";
 import { Toaster, toast } from "react-hot-toast";
+import { instance } from "../../api/instance";
+
 async function fetchLikes() {
   try {
-    const response = await axios.get(
+    const response = await instance.get(
       "https://gitssum.com/api/user/get/all/profiles"
     );
     // if (!response.ok) {
@@ -16,6 +18,7 @@ async function fetchLikes() {
     console.log(error);
   }
 }
+
 const Chat = () => {
   // const [currentPage, setCurrentPage] = useState(0);
   // const [selectedPost, setSelectedPost] = useState(null);

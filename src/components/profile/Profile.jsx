@@ -5,13 +5,14 @@ import { Navigate } from "react-router";
 import { useNavigate, useParams } from "react-router-dom";
 import StackCard from "../recommend/StackCard";
 import { Toaster, toast } from "react-hot-toast";
+import { instance } from "../../api/instance";
 
 export default function Profile() {
   const { id } = useParams();
 
   const mutation = useMutation((prof) => {
     return (
-      axios.put("https://gitssum.com/api/user/modify/mypage", prof),
+      instance.put("https://gitssum.com/api/user/modify/mypage", prof),
       toast.success("프로필 등록 성공!")
     );
   });
@@ -90,6 +91,9 @@ export default function Profile() {
           ) : null}
 
           {mutation.isSuccess ? <Navigate to="/"></Navigate> : null}
+          <div>
+            <Toaster />
+          </div>
           <div className="font-SUIT flex items-center justify-center py-5">
             <div className=" shadow-xl">
               <div className="ml-[20px]">

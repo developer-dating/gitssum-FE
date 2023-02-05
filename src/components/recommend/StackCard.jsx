@@ -22,8 +22,10 @@ const StackCard = ({ data, chekedItems, checkedItemHandler }) => {
         type="checkbox"
         id={data}
         name="stack"
-        checked={isChecked}
+        checked={isChecked || ""}
         value={data}
+        // name="stacks"
+        // id="stacks"
         className="hidden peer"
         onChange={(e) => onCheck(e)}
       />

@@ -12,7 +12,7 @@ export const Detail = () => {
   async function detailPosts() {
     try {
       const response = await instance.get(
-        `https://gitssum.com/api/user/get/otherprofile/${id}`
+        `https://gitssum.com/api/user/get/profile/${id}`
       );
       // if (!response.ok) {
       //   throw new Error("Network response was not ok");

@@ -73,7 +73,7 @@ export const getChatList = async () => {
 };
 
 export const getDetailChat = async (payload) => {
-  const res = await instance.get(`/api/chats${payload}`);
+  const res = await instance.get(`webSocket/api/message`);
   return res;
 };
 // export const instance = axios.create({

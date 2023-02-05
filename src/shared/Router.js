@@ -11,6 +11,7 @@ import UserDetail from "../pages/UserDetail";
 import Mypage from "../pages/Mypage";
 import Recommend from "../pages/Recommend";
 import AddRecommend from "../pages/AddRecommend";
+import PutRecommend from "../pages/PutRecommend";
 import LikeMe from "../pages/LikeMe";
 import Message from "../pages/Message";
 import MessageRoom from "../pages/MessageRoom";
@@ -33,6 +34,7 @@ const Router = () => {
         <Route path="/login/oauth2/github" element={<Github />} />
         <Route path="/recommend" element={<Recommend />} />
         <Route path="/addrecommend" element={<AddRecommend />} />
+        <Route path="/putrecommend" element={<PutRecommend />} />
         <Route path="/likeme" element={<LikeMe />} />
         <Route path="/editmyprofile" element={<EditMyProfile />} />
         <Route path="/message" element={<Message />} />

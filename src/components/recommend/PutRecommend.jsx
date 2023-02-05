@@ -1,28 +1,37 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import StackCard from "./StackCard";
 import { Toaster, toast } from "react-hot-toast";
 import { instance } from "../../api/instance";
 
-const AddRecommend = () => {
+const PutRecommend = () => {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  queryClient.clear();
-  const mutationCache = queryClient.getMutationCache();
-  mutationCache.clear();
 
   const mutation = useMutation((rocm) => {
-    return (
-      instance.post("https://gitssum.com/api/user/save/recommendation", rocm),
-      {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
-      },
-      toast.success("취향 설정 완료!")
-    );
+    return instance({
+      method: "put",
+      url: "https://gitssum.com/api/user/modify/recommendation",
+      headers: { "Access-Control-Allow-Origin": "*" },
+      data: rocm,
+    })
+      .then((result) => {
+        console.log("요청성공");
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log("요청실패");
+        console.log(error);
+      });
+    //   instance.put("https://gitssum.com/api/user/modify/recommendation", rocm),
+    //   {
+    //     headers: {
+    //       "Access-Control-Allow-Origin": "*",
+    //     },
+    //   },
+    //   toast.success("취향 수정 완료!")
+    // );
   });
 
   const [checkedItems, setCheckedItems] = useState("");
@@ -164,4 +173,4 @@ const AddRecommend = () => {
   );
 };
 
-export default AddRecommend;
+export default PutRecommend;

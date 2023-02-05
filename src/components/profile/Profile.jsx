@@ -102,11 +102,13 @@ export default function Profile() {
       setCheckedItems([...filter]);
     }
   };
+
   // const onChange = (e) => {
   //   const img = e.target.files[0];
   //   const formData = new FormData();
   //   formData.append("file", img);
   // };
+
   return (
     <div>
       <div>
@@ -300,6 +302,7 @@ export default function Profile() {
                 <div className="text-xs text-[#FF4E4E]">
                   (※최대 3개까지 선택)
                 </div>
+
               </div>
               <ul className="flex text-[#555] left-5 text-xs flex-wrap w-[350px]">
                 {datas.map((data, index) => (

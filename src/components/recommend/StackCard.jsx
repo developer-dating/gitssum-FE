@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const StackCard = ({ data, chekedItems, checkedItemHandler }) => {
+const StackCard = ({ data, checkedItems, checkedItemHandler }) => {
   const [isChecked, setIsChecked] = useState(null);
 
   const onCheck = ({ target }) => {
@@ -9,12 +9,12 @@ const StackCard = ({ data, chekedItems, checkedItemHandler }) => {
   };
 
   // useEffect(() => {
-  //   if (chekedItems.includes(data)) {
+  //   if (checkedItems.includes(data)) {
   //     setIsChecked(true);
   //   } else {
   //     setIsChecked(false);
   //   }
-  // }, [chekedItems]);
+  // }, [checkedItems]);
 
   return (
     <li className="font-SUIT">

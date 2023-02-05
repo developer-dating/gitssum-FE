@@ -1,6 +1,37 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+
+async function fetchMypage() {
+  try {
+    const response = await axios.get(
+      "https://gitssum.com/api/user/get/otherprofile/1"
+    );
+    // if (!response.ok) {
+    //   throw new Error("Network response was not ok");
+    // }
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export const MypageMain = () => {
+  const { data, isError, error, isLoading } = useQuery(["posts"], fetchMypage);
+
+  if (isLoading) return <h3>Loading...</h3>;
+  if (isError)
+    return (
+      <>
+        <h3>Oops, something went wrong</h3>
+        <p>{error.toString()}</p>
+      </>
+    );
+
+  const datas = data.data;
+  console.log(datas);
+
   return (
     <div className="shadow-xl w-[390px] h-[100vh] mx-auto font-SUIT">
       <p className=" mx-auto flex  text-[24px] font-bold mb-2 pt-10 pl-4">
@@ -9,38 +40,30 @@ export const MypageMain = () => {
         </div>
         내 프로필
       </p>
-      <div className="flex justify-center pr-16 ml-4 items-center ">
-        <div className="p-5 flex">
+      <div className="flex justify-center pr-24  items-center ">
+        <div className="pt-5 flex">
           <img
             className="w-[80px] h-[80px]  mr-2 rounded-xl"
-            src="img/gyumin.png "
+            src={datas.imageList[0]}
             alt="profilePhoto"
           />
           <div>
             <div className="mx-auto flex items-center pl-2 ">
-              <div className="mr-1 font-bold text-[18px] pr-1">정규민</div>
+              <div className="mr-1 font-bold text-[18px] pr-1">
+                {datas.username}
+              </div>
               <div className="text-[16px]">29</div>
             </div>
             <span className="pl-2 text-[12px]">
-              프리랜서 개발자 ∙ 서울특별시 강서구
+              {datas.job} ∙ {datas.residence}
             </span>
             <div className="text-[12px]">
               <div className="flex pl-1.5">
-                <button className="bg-[#EEEEEE] px-2 py-0.5 mr-0.5 rounded-full">
-                  Python
-                </button>
-                <button className="bg-[#EEEEEE] px-2 py-0.5 mr-0.5 rounded-full">
-                  C
-                </button>
-                <button className="bg-[#EEEEEE] px-2 py-0.5 mr-0.5 rounded-full">
-                  Java
-                </button>
-                <button className="bg-[#EEEEEE] px-2 py-0.5 mr-0.5 rounded-full">
-                  C++
-                </button>
-                <button className="bg-[#EEEEEE] px-2 py-0.5 mr-0.5 rounded-full">
-                  C#
-                </button>
+                {datas.stackList.map((stack) => (
+                  <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
+                    {stack}
+                  </button>
+                ))}
               </div>
             </div>
           </div>

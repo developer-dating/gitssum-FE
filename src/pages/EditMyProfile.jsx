@@ -1,11 +1,11 @@
 import React from "react";
 import Nav from "../components/nav/Nav";
-import Profile from "../components/profile/Profile";
+import EditProfile from "../components/profile/EditProfile";
 
 const EditMyProfile = () => {
   return (
     <>
-      <Profile />
+      <EditProfile />
       <Nav />
     </>
   );

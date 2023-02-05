@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { instance } from "../../api/instance";
 
 async function fetchMypage() {
   try {
-    const response = await axios.get(
-      "https://gitssum.com/api/user/get/otherprofile/1"
+    const response = await instance.get(
+      "https://gitssum.com/api/user/get/mypage"
     );
     // if (!response.ok) {
     //   throw new Error("Network response was not ok");
@@ -30,8 +31,6 @@ export const MypageMain = () => {
     );
 
   const datas = data.data;
-  console.log(datas);
-
   return (
     <div className="shadow-xl w-[390px] h-[100vh] mx-auto font-SUIT">
       <p className=" mx-auto flex  text-[24px] font-bold mb-2 pt-10 pl-4">
@@ -69,7 +68,7 @@ export const MypageMain = () => {
           </div>
         </div>
       </div>
-      <Link to="/editmyprofile" style={{ textDecoration: "none" }}>
+      <Link to="/setprofile" style={{ textDecoration: "none" }}>
         <button className="mx-auto group relative flex justify-center items-center text-[16px] rounded-lg bg-[#28CC9E] text-white w-[350px] h-[48px] hover:bg-[#fff] hover:text-[#28CC9E] border hover:border-[#28CC9E]  duration-300 mt-5 mb-20">
           정보 수정하기
         </button>{" "}

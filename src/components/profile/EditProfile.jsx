@@ -12,7 +12,7 @@ export default function EditProfile() {
 
   const mutation = useMutation((prof) => {
     return (
-      axios.put("https://gitssum.com/api/user/get/otherprofile/1", prof),
+      axios.put("https://gitssum.com/api/user/get/modify/mypage", prof),
       toast.success("프로필 수정 성공!")
     );
   });

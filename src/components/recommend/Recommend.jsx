@@ -9,7 +9,7 @@ import axios from "axios";
 async function fetchRecomend() {
   try {
     const response = await instance.get(
-      "https://gitssum.com/api/user/get/profiles"
+      "https://gitssum.com/api/user/get/recommendation"
     );
     // if (!response.ok) {
     //   throw new Error("Network response was not ok");
@@ -28,6 +28,7 @@ const Recommend = () => {
     ["recomend"],
     fetchRecomend
   );
+  console.log(data);
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -48,6 +49,9 @@ const Recommend = () => {
   const onClickHandler = () => {
     navigate("/addrecommend");
   };
+  const onClicksHandler = () => {
+    navigate("/putrecommend");
+  };
 
   return (
     <>
@@ -55,7 +59,7 @@ const Recommend = () => {
         <Toaster />
       </div>
       <div className="font-SUIT flex items-center justify-center ">
-        <div className=" shadow-xl">
+        <div className=" shadow-xl h-[100vh]">
           <div className="ml-[20px]">
             <div className="w-[371px] flex flex-wrap reletive mb-20 drop-shadow-md">
               <div className="flex flex-col mt-[40px]">
@@ -88,7 +92,7 @@ const Recommend = () => {
                   <>
                     <div className="w-[350px] h-[100px] flex pt-[28px]">
                       <button
-                        onClick={onClickHandler}
+                        onClick={onClicksHandler}
                         className="flex w-[89px] h-[34px] justify-center items-center rounded-full px-[8px] py-[12px] border border-[#28CC9E] text-[#28CC9E] font-medium hover:bg-[#28CC9E] hover:text-[#fff] duration-300 text-[14px]"
                       >
                         <p>취향 재설정</p>

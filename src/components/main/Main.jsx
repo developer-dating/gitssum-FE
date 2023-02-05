@@ -46,7 +46,7 @@ const Main = () => {
     );
 
   const datas = data.data;
-
+  console.log(datas);
   return (
     <div className="font-SUIT flex items-center justify-center py-5 ">
       <div className=" shadow-xl">

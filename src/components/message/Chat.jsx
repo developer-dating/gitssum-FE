@@ -8,7 +8,7 @@ import { instance } from "../../api/instance";
 async function fetchLikes() {
   try {
     const response = await instance.get(
-      "https://gitssum.com/api/user/get/all/profiles"
+      "https://gitssum.com/api/user/get/profiles"
     );
     // if (!response.ok) {
     //   throw new Error("Network response was not ok");

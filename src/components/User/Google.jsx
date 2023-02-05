@@ -18,6 +18,7 @@ const Google = () => {
     onSuccess: (res) => {
       if (res.data.statusCode === 200) {
         localStorage.setItem("accessToken", res.headers.authorization);
+        localStorage.setItem("nickname", res.data.data);
         setCookie("refreshToken", res.headers.authorization);
         toast.success("로그인 성공!");
         window.location.replace("/setprofile");

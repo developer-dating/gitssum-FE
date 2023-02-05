@@ -1,9 +1,10 @@
 import React from "react";
 import axios from "axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { Navigate } from "react-router";
 import { Toaster, toast } from "react-hot-toast";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import SockJS from "sockjs-client";
@@ -12,24 +13,13 @@ import { baseURL } from "../../api/instance";
 import { getDetailChat } from "../../api/instance";
 import { otherNickName } from "../../atoms";
 
-// async function fetchLikes() {
-//   try {
-//     const response = await axios.get(
-//       "https://gitssum.com/api/user/get/all/profiles"
-//     );
-//     // if (!response.ok) {
-//     //   throw new Error("Network response was not ok");
-//     // }
-//     return response;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
 const ChatRoom = () => {
+  const textRef = useRef();
   const { id } = useParams();
   const otherName = useRecoilValue(otherNickName);
   const myNickName = localStorage.getItem("nickname");
   const url = baseURL;
+  const queryClient = useQueryClient();
   //----------------------------------------------
 
   // 입력받은 message값
@@ -38,8 +28,8 @@ const ChatRoom = () => {
   const [chatList, setChatList] = useState([]);
   // 서버에서 get해온 이전 채팅 조회부분
   const { data, isSuccess, isLoading, isError, error } = useQuery(
-    ["chat", id],
-    () => getDetailChat(id),
+    ["chat"],
+    // () => getDetailChat(),
     {
       onSuccess: (data) => {
         setChatList(data.data);
@@ -55,7 +45,7 @@ const ChatRoom = () => {
   //------------------------------------------------
 
   // stompclient생성부분
-  const sock = new SockJS("https://gitssum.com/webSocket");
+  const sock = new SockJS("https://gitssum.com/ws-stomp");
   const client = Stomp.over(sock);
 
   const connectStomp = () => {
@@ -84,7 +74,7 @@ const ChatRoom = () => {
   };
 
   const onSub = () => {
-    client.subscribe(`/sub/chat/room/${id}`, (e) => onMessageRecieve(e));
+    client.subscribe(`/message`, (e) => onMessageRecieve(e));
   };
 
   //-------------------------------------------------
@@ -107,11 +97,7 @@ const ChatRoom = () => {
       sender: myNickName,
       message: "입장",
     };
-    client.send(
-      `/pub/api/chat/message`,
-      { myNickName },
-      JSON.stringify(payload)
-    );
+    client.send(`/api/room`, { myNickName }, JSON.stringify(payload));
     // scrollToBot();
     console.log("유저입장");
   };
@@ -124,14 +110,31 @@ const ChatRoom = () => {
         sender: myNickName,
         message: message,
       };
-      client.send(
-        `/pub/api/chat/message`,
-        { myNickName },
-        JSON.stringify(payload)
-      );
+      client.send(`/message`, { myNickName }, JSON.stringify(payload));
       setMessage("");
       // scrollToBot();
     }
+  };
+
+  // 채팅보내기
+  const enterToSendChat = (e) => {
+    if (e.key === "Enter") {
+      sendChat();
+      if (e.target === textRef.current) {
+        textRef.current.value = "";
+      }
+    }
+  };
+
+  const sendChat = () => {
+    if (textRef.current === null || textRef.current.value === "") return;
+    client.send(
+      `/message/${id}`,
+      myNickName,
+      JSON.stringify({ content: textRef.current.value })
+    );
+    queryClient.invalidateQueries(["chat", id]);
+    textRef.current.value = "";
   };
 
   const enterMessage = (e) => {
@@ -227,11 +230,11 @@ const ChatRoom = () => {
                       type="text"
                       className="w-[312px] h-[40px] rounded-lg bg-neutral-200 outline-1 p-2 focus:outline-[#28CC9E] text-xs"
                       placeholder="메세지 보내기"
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
+                      ref={textRef}
+                      onKeyUp={enterToSendChat}
                     />
                     <div
-                      onClick={enterMessage}
+                      onClick={sendChat}
                       className="cursor-pointer w-[36px] h-[35px]"
                     >
                       <img src="/img/msgcheckbtn.png" alt="MSGCheck" />

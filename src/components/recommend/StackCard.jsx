@@ -24,6 +24,8 @@ const StackCard = ({ data, checkedItems, checkedItemHandler }) => {
         name="stack"
         checked={isChecked || ""}
         value={data}
+        // name="stacks"
+        // id="stacks"
         className="hidden peer"
         onChange={(e) => onCheck(e)}
       />

@@ -25,11 +25,9 @@ const Main = () => {
   // const [selectedPost, setSelectedPost] = useState(null);
   const { data, isError, error, isLoading } = useQuery(["posts"], fetchPosts);
 
-  const { userId } = useParams();
-
-  const mutation = useMutation((like) => {
+  const mutation = useMutation((userId) => {
     return (
-      instance.post(`https://gitssum.com/api/like/user/${userId}`, like),
+      instance.post(`https://gitssum.com/api/like/user/${userId}`),
       {
         headers: {
           "Access-Control-Allow-Origin": "*",
@@ -41,10 +39,11 @@ const Main = () => {
 
   const [modal, setModal] = useState(false);
   const [selectedUsername, setSelectedUsername] = useState();
+  const [selectedUserId, setSelectedUserId] = useState();
 
-  const toggleModal = (username) => {
+  const toggleModal = (userId) => {
     setModal(!modal);
-    setSelectedUsername(username);
+    setSelectedUserId(userId);
   };
   // const queryClient = useQueryClient();
   // queryClient.clear();
@@ -118,11 +117,11 @@ const Main = () => {
                     src="/img/buttton_like.png"
                     alt="HomeLogo"
                     className="w-[52px] h-[52px] rounded-full flex items-center duration-300 ml-3"
-                    onClick={() => toggleModal(post.username)}
+                    onClick={() => toggleModal(post.userId)}
                   />
                 </div>
 
-                {modal && post.username === selectedUsername && (
+                {modal && post.userId === selectedUserId && (
                   <div className="font-SUIT rounded-xl bg-white w-[333px] h-[371px] absolute top-[91%] left-[84%] translate-x-[-84%] translate-y-[-85%] ">
                     <hr className="mx-auto w-[40px] h-[6px] bg-[#D9D9D9] rounded-3xl mt-3 mb-8"></hr>
                     <img
@@ -139,7 +138,7 @@ const Main = () => {
                     <button
                       className="mx-auto relative flex justify-center items-center text-[16px] rounded-lg bg-[#28CC9E] text-white hover:bg-[#fff] hover:text-[#28CC9E] border hover:border-[#28CC9E]  duration-300 w-[290px] h-[48px]  mt-3 "
                       onClick={() => {
-                        mutation.mutate({});
+                        mutation.mutate(post.userId);
                       }}
                     >
                       좋아요

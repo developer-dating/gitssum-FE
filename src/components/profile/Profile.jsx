@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import StackCard from "../recommend/StackCard";
 import { Toaster, toast } from "react-hot-toast";
 import { instance } from "../../api/instance";
+import { Link } from "react-router-dom";
 
 export default function Profile() {
   const { id } = useParams();
@@ -40,6 +41,7 @@ export default function Profile() {
     formData.append("education", education);
     formData.append("multipartFile", file);
     formData.append("stacks", checkedItems);
+    toast.success("프로필이 등록되었어요!");
 
     instance({
       method: "put",
@@ -341,6 +343,7 @@ export default function Profile() {
                 ))}
               </ul>
             </form>
+
             <button
               className=" text-[16px] rounded-lg bg-[#28CC9E] text-white w-[350px] h-[40px] font-bold mt-10 mb-[120px]"
               onClick={onSubmitHandler}

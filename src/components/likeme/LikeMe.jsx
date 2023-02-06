@@ -1,10 +1,11 @@
 // import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import axios from "axios";
 // import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 // import { PostDetail } from "./PostDetail";
 import { useNavigate } from "react-router-dom";
 import { instance } from "../../api/instance";
+import { toast } from "react-hot-toast";
 
 async function fetchLikes() {
   try {
@@ -26,6 +27,20 @@ const LikeMe = () => {
 
   const { data, isError, error, isLoading } = useQuery(["likes"], fetchLikes);
   console.log(data);
+
+  const mutation = useMutation((userId) => {
+    return (
+      instance.post(`https://gitssum.com/api/like/user/${userId}`),
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      },
+      toast.success("연결되었어요! "),
+      alert("연결되었어요!")
+    );
+  });
+
   if (isLoading) return <h3>Loading...</h3>;
   if (isError)
     return (
@@ -72,7 +87,13 @@ const LikeMe = () => {
                         {post.job} . {post.residence}
                       </p>
                       <div className="flex flex-row mt-[5px]">
-                        <button className="w-[90px] h-[32px] bg-[#28CC9E] text-[#fff] rounded-[8px] mr-[8px] hover:bg-[#fff] border hover:border-[#28CC9E] hover:text-[#28CC9E] duration-300">
+                        <button
+                          onClick={() => {
+                            mutation.mutate(post.userId);
+                            toast.success("프로필이 등록되었어요!");
+                          }}
+                          className="w-[90px] h-[32px] bg-[#28CC9E] text-[#fff] rounded-[8px] mr-[8px] hover:bg-[#fff] border hover:border-[#28CC9E] hover:text-[#28CC9E] duration-300"
+                        >
                           <p>연결하기</p>
                         </button>
                         <button className="w-[90px] h-[32px] rounded-[8px] border border-gray text-[#000] hover:bg-[grey] hover:text-[#fff] duration-300">

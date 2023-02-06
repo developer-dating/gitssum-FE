@@ -33,17 +33,18 @@ const Main = () => {
           "Access-Control-Allow-Origin": "*",
         },
       },
-      toast.success("좋아요를 보냈어요! ")
+      toast.success("좋아요를 보냈어요! "),
+      alert("좋아요를 보냈어요!")
     );
   });
 
   const [modal, setModal] = useState(false);
-  const [selectedUsername, setSelectedUsername] = useState();
   const [selectedUserId, setSelectedUserId] = useState();
 
   const toggleModal = (userId) => {
     setModal(!modal);
     setSelectedUserId(userId);
+    toast.success("좋아요를 보냈어요! ");
   };
   // const queryClient = useQueryClient();
   // queryClient.clear();
@@ -59,7 +60,6 @@ const Main = () => {
     );
 
   const datas = data.data;
-  console.log(datas);
 
   return (
     <div className="font-SUIT flex items-center justify-center py-5 ">

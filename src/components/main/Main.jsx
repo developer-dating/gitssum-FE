@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import React, { useState } from "react";
 import axios from "axios";
 import { instance } from "../../api/instance";
-
-// import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Toaster, toast } from "react-hot-toast";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useNavigate, useParams } from "react-router-dom";
 // import { PostDetail } from "./PostDetail";
 
 async function fetchPosts() {
@@ -24,6 +24,20 @@ const Main = () => {
   // const [currentPage, setCurrentPage] = useState(0);
   // const [selectedPost, setSelectedPost] = useState(null);
   const { data, isError, error, isLoading } = useQuery(["posts"], fetchPosts);
+
+  const { userId } = useParams();
+
+  const mutation = useMutation((like) => {
+    return (
+      instance.post(`https://gitssum.com/api/like/user/${userId}`, like),
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      },
+      toast.success("좋아요를 보냈어요! ")
+    );
+  });
 
   const [modal, setModal] = useState(false);
   const [selectedUsername, setSelectedUsername] = useState();
@@ -46,6 +60,7 @@ const Main = () => {
     );
 
   const datas = data.data;
+  console.log(datas);
 
   return (
     <div className="font-SUIT flex items-center justify-center py-5 ">
@@ -121,7 +136,12 @@ const Main = () => {
                     <p className=" font-bold ml-6 text-[20px]">
                       좋아요를 보내시겠어요?
                     </p>
-                    <button className="mx-auto relative flex justify-center items-center text-[16px] rounded-lg bg-[#28CC9E] text-white hover:bg-[#fff] hover:text-[#28CC9E] border hover:border-[#28CC9E]  duration-300 w-[290px] h-[48px]  mt-3 ">
+                    <button
+                      className="mx-auto relative flex justify-center items-center text-[16px] rounded-lg bg-[#28CC9E] text-white hover:bg-[#fff] hover:text-[#28CC9E] border hover:border-[#28CC9E]  duration-300 w-[290px] h-[48px]  mt-3 "
+                      onClick={() => {
+                        mutation.mutate({});
+                      }}
+                    >
                       좋아요
                     </button>
                     <button

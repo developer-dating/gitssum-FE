@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import StackCard from "../recommend/StackCard";
 import { Toaster, toast } from "react-hot-toast";
 import { instance } from "../../api/instance";
+import { Link } from "react-router-dom";
 
 export default function Profile() {
   const { id } = useParams();
@@ -40,6 +41,7 @@ export default function Profile() {
     formData.append("education", education);
     formData.append("multipartFile", file);
     formData.append("stacks", checkedItems);
+    toast.success("프로필이 등록되었어요!");
 
     instance({
       method: "put",
@@ -72,6 +74,10 @@ export default function Profile() {
   };
   const onPrint = () => {
     console.log(file);
+  };
+
+  const handleDeleteImage = (id) => {
+    setFile(file.filter((_, index) => index !== id));
   };
   const datas = [
     { title: "Python", stack: "Python" },
@@ -134,13 +140,36 @@ export default function Profile() {
                   (※프로필에 표시되는 이미지로, 3장 이상 업로드해주세요.)
                 </div>
               </div>
-              <label htmlFor="profile-upload" />
-              <input
-                type="file"
-                id="profile-upload"
-                accept="image/*"
-                onChange={onChangeImg}
-              />
+              {/* {file.map((image, id) => (
+                <div key={id}>
+                  <img
+                    className="w-[90px] h-[90px] flex relative"
+                    src={image}
+                    alt={`${image}-${id}`}
+                  />
+                  <button
+                    className=" absolute "
+                    onClick={() => handleDeleteImage(id)}
+                  >
+                    <img src="img/delete_pic.png" className=" " alt="delete" />
+                  </button>
+                </div>
+              ))} */}
+              <label htmlFor="profile-upload">
+                <input
+                  multiple
+                  className=""
+                  type="file"
+                  id="profile-upload"
+                  accept="image/*"
+                  onChange={onChangeImg}
+                />
+                <img
+                  className="w-[90px] h-[90px] m-1 cursor-pointer"
+                  src="img/photo_add.png "
+                  alt="logo"
+                />
+              </label>
               <hr className="w-[350px] h-0.5 bg-[#D9D9D9] rounded-3xl my-6"></hr>
               <div className="mx-auto flex flex-wrap  items-center mt-3 mb-1">
                 <div className="mr-1 font-bold text-sm">성별</div>
@@ -302,7 +331,6 @@ export default function Profile() {
                 <div className="text-xs text-[#FF4E4E]">
                   (※최대 3개까지 선택)
                 </div>
-
               </div>
               <ul className="flex text-[#555] left-5 text-xs flex-wrap w-[350px]">
                 {datas.map((data, index) => (
@@ -315,6 +343,7 @@ export default function Profile() {
                 ))}
               </ul>
             </form>
+
             <button
               className=" text-[16px] rounded-lg bg-[#28CC9E] text-white w-[350px] h-[40px] font-bold mt-10 mb-[120px]"
               onClick={onSubmitHandler}

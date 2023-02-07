@@ -61,7 +61,7 @@ const ChatRoom = () => {
 
   // 스크롤 최하단으로 내리기
   const scrollToBot = () => {
-    window.scrollTo(0, document.body.scrollHeight);
+    window.scrollTo(0, document?.body.scrollHeight);
   };
   //------------------------------------------------
 
@@ -155,8 +155,8 @@ const ChatRoom = () => {
     );
   console.log(chatList);
   return (
-    <div className="font-SUIT flex items-center justify-center">
-      <div className=" shadow-xl h-[100vh] relative">
+    <div className="font-SUIT flex items-center justify-center ">
+      <div className=" shadow-xl relative h-[100vh]">
         <div className="ml-[20px]">
           <div className="w-[372px] flex flex-wrap ">
             <div className="flex flex-col mt-[40px]">
@@ -189,7 +189,7 @@ const ChatRoom = () => {
                 <div>2023년 1월 13일</div>
               </div>
               <div className="mt-[65px] relative">
-                <div className="w-[360px] h-[590px] overflow-y-scroll">
+                <div className="w-[360px] sm:h-[400px] md:h-[400px] lg:h-[400px] 2xl:h-[600px] overflow-y-scroll scrollbar-hide">
                   {chatList?.message?.map((List) =>
                     List?.senderId === Number(myNickName) ? (
                       <div className="flex flex-col items-end mb-[20px] mr-[10px]">
@@ -224,27 +224,27 @@ const ChatRoom = () => {
                     )
                   )}
                 </div>
-                <div className="fixed bottom-[45px] mr-[2px]  ml-[5px] border-t-[2px]">
-                  <div className="mt-[10px] flex flex-row items-center">
-                    <form
-                      onSubmit={(e) => enterMessage(e)}
-                      className="mt-[10px] flex flex-row items-center"
+              </div>
+              <div className="fixed bottom-[45px] mr-[2px]  ml-[5px] border-t-[2px]">
+                <div className="mt-[10px] flex flex-row items-center">
+                  <form
+                    onSubmit={(e) => enterMessage(e)}
+                    className="mt-[10px] flex flex-row items-center"
+                  >
+                    <input
+                      type="text"
+                      className="w-[312px] h-[40px] rounded-lg bg-neutral-200 outline-1 p-2 focus:outline-[#28CC9E] text-xs"
+                      placeholder="메세지 보내기"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                    />
+                    <div
+                      onClick={enterMessage}
+                      className="cursor-pointer w-[36px] h-[35px]"
                     >
-                      <input
-                        type="text"
-                        className="w-[312px] h-[40px] rounded-lg bg-neutral-200 outline-1 p-2 focus:outline-[#28CC9E] text-xs"
-                        placeholder="메세지 보내기"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                      />
-                      <div
-                        onClick={enterMessage}
-                        className="cursor-pointer w-[36px] h-[35px]"
-                      >
-                        <img src="/img/msgcheckbtn.png" alt="MSGCheck" />
-                      </div>
-                    </form>
-                  </div>
+                      <img src="/img/msgcheckbtn.png" alt="MSGCheck" />
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>

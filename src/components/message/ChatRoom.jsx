@@ -155,7 +155,7 @@ const ChatRoom = () => {
   //   );
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="font-SUIT flex items-center justify-center">
       <div className=" shadow-xl h-[100vh] relative">
         <div className="ml-[20px]">
           <div className="w-[372px] flex flex-wrap ">
@@ -226,10 +226,10 @@ const ChatRoom = () => {
                   </div>
                 </div>
                 <div className="fixed bottom-[45px] mr-[2px]  ml-[5px] border-t-[2px]">
-                  <div className="mt-[20px] flex flex-row items-center">
+                  <div className="mt-[10px] flex flex-row items-center">
                     <form
                       onSubmit={(e) => enterMessage(e)}
-                      className="mt-[20px] flex flex-row items-center"
+                      className="mt-[10px] flex flex-row items-center"
                     >
                       <input
                         type="text"

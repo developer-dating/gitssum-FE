@@ -47,7 +47,7 @@ const LikeMe = () => {
     );
 
   const onChatHandler = (e) => {
-    toast.success(`축하드려요 ${e.username}님과 연결되었습니다!`);
+    toast?.success(`축하드려요 ${e.username}님과 연결되었습니다!`);
     mutateAsync({ toUserId: e.userId });
     setOtherNickName(e.userId);
   };
@@ -70,7 +70,7 @@ const LikeMe = () => {
                   />
                   <p className="text-[#000] text-2xl font-bold ">받은 좋아요</p>
                 </div>
-                {data.data.likeFeed.map((post, index) => (
+                {data?.data.likeFeed.map((post, index) => (
                   <div className="w-[370px] h-[130px] ml-[-10px] border-b-[2px] flex items-center ">
                     <div className="flex flex-row ml-[10px]">
                       <div

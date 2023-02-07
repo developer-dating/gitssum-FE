@@ -133,7 +133,7 @@ const AddRecommend = () => {
               </p>
               <div>
                 <ul className="flex text-[#555] left-5 text-xs flex-wrap">
-                  {datas.map((data, index) => (
+                  {datas?.map((data, index) => (
                     <StackCard
                       key={index}
                       data={data.title}
@@ -145,7 +145,7 @@ const AddRecommend = () => {
                 <button
                   className="flex w-[350px] h-[48px] justify-center items-center rounded-md border hover:border-[#28CC9E] text-[#fff] font-bold bg-[#28CC9E] hover:bg-[#fff] hover:text-[#28CC9E] duration-300 my-[80px]"
                   onClick={() => {
-                    mutation.mutate({
+                    mutation?.mutate({
                       age: age,
                       residence: residence,
                       stacks: checkedItems,

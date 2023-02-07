@@ -68,7 +68,7 @@ const Recommend = () => {
                 <p className="text-[#333] text-normal font-normal mt-2 ">
                   원하는 상대의 조건을 설정하고 추천받으세요.
                 </p>
-                {data.data.profileList.length === 0 ? (
+                {data?.data.profileList.length === 0 ? (
                   <>
                     <div className="w-[350px] h-[450px] flex flex-col items-center justify-center">
                       <img
@@ -100,7 +100,7 @@ const Recommend = () => {
                       </button>
                     </div>
                     <div className="flex w-[400px] flex-wrap">
-                      {data.data.profileList.map((post) => (
+                      {data?.data.profileList.map((post) => (
                         <div className="flex flex-col mb-[34px]">
                           <a
                             href={`/userdetail/${post.userId}`}

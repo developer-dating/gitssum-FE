@@ -8,6 +8,7 @@ import { instance } from "../../api/instance";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { Toaster, toast } from "react-hot-toast";
 
 export const Detail = () => {
   const { id } = useParams();
@@ -36,7 +37,8 @@ export const Detail = () => {
           "Access-Control-Allow-Origin": "*",
         },
       },
-      alert("좋아요를 보냈어요!")
+      toast.success("좋아요를 보냈어요! ")
+      // alert("좋아요를 보냈어요!")
     );
   });
 
@@ -63,78 +65,83 @@ export const Detail = () => {
   };
 
   return (
-    <div className="font-SUIT flex items-center justify-center">
-      <div className=" shadow-xl h-[100vh]">
-        <div className="relative">
-          <a href="/" className="absolute top-[20px] left-[20px]">
-            <img src="/img/backarrowwhite.png" alt="" />
-          </a>
-          <div>
-            <Slider {...settings} className="w-[390px] h-[410px] mb-5">
-              <div>
-                <img
-                  className="w-[390px] h-[410px] "
-                  src={datas.imageList[0]}
-                  alt="pic1"
-                />
-              </div>
-              <div>
-                <img
-                  className="w-[390px] h-[410px] "
-                  src={datas.imageList[1]}
-                  alt="pic2"
-                />
-              </div>
-              <div>
-                <img
-                  className="w-[390px] h-[410px] "
-                  src={datas.imageList[2]}
-                  alt="pic3"
-                />
-              </div>
-            </Slider>
-          </div>
-          <div className="ml-[18px] flex items-center text-2xl pl-2 pt-3 md:flex-row">
-            <div className="mr-1 font-bold pr-1 text-[26px]">
-              {datas.username}
+    <>
+      <div>
+        <Toaster />
+      </div>
+      <div className="font-SUIT flex items-center justify-center ">
+        <div className=" shadow-xl">
+          <div className="relative ">
+            <a href="/" className="absolute top-[20px] left-[20px]">
+              <img src="/img/backarrowwhite.png" alt="" />
+            </a>
+            <div>
+              <Slider {...settings} className="w-[390px] h-[410px] mb-5">
+                <div>
+                  <img
+                    className="w-[390px] h-[410px] object-cover "
+                    src={datas.imageList[0]}
+                    alt="pic1"
+                  />
+                </div>
+                <div>
+                  <img
+                    className="w-[390px] h-[410px] object-cover "
+                    src={datas.imageList[1]}
+                    alt="pic2"
+                  />
+                </div>
+                <div>
+                  <img
+                    className="w-[390px] h-[410px] object-cover "
+                    src={datas.imageList[2]}
+                    alt="pic3"
+                  />
+                </div>
+              </Slider>
             </div>
-            <div className="text-2xl font-medium">{datas.age}</div>
-          </div>
-          <span className="pl-2 pt-1 text-sm ml-[18px] ">
-            {datas.job} ∙ {datas.residence}
-          </span>
-          <p className="ml-[22px]  bg-[#EEEEEE] rounded-xl p-3 w-[350px] text-xs my-3 ">
-            {datas.introduction}
-          </p>
-          <div className="mr-1 font-bold py-1 pl-2 ml-[20px] ">기본 정보</div>
-          <div className="flex justify-between px-8 py-1 text-sm ml-[1px] ">
-            <span className="text-[#555555]">학력</span>
-            <span className=" ">{datas.education}</span>
-          </div>
-          <div className="flex justify-between px-8 text-sm ml-[1px] ">
-            <span className="text-[#555555]">깃헙/블로그링크</span>
-            <span>{datas.link}</span>
-          </div>
+            <div className="ml-[18px] flex items-center text-2xl pl-2 pt-3 md:flex-row">
+              <div className="mr-1 font-bold pr-1 text-[26px]">
+                {datas.username}
+              </div>
+              <div className="text-2xl font-medium">{datas.age}</div>
+            </div>
+            <span className="pl-2 pt-1 text-sm ml-[18px] ">
+              {datas.job} ∙ {datas.residence}
+            </span>
+            <p className="ml-[22px]  bg-[#EEEEEE] rounded-xl p-3 w-[350px] text-xs my-3 ">
+              {datas.introduction}
+            </p>
+            <div className="mr-1 font-bold py-1 pl-2 ml-[20px] ">기본 정보</div>
+            <div className="flex justify-between px-8 py-1 text-sm ml-[1px] ">
+              <span className="text-[#555555]">학력</span>
+              <span className=" ">{datas.education}</span>
+            </div>
+            <div className="flex justify-between px-8 text-sm ml-[1px] ">
+              <span className="text-[#555555]">깃헙/블로그링크</span>
+              <span>{datas.link}</span>
+            </div>
 
-          <div className="mr-1 font-bold ml-[18px]  p-2">기술스택</div>
-          <div className="pl-2 flex mb-3 ml-[18px] ">
-            {datas.stackList.map((stack) => (
-              <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
-                {stack}
-              </button>
-            ))}
+            <div className="mr-1 font-bold ml-[18px]  p-2">기술스택</div>
+            <div className="pl-2 flex mb-3 ml-[18px] ">
+              {datas?.stackList.map((stack) => (
+                <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
+                  {stack}
+                </button>
+              ))}
+            </div>
+            <button
+              onClick={() => {
+                mutation.mutate(datas.userId);
+              }}
+              className="ml-[20px]  group relative flex justify-center items-center text-sm rounded-lg bg-[#28CC9E] text-white w-[350px] h-[40px] font-bold mt-[30px] mb-24"
+            >
+              좋아요
+            </button>
           </div>
-          <button
-            onClick={() => {
-              mutation.mutate(datas.userId);
-            }}
-            className="ml-[20px]  group relative flex justify-center items-center text-sm rounded-lg bg-[#28CC9E] text-white w-[350px] h-[40px] font-bold mt-[30px] mb-24"
-          >
-            좋아요
-          </button>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

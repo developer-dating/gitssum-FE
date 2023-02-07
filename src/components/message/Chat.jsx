@@ -35,14 +35,13 @@ const Chat = () => {
     );
 
   const onClickHandler = (e) => {
-    setOtherNickName(e.user.userId);
-    setOtherImg(e.user.imageList[0]);
-    setOtherUserName(e.user.nickname);
+    setOtherNickName(e?.user.userId);
+    setOtherImg(e?.user.imageList[0]);
+    setOtherUserName(e?.user.nickname);
     navigate(`/messageRoom/${e.roomName}`);
   };
 
   const datas = data.data;
-  console.log(data);
 
   return (
     <div className="font-SUIT flex items-center justify-center ">
@@ -53,7 +52,7 @@ const Chat = () => {
               <div className="flex flex-row mb-[20px] ml-[20px] ">
                 <p className="text-[#000] text-2xl font-bold ">메세지</p>
               </div>
-              {datas.map((post, index) => (
+              {datas?.map((post, i) => (
                 <div
                   className="w-[370px] h-[100px] ml-[-10px] flex items-center hover:bg-slate-100 cursor-pointer"
                   onClick={() => onClickHandler(post)}
@@ -63,15 +62,16 @@ const Chat = () => {
                       style={{
                         backgroundImage: `url(${post.user.imageList[0]})`,
                       }}
+                      key={i}
                       className="w-[65px] h-[65px] rounded-full bg-cover"
                     />
                     <div className="flex flex-col ml-[15px] mb-[4px] justify-center">
                       <div className="flex flex-row">
-                        <p className="mr-2 font-bold text-[18px]">
+                        <p className="mr-2 font-bold text-[18px]" key={i}>
                           {post.user.nickname}
                         </p>
                       </div>
-                      <p className="text-[14px] text-[#555]">
+                      <p className="text-[14px] text-[#555]" key={i}>
                         {post.lastMessage.content}
                       </p>
                     </div>

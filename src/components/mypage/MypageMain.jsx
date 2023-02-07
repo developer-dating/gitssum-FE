@@ -31,6 +31,7 @@ export const MypageMain = () => {
     );
 
   const datas = data.data;
+
   return (
     <div className="shadow-xl w-[390px] h-[100vh] mx-auto font-SUIT">
       <p className=" mx-auto flex  text-[24px] font-bold mb-2 pt-10 pl-4">
@@ -43,7 +44,7 @@ export const MypageMain = () => {
         <div className="pt-5 flex">
           <img
             className="w-[80px] h-[80px]  mr-2 rounded-xl"
-            src={datas.imageList[0]}
+            src={data?.data.imageList[0]}
             alt="profilePhoto"
           />
           <div>
@@ -58,7 +59,7 @@ export const MypageMain = () => {
             </span>
             <div className="text-[12px]">
               <div className="flex pl-1.5">
-                {datas.stackList.map((stack) => (
+                {datas?.stackList.map((stack) => (
                   <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
                     {stack}
                   </button>

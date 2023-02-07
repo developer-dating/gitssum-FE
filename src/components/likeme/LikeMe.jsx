@@ -36,7 +36,7 @@ const LikeMe = () => {
           "Access-Control-Allow-Origin": "*",
         },
       },
-      toast.success("연결되었어요! "),
+      toast.success("연결되었어요!"),
       alert("연결되었어요!")
     );
   });
@@ -90,7 +90,6 @@ const LikeMe = () => {
                         <button
                           onClick={() => {
                             mutation.mutate(post.userId);
-                            toast.success("프로필이 등록되었어요!");
                           }}
                           className="w-[90px] h-[32px] bg-[#28CC9E] text-[#fff] rounded-[8px] mr-[8px] hover:bg-[#fff] border hover:border-[#28CC9E] hover:text-[#28CC9E] duration-300"
                         >

@@ -131,7 +131,7 @@ const Recommend = () => {
                               alt="BackIcon"
                               className="w-[16px] h-[13px] mr-1"
                             />
-                            <div>{post.job} 개발자</div>
+                            <div>{post.job}</div>
                           </div>
                           <div className="flex flex-row items-center">
                             <img

@@ -1,8 +1,11 @@
-import { useState } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import React, { useState } from "react";
 import axios from "axios";
 import { instance } from "../../api/instance";
-import ModalBasic from "./Modal";
+import { Toaster, toast } from "react-hot-toast";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useNavigate, useParams } from "react-router-dom";
+// import { PostDetail } from "./PostDetail";
+
 
 async function fetchPosts() {
   try {
@@ -18,12 +21,31 @@ async function fetchPosts() {
 const Main = () => {
   const { data, isError, error, isLoading } = useQuery(["posts"], fetchPosts);
 
-  const [modalOpen, setModalOpen] = useState(false);
+  const mutation = useMutation((userId) => {
+    return (
+      instance.post(`https://gitssum.com/api/like/user/${userId}`),
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      },
+      toast.success("좋아요를 보냈어요! "),
+      alert("좋아요를 보냈어요!")
+    );
+  });
 
-  // 모달창 노출
-  const showModal = () => {
-    setModalOpen(true);
+  const [modal, setModal] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState();
+
+
+  const toggleModal = (userId) => {
+    setModal(!modal);
+    setSelectedUserId(userId);
+    toast.success("좋아요를 보냈어요! ");
   };
+  // const queryClient = useQueryClient();
+  // queryClient.clear();
+  // const queryCache = queryClient.getQueryCache();
 
   if (isLoading) return <h3>Loading...</h3>;
   if (isError)
@@ -86,15 +108,47 @@ const Main = () => {
                     </p>
                   ))}
                 </div>
+
                 <div className="flex absolute bottom-[20px] right-[20px]">
                   <img
                     src="/img/buttton_like.png"
                     alt="HomeLogo"
-                    className="w-[52px] h-[52px] rounded-full flex items-center ml-3"
-                    onClick={showModal}
+                    className="w-[52px] h-[52px] rounded-full flex items-center duration-300 ml-3"
+                    onClick={() => toggleModal(post.userId)}
                   />
-                  {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
                 </div>
+
+                {modal && post.userId === selectedUserId && (
+                  <div className="font-SUIT rounded-xl bg-white w-[333px] h-[371px] absolute top-[91%] left-[84%] translate-x-[-84%] translate-y-[-85%] ">
+                    <hr className="mx-auto w-[40px] h-[6px] bg-[#D9D9D9] rounded-3xl mt-3 mb-8"></hr>
+                    <img
+                      className="w-[96px] h-[96px] mr-2 rounded-full ml-[120px] my-2 mt-3"
+                      src={post.imageList[0]}
+                      alt="profilePhoto"
+                    />
+                    <p className=" mx-auto justify-center flex items-center mb-5 text-[16px] font-bold">
+                      {post.username}
+                    </p>
+                    <p className=" font-bold ml-6 text-[20px]">
+                      좋아요를 보내시겠어요?
+                    </p>
+                    <button
+                      className="mx-auto relative flex justify-center items-center text-[16px] rounded-lg bg-[#28CC9E] text-white hover:bg-[#fff] hover:text-[#28CC9E] border hover:border-[#28CC9E]  duration-300 w-[290px] h-[48px]  mt-3 "
+                      onClick={() => {
+                        mutation.mutate(post.userId);
+                      }}
+                    >
+                      좋아요
+                    </button>
+                    <button
+                      className="mx-auto flex justify-center items-center text-[16px] rounded-lg  w-[290px] h-[48px] hover:bg-[#fff] hover:text-[#28CC9E] border hover:border-[#28CC9E]  duration-300 mt-2"
+                      onClick={() => toggleModal(post.username)}
+                    >
+                      다음에 할게요
+                    </button>
+                    <hr className="mx-auto w-[134px] h-[5px] bg-[#000000] rounded-3xl mt-3"></hr>
+                  </div>
+                )}
               </div>
             </div>
           ))}

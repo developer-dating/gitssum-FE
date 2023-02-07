@@ -6,7 +6,7 @@ import { Toaster, toast } from "react-hot-toast";
 import { instance } from "../../api/instance";
 import axios from "axios";
 
-async function fetchRecomend() {
+async function fetchRecommend() {
   try {
     const response = await instance.get(
       "https://gitssum.com/api/user/get/recommendation"
@@ -25,8 +25,8 @@ const Recommend = () => {
   const navigate = useNavigate();
 
   const { data, isError, error, isLoading } = useQuery(
-    ["recomend"],
-    fetchRecomend
+    ["recommend"],
+    fetchRecommend
   );
   console.log(data);
 

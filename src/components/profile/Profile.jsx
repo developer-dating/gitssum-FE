@@ -11,6 +11,7 @@ import { useCallback } from "react";
 
 export default function Profile() {
   const { id } = useParams();
+  const navigate = useNavigate();
   // const mutation = useMutation((prof) => {
   //   return (
   //     instance.put("/api/user/modify/mypage", prof),
@@ -51,6 +52,7 @@ export default function Profile() {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    toast.success("프로필 설정 완료!");
     const formData = new FormData();
     formData.append("username", username);
     formData.append("age", age);
@@ -73,6 +75,7 @@ export default function Profile() {
       .then((result) => {
         console.log("요청성공");
         console.log(result);
+        navigate("/");
       })
       .catch((error) => {
         console.log("요청실패");
@@ -93,6 +96,7 @@ export default function Profile() {
       console.log(file);
     }
   };
+
   const onPrint = () => {
     console.log(file);
   };
@@ -178,6 +182,7 @@ export default function Profile() {
   const handleDeleteImage = (id) => {
     setFile(file.filter((_, index) => index !== id));
   };
+
   const datas = [
     { title: "Python", stack: "Python" },
     { title: "C", stack: "C" },

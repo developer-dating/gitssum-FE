@@ -6,42 +6,61 @@ import { Navigate } from "react-router";
 import { Toaster, toast } from "react-hot-toast";
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import SockJS from "sockjs-client";
 import Stomp, { Message } from "stompjs";
 import { baseURL } from "../../api/instance";
 import { getDetailChat } from "../../api/instance";
-import { otherNickName } from "../../atoms";
+import { otherNickName, chatDataState } from "../../atoms";
+import { instance } from "../../api/instance";
+
+async function getChats(e) {
+  console.log(e);
+  try {
+    const response = await instance.post(`api/message`, e);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 const ChatRoom = () => {
   const textRef = useRef();
   const { id } = useParams();
   const otherName = useRecoilValue(otherNickName);
-  const myNickName = localStorage.getItem("nickname");
+  // const myNickName = localStorage.getItem("nickname");
+  const myNickName = 22;
   const url = baseURL;
   const queryClient = useQueryClient();
-  //----------------------------------------------
+  const [chatdata, setChatData] = useRecoilState(chatDataState);
 
+  //----------------------------------------------
+  console.log(otherName);
+  const roadMessageBox = {
+    roomName: id,
+    userId: myNickName,
+    toUserId: otherName,
+    page: "",
+  };
   // 입력받은 message값
   const [message, setMessage] = useState("");
   // chat내용 리스트
   const [chatList, setChatList] = useState([]);
   // 서버에서 get해온 이전 채팅 조회부분
-  const { data, isSuccess, isLoading, isError, error } = useQuery(
-    ["chat"],
-    // () => getDetailChat(),
-    {
-      onSuccess: (data) => {
-        setChatList(data.data);
-      },
-    }
-  );
+  // const { data, isSuccess, isLoading, error, isError } = useQuery(
+  //   ["chat", roadMessageBox],
+  //   () => getChats(roadMessageBox),
+  //   {
+  //     onSuccess: (data) => {
+  //       setChatList(data.data);
+  //     },
+  //   }
+  // );
 
   // 스크롤 최하단으로 내리기
   // const scrollToBot = () => {
   //   window.scrollTo(0, document.body.scrollHeight);
   // };
-
   //------------------------------------------------
 
   // stompclient생성부분
@@ -55,15 +74,16 @@ const ChatRoom = () => {
   useEffect(() => {
     connectStomp();
     // scrollToBot();
-    if (isSuccess) {
-      setChatList(data?.data);
-    }
-  }, [isSuccess, data?.data]);
+    //   if (isSuccess) {
+    //     setChatList(data?.data);
+    //   }
+    // }, [isSuccess, data?.data]);
+  });
 
   const onConnect = () => {
     userEnter();
     // scrollToBot();
-    setChatList(data?.data);
+    // setChatList(data?.data);
     onSub();
     // 연결되면 이전데이터로 chatlist 설정
     console.log("connected");
@@ -74,7 +94,7 @@ const ChatRoom = () => {
   };
 
   const onSub = () => {
-    client.subscribe(`/message`, (e) => onMessageRecieve(e));
+    client.subscribe(`/api/message`, (e) => onMessageRecieve(e));
   };
 
   //-------------------------------------------------
@@ -83,7 +103,7 @@ const ChatRoom = () => {
     // 메세지가 오면 받아온 데이터의 body를 json.parse해서 data 라는 변수에 넣음
     let data = JSON.parse(e.body);
     if (data.type === "TALK") {
-      getDetailChat(id).then((res) => {
+      getChats().then((res) => {
         return setChatList([...res.data]);
       });
     }
@@ -94,10 +114,9 @@ const ChatRoom = () => {
     let payload = {
       type: "ENTER",
       roomId: id,
-      sender: myNickName,
       message: "입장",
     };
-    client.send(`/api/room`, { myNickName }, JSON.stringify(payload));
+    client.send(`/join`, { myNickName }, JSON.stringify(payload));
     // scrollToBot();
     console.log("유저입장");
   };
@@ -106,35 +125,15 @@ const ChatRoom = () => {
     if (message) {
       let payload = {
         type: "TALK",
-        roomId: id,
-        sender: myNickName,
+        roomName: id,
+        senderId: myNickName,
         message: message,
+        receiverId: otherName,
       };
-      client.send(`/message`, { myNickName }, JSON.stringify(payload));
+      client.send(`/message`, {}, JSON.stringify(payload));
       setMessage("");
       // scrollToBot();
     }
-  };
-
-  // 채팅보내기
-  const enterToSendChat = (e) => {
-    if (e.key === "Enter") {
-      sendChat();
-      if (e.target === textRef.current) {
-        textRef.current.value = "";
-      }
-    }
-  };
-
-  const sendChat = () => {
-    if (textRef.current === null || textRef.current.value === "") return;
-    client.send(
-      `/message/${id}`,
-      myNickName,
-      JSON.stringify({ content: textRef.current.value })
-    );
-    queryClient.invalidateQueries(["chat", id]);
-    textRef.current.value = "";
   };
 
   const enterMessage = (e) => {
@@ -146,16 +145,14 @@ const ChatRoom = () => {
     // scrollToBot();
   }, [chatList]);
 
-  // const { data, isError, error, isLoading } = useQuery(["likes"], fetchLikes);
-
-  if (isLoading) return <h3>Loading...</h3>;
-  if (isError)
-    return (
-      <>
-        <h3>Oops, something went wrong</h3>
-        <p>{error.toString()}</p>
-      </>
-    );
+  // if (isLoading) return <h3>Loading...</h3>;
+  // if (isError)
+  //   return (
+  //     <>
+  //       <h3>Oops, something went wrong</h3>
+  //       <p>{error.toString()}</p>
+  //     </>
+  //   );
 
   return (
     <div className="flex items-center justify-center">
@@ -173,13 +170,15 @@ const ChatRoom = () => {
                 </a>
                 <div className="flex space-x-1 items-center">
                   <div
-                    style={{
-                      backgroundImage: `url(${data.data.profileList[0].imageList[0]})`,
-                    }}
+                    style={
+                      {
+                        // backgroundImage: `url(${data.data.profileList[0].imageList[0]})`,
+                      }
+                    }
                     className="w-[32px] h-[32px] rounded-full bg-cover"
                   ></div>
                   <p className="text-[16px] font-bold">
-                    {data.data.profileList[0].username}
+                    {/* {data.data.profileList[0].username} */}
                   </p>
                 </div>
                 <img
@@ -212,9 +211,11 @@ const ChatRoom = () => {
                 <div className="flex flex-col mb-[20px]">
                   <div className="flex items-center space-x-3">
                     <div
-                      style={{
-                        backgroundImage: `url(${data.data.profileList[0].imageList[0]})`,
-                      }}
+                      style={
+                        {
+                          // backgroundImage: `url(${data.data.profileList[0].imageList[0]})`,
+                        }
+                      }
                       className="w-[43px] h-[43px] rounded-full bg-cover"
                     ></div>
                     <div>
@@ -226,19 +227,21 @@ const ChatRoom = () => {
                 </div>
                 <div className="fixed bottom-[45px] mr-[2px]  ml-[5px] border-t-[2px]">
                   <div className="mt-[20px] flex flex-row items-center">
-                    <input
-                      type="text"
-                      className="w-[312px] h-[40px] rounded-lg bg-neutral-200 outline-1 p-2 focus:outline-[#28CC9E] text-xs"
-                      placeholder="메세지 보내기"
-                      ref={textRef}
-                      onKeyUp={enterToSendChat}
-                    />
-                    <div
-                      onClick={sendChat}
-                      className="cursor-pointer w-[36px] h-[35px]"
-                    >
-                      <img src="/img/msgcheckbtn.png" alt="MSGCheck" />
-                    </div>
+                    <form onSubmit={(e) => enterMessage(e)}>
+                      <input
+                        type="text"
+                        className="w-[312px] h-[40px] rounded-lg bg-neutral-200 outline-1 p-2 focus:outline-[#28CC9E] text-xs"
+                        placeholder="메세지 보내기"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                      />
+                      <div
+                        onClick={enterMessage}
+                        className="cursor-pointer w-[36px] h-[35px]"
+                      >
+                        <img src="/img/msgcheckbtn.png" alt="MSGCheck" />
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>

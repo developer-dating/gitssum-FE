@@ -6,14 +6,12 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 // import { PostDetail } from "./PostDetail";
 
+
 async function fetchPosts() {
   try {
     const response = await instance.get(
       "https://gitssum.com/api/user/get/profiles"
     );
-    // if (!response.ok) {
-    //   throw new Error("Network response was not ok");
-    // }
     return response;
   } catch (error) {
     console.log(error);
@@ -21,8 +19,6 @@ async function fetchPosts() {
 }
 
 const Main = () => {
-  // const [currentPage, setCurrentPage] = useState(0);
-  // const [selectedPost, setSelectedPost] = useState(null);
   const { data, isError, error, isLoading } = useQuery(["posts"], fetchPosts);
 
   const mutation = useMutation((userId) => {
@@ -40,6 +36,7 @@ const Main = () => {
 
   const [modal, setModal] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState();
+
 
   const toggleModal = (userId) => {
     setModal(!modal);

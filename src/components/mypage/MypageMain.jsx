@@ -39,7 +39,7 @@ export const MypageMain = () => {
         </div>
         내 프로필
       </p>
-      <div className="flex ml-7 items-center ">
+      <div className="flex justify-center pr-24  items-center ">
         <div className="pt-5 flex">
           <img
             className="w-[80px] h-[80px]  mr-2 rounded-xl"

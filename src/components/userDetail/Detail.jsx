@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, useRef, Component } from "react";
 import axios from "axios";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useMutation } from "@tanstack/react-query";
 import { Navigate } from "react-router";
 import { useNavigate, useParams } from "react-router-dom";
 import { instance } from "../../api/instance";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 export const Detail = () => {
   const { id } = useParams();
@@ -25,6 +28,18 @@ export const Detail = () => {
 
   const { data, isError, error, isLoading } = useQuery(["posts"], detailPosts);
 
+  const mutation = useMutation((userId) => {
+    return (
+      instance.post(`https://gitssum.com/api/like/user/${userId}`),
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      },
+      alert("좋아요를 보냈어요!")
+    );
+  });
+
   if (isLoading) return <h3>Loading...</h3>;
   if (isError)
     return (
@@ -37,6 +52,16 @@ export const Detail = () => {
   const datas = data.data;
   console.log(datas);
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrow: false,
+    pauseOnHover: false,
+  };
+
   return (
     <div className="font-SUIT flex items-center justify-center">
       <div className=" shadow-xl h-[100vh]">
@@ -44,12 +69,31 @@ export const Detail = () => {
           <a href="/" className="absolute top-[20px] left-[20px]">
             <img src="/img/backarrowwhite.png" alt="" />
           </a>
-          <img
-            className="w-[390px] h-[410px]"
-            src={datas.imageList[0]}
-            alt="logo"
-          />
-
+          <div>
+            <Slider {...settings} className="w-[390px] h-[410px] mb-5">
+              <div>
+                <img
+                  className="w-[390px] h-[410px] "
+                  src={datas.imageList[0]}
+                  alt="pic1"
+                />
+              </div>
+              <div>
+                <img
+                  className="w-[390px] h-[410px] "
+                  src={datas.imageList[1]}
+                  alt="pic2"
+                />
+              </div>
+              <div>
+                <img
+                  className="w-[390px] h-[410px] "
+                  src={datas.imageList[2]}
+                  alt="pic3"
+                />
+              </div>
+            </Slider>
+          </div>
           <div className="ml-[18px] flex items-center text-2xl pl-2 pt-3 md:flex-row">
             <div className="mr-1 font-bold pr-1 text-[26px]">
               {datas.username}
@@ -80,7 +124,12 @@ export const Detail = () => {
               </button>
             ))}
           </div>
-          <button className="ml-[20px]  group relative flex justify-center items-center text-sm rounded-lg bg-[#28CC9E] text-white w-[350px] h-[40px] font-bold mt-[55px] mb-10">
+          <button
+            onClick={() => {
+              mutation.mutate(datas.userId);
+            }}
+            className="ml-[20px]  group relative flex justify-center items-center text-sm rounded-lg bg-[#28CC9E] text-white w-[350px] h-[40px] font-bold mt-[30px] mb-24"
+          >
             좋아요
           </button>
         </div>

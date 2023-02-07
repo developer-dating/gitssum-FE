@@ -23,7 +23,7 @@ const Login = () => {
   };
   return (
     <>
-      <div className="flex items-center justify-center">
+      <div className="font-SUIT flex items-center justify-center">
         <div className="shadow-xl ">
           <div className="w-[380px] space-y-20 h-[100vh] flex flex-col justify-center items-center">
             <div>

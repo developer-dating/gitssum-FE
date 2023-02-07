@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Nav = () => {
   return (
     // <>
@@ -9,8 +11,8 @@ const Nav = () => {
       <div className="fixed bottom-0">
         <div className="w-[390px] h-[95px] bg-[#fff]">
           <div className="flex flex-row">
-            <a
-              href="/"
+            <Link
+              to="/"
               className="w-[78px] h-[95px] flex items-center justify-center cursor-pointer hover:bg-[#e3dfddd2] duration-300 text-sm font-medium flex-col"
             >
               <img
@@ -23,9 +25,9 @@ const Nav = () => {
                 className="mb-1"
               />
               <p className="mb-5">홈</p>
-            </a>
-            <a
-              href="/recommend"
+            </Link>
+            <Link
+              to="/recommend"
               className="w-[78px] h-[95px] flex items-center justify-center cursor-pointer hover:bg-[#e3dfddd2] duration-300 text-sm font-medium flex-col"
             >
               <img
@@ -38,9 +40,9 @@ const Nav = () => {
                 className="mb-1"
               />
               <p className="mb-5">추천</p>
-            </a>
-            <a
-              href="/likeme"
+            </Link>
+            <Link
+              to="/likeme"
               className="w-[78px] h-[95px] flex items-center justify-center cursor-pointer hover:bg-[#e3dfddd2] duration-300 text-sm font-medium flex-col"
             >
               <img
@@ -53,9 +55,9 @@ const Nav = () => {
                 className="mb-1"
               />
               <p className="mb-5">좋아요</p>
-            </a>
-            <a
-              href="/message"
+            </Link>
+            <Link
+              to="/message"
               className="w-[78px] h-[95px] flex items-center justify-center cursor-pointer hover:bg-[#e3dfddd2] duration-300 text-sm font-medium flex-col"
             >
               <img
@@ -68,9 +70,9 @@ const Nav = () => {
                 className="mb-1"
               />
               <p className="mb-5">메세지</p>
-            </a>
-            <a
-              href="/mypage"
+            </Link>
+            <Link
+              to="/mypage"
               className="w-[78px] h-[95px] flex items-center justify-center cursor-pointer hover:bg-[#e3dfddd2] duration-300 text-sm font-medium flex-col"
             >
               <img
@@ -83,7 +85,7 @@ const Nav = () => {
                 className="mb-1"
               />
               <p className="mb-5">설정</p>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

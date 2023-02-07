@@ -142,7 +142,8 @@ export default function Profile() {
     if (isNaN(e.target.value)) {
       setAgeMessage("나이는 숫자로만 기입해주세요.");
       setIsAge(false);
-    } else {
+    } else if (!isNaN(e.target.value)) {
+      setAgeMessage("");
       setIsAge(true);
     }
   };

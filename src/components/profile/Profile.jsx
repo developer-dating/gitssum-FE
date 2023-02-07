@@ -7,6 +7,7 @@ import StackCard from "../recommend/StackCard";
 import { Toaster, toast } from "react-hot-toast";
 import { instance } from "../../api/instance";
 import { Link } from "react-router-dom";
+import { useCallback } from "react";
 
 export default function Profile() {
   const { id } = useParams();
@@ -27,6 +28,26 @@ export default function Profile() {
   const [education, setEducation] = useState("");
   const [stack, setStack] = useState("");
   const [file, setFile] = useState([]);
+
+  // 유효성 검사
+  const [nameMessage, setNameMessage] = useState("");
+  const [isName, setIsName] = useState(false);
+  const [introMessage, setIntroMessage] = useState("");
+  const [isIntro, setIsIntro] = useState(false);
+  const [genderMessage, setGenderMessage] = useState("");
+  const [isGender, setIsGender] = useState(false);
+  const [ageMessage, setAgeMessage] = useState("");
+  const [isAge, setIsAge] = useState(false);
+  const [educationMessage, setEducationMessage] = useState("");
+  const [isEducation, setIsEducation] = useState(false);
+  const [jobMessage, setJobMessage] = useState("");
+  const [isJob, setIsJob] = useState(false);
+  const [residenceMessage, setResidenceMessage] = useState("");
+  const [isResidence, setIsResidence] = useState(false);
+  const [linkMessage, setLinkMessage] = useState("");
+  const [isLink, setIsLink] = useState(false);
+  const [checkedItemsMessage, setCheckedItemsMessage] = useState("");
+  const [isCheckedItems, setIsCheckedItems] = useState(false);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -74,6 +95,83 @@ export default function Profile() {
   };
   const onPrint = () => {
     console.log(file);
+  };
+
+  const onChangeName = (e) => {
+    setUsername(e.target.value);
+    if (e.target.value.length < 2 || e.target.value.length > 6) {
+      setNameMessage("2자 이상, 6자 미만으로 입력해주세요.");
+      setIsName(false);
+    } else {
+      setNameMessage("사용 가능한 닉네임입니다.");
+      setIsName(true);
+    }
+  };
+
+  const onChangeIntro = (e) => {
+    setIntroduction(e.target.value);
+    if (e.target.value.length < 10 || e.target.value.length > 100) {
+      setIntroMessage("10자-100자 내로 소개글을 작성해주세요.");
+      setIsIntro(false);
+    } else {
+      setIntroMessage("");
+      setIsIntro(true);
+    }
+  };
+
+  const onChangeGender = (e) => {
+    setGender(e.target.value);
+    if (e.target.value === "") {
+      setIsGender(false);
+    } else {
+      setIsGender(true);
+    }
+  };
+
+  const onChangeEducation = (e) => {
+    setEducation(e.target.value);
+    if (e.target.value === "") {
+      setIsEducation(false);
+    } else {
+      setIsEducation(true);
+    }
+  };
+
+  const onChangeAge = (e) => {
+    setAge(e.target.value);
+    if (isNaN(e.target.value)) {
+      setAgeMessage("나이는 숫자로만 기입해주세요.");
+      setIsAge(false);
+    } else {
+      setIsAge(true);
+    }
+  };
+
+  const onChangeJob = (e) => {
+    setJob(e.target.value);
+    if (e.target.value === "") {
+      setIsJob(false);
+    } else {
+      setIsJob(true);
+    }
+  };
+
+  const onChangeResidence = (e) => {
+    setResidence(e.target.value);
+    if (e.target.value === "") {
+      setIsResidence(false);
+    } else {
+      setIsResidence(true);
+    }
+  };
+
+  const onChangeLink = (e) => {
+    setLink(e.target.value);
+    if (e.target.value.length === 0) {
+      setIsLink(false);
+    } else {
+      setIsLink(true);
+    }
   };
 
   const handleDeleteImage = (id) => {
@@ -179,7 +277,7 @@ export default function Profile() {
               </div>
               <select
                 value={gender}
-                onChange={(e) => setGender(e.target.value)}
+                onChange={onChangeGender}
                 className=" w-[350px] h-[40px] rounded-md bg-neutral-200 outline-1 p-1.5 br-8 focus:outline-[#28CC9E] text-xs"
                 name="성별 선택"
               >
@@ -195,27 +293,44 @@ export default function Profile() {
                 <option value="남자">남자</option>
                 <option value="여자">여자</option>
               </select>
+              <div className="text-xs p-1"></div>
               <div className="mx-auto  items-center flex mt-3 mb-1">
                 <div className="mr-1 font-bold text-sm">닉네임</div>
                 <div className="text-xs text-[#FF4E4E]">
                   (※프로필에 표시되는 닉네임으로, 이후 변경할 수 없습니다.)
                 </div>
               </div>
-              <input
-                className=" w-[350px] h-[40px] rounded-md bg-neutral-200 outline-1 p-2 br-8 focus:outline-[#28CC9E]  text-xs"
-                placeholder="본명 또는 닉네임을 입력해주세요."
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              ></input>
+              <div className="grid">
+                <input
+                  className=" w-[350px] h-[40px] rounded-md bg-neutral-200 outline-1 p-2 br-8 focus:outline-[#28CC9E]  text-xs"
+                  placeholder="본명 또는 닉네임을 입력해주세요."
+                  value={username}
+                  onChange={onChangeName}
+                ></input>
+                <div className="text-xs p-1">
+                  {username.length > 0 && (
+                    <span className={`message ${isName ? "success" : "error"}`}>
+                      {nameMessage}
+                    </span>
+                  )}
+                </div>
+              </div>
               <div>
                 <div className="mx-auto items-center mt-3">
                   <div className="mr-1 font-bold text-sm">나이</div>
                   <input
                     value={age}
-                    onChange={(e) => setAge(e.target.value)}
+                    onChange={onChangeAge}
                     placeholder="나이 입력"
                     className=" w-[350px] h-[40px] rounded-lg bg-neutral-200 outline-1 p-2 focus:outline-[#28CC9E] text-xs mt-0.5 "
                   ></input>
+                </div>
+                <div className="text-xs p-1">
+                  {age.length > 0 && (
+                    <span className={`message ${isAge ? "success" : "error"}`}>
+                      {ageMessage}
+                    </span>
+                  )}
                 </div>
               </div>
               <div className="flex">
@@ -225,7 +340,7 @@ export default function Profile() {
                   </div>
                   <select
                     value={education}
-                    onChange={(e) => setEducation(e.target.value)}
+                    onChange={onChangeEducation}
                     className=" w-[350px] h-[40px] rounded-md bg-neutral-200 outline-1 p-1.5  focus:outline-[#28CC9E] text-xs"
                     name="학력 선택"
                   >
@@ -250,7 +365,7 @@ export default function Profile() {
               </div>
               <select
                 value={job}
-                onChange={(e) => setJob(e.target.value)}
+                onChange={onChangeJob}
                 className="w-[350px] h-[40px] rounded-md bg-neutral-200 outline-1 focus:outline-[#28CC9E] text-xs p-1.5"
                 name="직업 선택"
               >
@@ -275,17 +390,18 @@ export default function Profile() {
               </div>
               <input
                 value={link}
-                onChange={(e) => setLink(e.target.value)}
+                onChange={onChangeLink}
                 className="w-[350px] h-[40px] rounded-md bg-neutral-200 outline-1 p-2 br-8 focus:outline-[#28CC9E] text-xs"
                 placeholder="링크 주소를 입력해주세요."
               ></input>
+
               <div className="mx-auto flex flex-wrap md:flex-row items-center mt-3 mb-1">
                 <div className="mr-1 font-bold text-sm">거주지</div>
               </div>
               <div className="mx-auto flex flex-wrap  md:flex-row items-center">
                 <select
                   value={residence}
-                  onChange={(e) => setResidence(e.target.value)}
+                  onChange={onChangeResidence}
                   className="w-[350px] h-[40px] rounded-md bg-neutral-200 outline-1   focus:outline-[#28CC9E] text-xs p-1.5"
                   name="지역 선택"
                 >
@@ -319,12 +435,23 @@ export default function Profile() {
               <div className="mt-6 mx-auto flex flex-wrap md:flex-row items-center mb-1">
                 <div className="mr-1 font-bold text-sm">한 줄 소개</div>
               </div>
-              <input
-                value={introduction}
-                onChange={(e) => setIntroduction(e.target.value)}
-                className="w-[350px] h-[40px] rounded-md mb-3 bg-neutral-200 outline-1 p-2 br-8 focus:outline-[#28CC9E] text-xs"
-                placeholder="자신에 대해 간단히 소개해주세요~"
-              ></input>
+              <div className="grid">
+                <input
+                  value={introduction}
+                  onChange={onChangeIntro}
+                  className="w-[350px] h-[40px] rounded-md  bg-neutral-200 outline-1 p-2 br-8 focus:outline-[#28CC9E] text-xs"
+                  placeholder="자신에 대해 간단히 소개해주세요~"
+                ></input>
+                <div className="text-xs p-1">
+                  {introduction.length > 0 && (
+                    <span
+                      className={`message ${isIntro ? "success" : "error"}`}
+                    >
+                      {introMessage}
+                    </span>
+                  )}
+                </div>
+              </div>
               <hr className="w-[350px] h-0.5 bg-gray-200 rounded-3xl my-6"></hr>
               <div className="mt-2 mx-auto flex flex-wrap md:flex-row items-center mb-4">
                 <div className="mr-1 font-bold text-sm">선호 기술스택</div>
@@ -345,8 +472,20 @@ export default function Profile() {
             </form>
 
             <button
-              className=" text-[16px] rounded-lg bg-[#28CC9E] text-white w-[350px] h-[40px] font-bold mt-10 mb-[120px]"
+              className="disabled:bg-[#a09e9e] text-[16px] rounded-lg bg-[#28CC9E] text-white  w-[350px] h-[40px] font-bold mt-10 mb-[120px]"
               onClick={onSubmitHandler}
+              disabled={
+                !(
+                  isName &&
+                  isIntro &&
+                  isGender &&
+                  isAge &&
+                  isEducation &&
+                  isJob &&
+                  isResidence &&
+                  isLink
+                )
+              }
             >
               설정 완료
             </button>

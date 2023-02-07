@@ -79,7 +79,7 @@ const Chat = () => {
                     <div className="flex flex-col ml-[15px] mb-[4px] justify-center">
                       <div className="flex flex-row">
                         <p className="mr-2 font-bold text-[18px]">
-                          {post.nickname}
+                          {post.user.nickname}
                         </p>
                       </div>
                       <p className="text-[14px]">

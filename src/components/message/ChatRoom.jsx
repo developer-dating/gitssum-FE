@@ -227,7 +227,10 @@ const ChatRoom = () => {
                 </div>
                 <div className="fixed bottom-[45px] mr-[2px]  ml-[5px] border-t-[2px]">
                   <div className="mt-[20px] flex flex-row items-center">
-                    <form onSubmit={(e) => enterMessage(e)}>
+                    <form
+                      onSubmit={(e) => enterMessage(e)}
+                      className="mt-[20px] flex flex-row items-center"
+                    >
                       <input
                         type="text"
                         className="w-[312px] h-[40px] rounded-lg bg-neutral-200 outline-1 p-2 focus:outline-[#28CC9E] text-xs"

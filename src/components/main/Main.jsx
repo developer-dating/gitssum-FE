@@ -6,7 +6,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 // import { PostDetail } from "./PostDetail";
 
-
 async function fetchPosts() {
   try {
     const response = await instance.get(
@@ -36,7 +35,6 @@ const Main = () => {
 
   const [modal, setModal] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState();
-
 
   const toggleModal = (userId) => {
     setModal(!modal);

@@ -22,7 +22,7 @@ const Kakao = () => {
       if (res.data.statusCode === 200) {
         toast.success("로그인 성공!");
         localStorage.setItem("accessToken", res.headers.authorization);
-        localStorage.setItem("nickname", res.data.data);
+        localStorage.setItem("nickname", res.data.userId);
         setCookie("refreshToken", res.headers.authorization);
         window.location.replace("/setprofile");
       }

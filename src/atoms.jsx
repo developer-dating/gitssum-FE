@@ -5,7 +5,12 @@ export const otherNickName = atom({
   default: "",
 });
 
-export const chatDataState = atom({
-  key: "chatDataState",
+export const otherImg = atom({
+  key: "otherImg",
   default: [],
+});
+
+export const otherUserName = atom({
+  key: "otherUserName",
+  default: "",
 });

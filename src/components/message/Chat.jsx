@@ -4,7 +4,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { Navigate } from "react-router";
 import { getChatList } from "../../api/instance";
 import { useRecoilState } from "recoil";
-import { otherNickName } from "../../atoms";
+import { otherNickName, otherImg, otherUserName } from "../../atoms";
 import { useNavigate } from "react-router-dom";
 import { instance } from "../../api/instance";
 
@@ -19,6 +19,8 @@ async function fetchPosts() {
 
 const Chat = () => {
   const [otherNickname, setOtherNickName] = useRecoilState(otherNickName);
+  const [otherimg, setOtherImg] = useRecoilState(otherImg);
+  const [otherUsername, setOtherUserName] = useRecoilState(otherUserName);
   const navigate = useNavigate();
 
   const { data, isError, error, isLoading } = useQuery(["posts"], fetchPosts);
@@ -32,28 +34,15 @@ const Chat = () => {
       </>
     );
 
-  // const data = useQuery(["chat"], () => getChatList());
   const onClickHandler = (e) => {
     setOtherNickName(e.user.userId);
-    // instance({
-    //   method: "post",
-    //   url: `/pub/join`,
-    //   headers: { "Access-Control-Allow-Origin": "*" },
-    //   data: { roomId: e },
-    // })
-    //   .then((result) => {
-    //     console.log("요청성공");
-    //     console.log(result);
-    //   })
-    //   .catch((error) => {
-    //     console.log("요청실패");
-    //     console.log(error);
-    //   });
+    setOtherImg(e.user.imageList[0]);
+    setOtherUserName(e.user.nickname);
     navigate(`/messageRoom/${e.roomName}`);
   };
 
   const datas = data.data;
-  console.log(datas);
+  console.log(data);
 
   return (
     <div className="font-SUIT flex items-center justify-center ">
@@ -82,8 +71,8 @@ const Chat = () => {
                           {post.user.nickname}
                         </p>
                       </div>
-                      <p className="text-[14px]">
-                        정말요? 아하하 좀 귀여우시네요^^
+                      <p className="text-[14px] text-[#555]">
+                        {post.lastMessage.content}
                       </p>
                     </div>
                   </div>

@@ -9,6 +9,7 @@ import { instance } from "../../api/instance";
 
 export default function Profile() {
   const { id } = useParams();
+  const navigate = useNavigate();
   // const mutation = useMutation((prof) => {
   //   return (
   //     instance.put("/api/user/modify/mypage", prof),
@@ -29,6 +30,7 @@ export default function Profile() {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    toast.success("프로필 설정 완료!");
     const formData = new FormData();
     formData.append("username", username);
     formData.append("age", age);
@@ -50,6 +52,7 @@ export default function Profile() {
       .then((result) => {
         console.log("요청성공");
         console.log(result);
+        navigate("/");
       })
       .catch((error) => {
         console.log("요청실패");
@@ -70,9 +73,7 @@ export default function Profile() {
       console.log(file);
     }
   };
-  const onPrint = () => {
-    console.log(file);
-  };
+
   const datas = [
     { title: "Python", stack: "Python" },
     { title: "C", stack: "C" },
@@ -302,7 +303,6 @@ export default function Profile() {
                 <div className="text-xs text-[#FF4E4E]">
                   (※최대 3개까지 선택)
                 </div>
-
               </div>
               <ul className="flex text-[#555] left-5 text-xs flex-wrap w-[350px]">
                 {datas.map((data, index) => (

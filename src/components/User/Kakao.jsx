@@ -18,12 +18,13 @@ const Kakao = () => {
     //options
     refetchOnWindowFocus: false,
     onSuccess: (res) => {
+      console.log(res);
       if (res.data.statusCode === 200) {
+        toast.success("로그인 성공!");
         localStorage.setItem("accessToken", res.headers.authorization);
         localStorage.setItem("nickname", res.data.data);
         setCookie("refreshToken", res.headers.authorization);
         window.location.replace("/setprofile");
-        toast.success("로그인 성공!");
       }
     },
     onError: (res) => {

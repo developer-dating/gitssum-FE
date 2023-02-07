@@ -38,7 +38,7 @@ const Router = () => {
         <Route path="/likeme" element={<LikeMe />} />
         <Route path="/editmyprofile" element={<EditMyProfile />} />
         <Route path="/message" element={<Message />} />
-        <Route path="/messageRoom" element={<MessageRoom />} />
+        <Route path="/messageRoom/:id" element={<MessageRoom />} />
       </Routes>
     </BrowserRouter>
   );

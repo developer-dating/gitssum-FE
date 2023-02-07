@@ -1,5 +1,5 @@
 import React from "react";
-import Main from "../../pages/Main";
+import SetProfile from "../../pages/SetProfile";
 import { useQuery } from "@tanstack/react-query";
 import { memberApis } from "../../api/memberApis";
 import { setCookie } from "../../cookie/cookie";
@@ -16,8 +16,8 @@ const Github = () => {
     onSuccess: (res) => {
       if (res.data.statusCode === 200) {
         localStorage.setItem("accessToken", res.headers.authorization);
+        localStorage.setItem("nickname", res.data.data);
         setCookie("refreshToken", res.headers.authorization);
-        toast.success("로그인 성공!");
         window.location.replace("/setprofile");
       }
     },
@@ -28,13 +28,15 @@ const Github = () => {
   });
 
   return (
-    <Main
-      display="flex"
-      state="loading"
-      imgWidth="25%"
-      height="100vh"
-      text="로그인 중입니다."
-    />
+    <>
+      <SetProfile
+        display="flex"
+        state="loading"
+        imgWidth="25%"
+        height="100vh"
+        text="로그인 중입니다."
+      />
+    </>
   );
 };
 

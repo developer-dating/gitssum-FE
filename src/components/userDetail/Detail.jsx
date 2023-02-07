@@ -40,7 +40,10 @@ export const Detail = () => {
   return (
     <div className="font-SUIT flex items-center justify-center">
       <div className=" shadow-xl h-[100vh]">
-        <div>
+        <div className="relative">
+          <a href="/" className="absolute top-[20px] left-[20px]">
+            <img src="/img/backarrowwhite.png" alt="" />
+          </a>
           <img
             className="w-[390px] h-[410px]"
             src={datas.imageList[0]}

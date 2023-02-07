@@ -57,7 +57,7 @@ baseURL.interceptors.request.use((config) => {
 // });
 
 export const createChatRoom = async (payload) => {
-  const res = await instance.post(`/api/room${payload}`);
+  const res = await instance.post(`/api/room`, payload);
   console.log(res);
   return res.data;
 };
@@ -68,12 +68,12 @@ export const quitChatRoom = async (payload) => {
 };
 
 export const getChatList = async () => {
-  const res = await instance.get("/api/chat/rooms");
+  const res = await instance.get(`/api/room`);
   return res;
 };
 
-export const getDetailChat = async (payload) => {
-  const res = await instance.get(`webSocket/api/message`);
+export const getDetailChat = async () => {
+  const res = await instance.get("api/message");
   return res;
 };
 // export const instance = axios.create({

@@ -1,5 +1,5 @@
 import React from "react";
-import Main from "../../pages/Main";
+import SetProfile from "../../pages/SetProfile";
 import { useQuery } from "@tanstack/react-query";
 import { memberApis } from "../../api/memberApis";
 import { setCookie } from "../../cookie/cookie";
@@ -31,13 +31,15 @@ const Google = () => {
   });
 
   return (
-    <Main
-      display="flex"
-      state="loading"
-      imgWidth="25%"
-      height="100vh"
-      text="로그인 중입니다."
-    />
+    <>
+      <SetProfile
+        display="flex"
+        state="loading"
+        imgWidth="25%"
+        height="100vh"
+        text="로그인 중입니다."
+      />
+    </>
   );
 };
 export default Google;

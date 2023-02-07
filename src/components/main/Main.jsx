@@ -3,17 +3,12 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { instance } from "../../api/instance";
 import ModalBasic from "./Modal";
-// import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-// import { PostDetail } from "./PostDetail";
 
 async function fetchPosts() {
   try {
     const response = await instance.get(
       "https://gitssum.com/api/user/get/profiles"
     );
-    // if (!response.ok) {
-    //   throw new Error("Network response was not ok");
-    // }
     return response;
   } catch (error) {
     console.log(error);
@@ -21,8 +16,6 @@ async function fetchPosts() {
 }
 
 const Main = () => {
-  // const [currentPage, setCurrentPage] = useState(0);
-  // const [selectedPost, setSelectedPost] = useState(null);
   const { data, isError, error, isLoading } = useQuery(["posts"], fetchPosts);
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -31,10 +24,6 @@ const Main = () => {
   const showModal = () => {
     setModalOpen(true);
   };
-
-  // const queryClient = useQueryClient();
-  // queryClient.clear();
-  // const queryCache = queryClient.getQueryCache();
 
   if (isLoading) return <h3>Loading...</h3>;
   if (isError)
@@ -46,7 +35,7 @@ const Main = () => {
     );
 
   const datas = data.data;
-  console.log(datas);
+
   return (
     <div className="font-SUIT flex items-center justify-center py-5 ">
       <div className=" shadow-xl">

@@ -28,6 +28,7 @@ const Recommend = () => {
     ["recommend"],
     fetchRecommend
   );
+
   console.log(data);
 
   const [modalOpen, setModalOpen] = useState(false);

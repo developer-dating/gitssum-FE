@@ -30,6 +30,30 @@ const AddRecommend = () => {
   const [residence, setResidence] = useState("");
   const [stack, setStack] = useState("Java");
 
+  // 유효성 검사
+  const [ageMessage, setAgeMessage] = useState("");
+  const [isAge, setIsAge] = useState(false);
+  const [residenceMessage, setResidenceMessage] = useState("");
+  const [isResidence, setIsResidence] = useState(false);
+
+  const onChangeAge = (e) => {
+    setAge(e.target.value);
+    if (e.target.value === "") {
+      setIsAge(false);
+    } else {
+      setIsAge(true);
+    }
+  };
+
+  const onChangeResidence = (e) => {
+    setResidence(e.target.value);
+    if (e.target.value === "") {
+      setIsResidence(false);
+    } else {
+      setIsResidence(true);
+    }
+  };
+
   const datas = [
     { title: "Python", stack: "Python" },
     { title: "C", stack: "C" },
@@ -83,7 +107,7 @@ const AddRecommend = () => {
               <div className="space-x-[10px]">
                 <select
                   value={residence}
-                  onChange={(e) => setResidence(e.target.value)}
+                  onChange={onChangeResidence}
                   type="text"
                   className="w-[350px] h-[40px] border border-[#eee] rounded-[8px] mt-3 font-[14px] pl-3 bg-[#eee]"
                 >
@@ -109,7 +133,7 @@ const AddRecommend = () => {
               <div>
                 <select
                   value={age}
-                  onChange={(e) => setAge(e.target.value)}
+                  onChange={onChangeAge}
                   type="text"
                   selected="selected"
                   className="w-[350px] h-[40px] border border-[#eee] rounded-[8px] mt-3 font-[14px] pl-3 bg-[#eee]"
@@ -127,7 +151,7 @@ const AddRecommend = () => {
                 선호 기술스택
               </p>
               <p className="text-[#333] text-[12px] font-normal mt-[8px]">
-                선호 개발 언어를 3개 미만으로 선택해주세요.
+                선호 개발 언어를 3개 이하로 선택해주세요.
               </p>
               <div>
                 <ul className="flex text-[#555] left-5 text-xs flex-wrap">
@@ -141,6 +165,7 @@ const AddRecommend = () => {
                   ))}
                 </ul>
                 <button
+                  disabled={!(isAge && isResidence)}
                   className="flex w-[350px] h-[48px] justify-center items-center rounded-md border hover:border-[#28CC9E] text-[#fff] font-bold bg-[#28CC9E] hover:bg-[#fff] hover:text-[#28CC9E] duration-300 my-[80px]"
                   onClick={() => {
                     mutation?.mutate({

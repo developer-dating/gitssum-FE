@@ -33,17 +33,7 @@ const Kakao = () => {
     },
   });
 
-  return (
-    <>
-      <SetProfile
-        display="flex"
-        state="loading"
-        imgWidth="25%"
-        height="100vh"
-        text="로그인 중입니다."
-      />
-    </>
-  );
+  return <></>;
 };
 
 export default Kakao;

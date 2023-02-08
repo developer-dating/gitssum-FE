@@ -79,9 +79,6 @@ const AddRecommend = () => {
               <p className="text-[#333] text-xl font-bold mt-[40px]">
                 지역 설정
               </p>
-              <p className="text-[#333] text-[12px] font-normal mt-[8px]">
-                지역은 구 단위로 최소 1개 이상 최대 2개까지 설정할 수 있어요
-              </p>
 
               <div className="space-x-[10px]">
                 <select
@@ -130,7 +127,7 @@ const AddRecommend = () => {
                 선호 기술스택
               </p>
               <p className="text-[#333] text-[12px] font-normal mt-[8px]">
-                선호 개발 언어를 5개 미만으로 선택해주세요.
+                선호 개발 언어를 3개 미만으로 선택해주세요.
               </p>
               <div>
                 <ul className="flex text-[#555] left-5 text-xs flex-wrap">

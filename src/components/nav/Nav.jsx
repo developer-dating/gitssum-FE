@@ -2,11 +2,6 @@ import { Link } from "react-router-dom";
 
 const Nav = () => {
   return (
-    // <>
-    //   <div className="flex items-center justify-cente">
-    //     <div className="w-[78px] h-[95px] bg-[#000]"></div>
-    //   </div>
-    // </>
     <div className="font-SUIT flex items-center justify-center">
       <div className="fixed bottom-0">
         <div className="w-[390px] h-[95px] bg-[#fff]">

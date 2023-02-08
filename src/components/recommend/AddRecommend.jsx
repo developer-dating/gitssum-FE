@@ -171,7 +171,7 @@ const AddRecommend = () => {
                 </ul>
                 <button
                   disabled={!(isAge && isResidence)}
-                  className="flex w-[350px] h-[48px] justify-center items-center rounded-md border hover:border-[#28CC9E] text-[#fff] font-bold bg-[#28CC9E] hover:bg-[#fff] hover:text-[#28CC9E] duration-300 my-[80px]"
+                  className="disabled:bg-[#a09e9e] flex w-[350px] h-[48px] justify-center items-center rounded-md border hover:border-[#28CC9E] text-[#fff] font-bold bg-[#28CC9E] hover:bg-[#fff] hover:text-[#28CC9E] duration-300 my-[80px]"
                   onClick={() => {
                     mutation?.mutate({
                       age: age,

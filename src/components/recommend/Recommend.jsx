@@ -29,8 +29,6 @@ const Recommend = () => {
     fetchRecommend
   );
 
-  console.log(data);
-
   const [modalOpen, setModalOpen] = useState(false);
 
   // 모달창 노출
@@ -100,8 +98,8 @@ const Recommend = () => {
                       </button>
                     </div>
                     <div className="flex w-[400px] flex-wrap">
-                      {data?.data.profileList.map((post) => (
-                        <div className="flex flex-col mb-[34px]">
+                      {data?.data.profileList.map((post, idx) => (
+                        <div className="flex flex-col mb-[34px]" key={idx}>
                           <a
                             href={`/userdetail/${post.userId}`}
                             className="w-[167px] h-[167px]  bg-center bg-cover bg-no-repeat relative mr-[16px] cursor-pointer  duration-300 rounded-xl"

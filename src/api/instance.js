@@ -72,8 +72,8 @@ export const getChatList = async () => {
   return res;
 };
 
-export const getDetailChat = async () => {
-  const res = await instance.get("api/message");
+export const getDetailChat = async (e) => {
+  const res = await instance.post("api/message", e);
   return res;
 };
 // export const instance = axios.create({

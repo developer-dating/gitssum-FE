@@ -6,13 +6,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import StackCard from "../recommend/StackCard";
 import { Toaster, toast } from "react-hot-toast";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { instance } from "../../api/instance";
 
 export default function EditProfile() {
   const { id } = useParams();
 
   const mutation = useMutation((prof) => {
     return (
-      axios.put("https://gitssum.com/api/user/get/modify/mypage", prof),
+      instance.put("https://gitssum.com/api/user/get/modify/mypage", prof),
       toast.success("프로필 수정 성공!")
     );
   });

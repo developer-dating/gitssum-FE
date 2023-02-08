@@ -14,3 +14,8 @@ export const otherUserName = atom({
   key: "otherUserName",
   default: "",
 });
+
+export const year = atom({
+  key: "year",
+  default: "",
+});

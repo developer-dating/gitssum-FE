@@ -11,11 +11,10 @@ import SockJS from "sockjs-client";
 import Stomp, { Message } from "stompjs";
 import { baseURL } from "../../api/instance";
 import { getDetailChat } from "../../api/instance";
-import { otherNickName, otherImg, otherUserName } from "../../atoms";
+import { otherNickName, otherImg, otherUserName, year } from "../../atoms";
 import { instance } from "../../api/instance";
 
 async function getChats(e) {
-  console.log(e);
   try {
     const response = await instance.post(`api/message`, e);
     return response;
@@ -25,7 +24,7 @@ async function getChats(e) {
 }
 
 const ChatRoom = () => {
-  const textRef = useRef();
+  const textRef = useRef(null);
   const { id } = useParams();
   const otherName = useRecoilValue(otherNickName);
   // const myNickName = localStorage.getItem("nickname");
@@ -35,7 +34,8 @@ const ChatRoom = () => {
   const otherImage = useRecoilState(otherImg);
   const otherUsername = useRecoilState(otherUserName);
   const pageCounter = 1;
-
+  const talkListRef = useRef(null);
+  const Year = useRecoilState(year);
   //----------------------------------------------
 
   const roadMessageBox = {
@@ -59,6 +59,12 @@ const ChatRoom = () => {
     }
   );
 
+  const messageBoxRef = useRef();
+  const scrollToBottom = () => {
+    if (messageBoxRef.current) {
+      messageBoxRef.current.scrollTop = messageBoxRef.current.scrollHeight;
+    }
+  };
   // 스크롤 최하단으로 내리기
   const scrollToBot = () => {
     window.scrollTo(0, document?.body.scrollHeight);
@@ -69,6 +75,10 @@ const ChatRoom = () => {
   const sock = new SockJS("https://gitssum.com/ws-stomp");
   const client = Stomp.over(sock);
 
+  client.heartbeat.outgoing = 20000;
+  client.heartbeat.incoming = 20000;
+  client.debug = (f) => f;
+
   const connectStomp = () => {
     client.connect({ myNickName }, onConnect, onError);
   };
@@ -76,21 +86,23 @@ const ChatRoom = () => {
   useEffect(() => {
     if (isSuccess) {
       setChatList(data?.data);
+      queryClient.invalidateQueries(["chat"]);
+      scrollToBottom();
     }
   }, [isSuccess, data?.data]);
 
   useEffect(() => {
     connectStomp();
-    scrollToBot();
+    scrollToBottom();
   }, []);
 
   const onConnect = () => {
     userEnter();
-    // scrollToBot();
+    scrollToBot();
     setChatList(data?.data);
     onSub();
     // 연결되면 이전데이터로 chatlist 설정
-    console.log("connected");
+    scrollToBottom();
   };
 
   const onError = () => {
@@ -105,13 +117,14 @@ const ChatRoom = () => {
 
   const onMessageRecieve = (e) => {
     // 메세지가 오면 받아온 데이터의 body를 json.parse해서 data 라는 변수에 넣음
+    queryClient.invalidateQueries(["chat"]);
+    scrollToBottom();
     let data = JSON.parse(e.body);
     if (data.type === "TALK") {
       getChats().then((res) => {
         return setChatList([...res?.data]);
       });
     }
-    scrollToBot();
   };
 
   const userEnter = () => {
@@ -120,9 +133,9 @@ const ChatRoom = () => {
       roomId: id,
       message: "입장",
     };
-    client.send(`/join`, { myNickName }, JSON.stringify(payload));
-    scrollToBot();
-    console.log("유저입장");
+    client.send(`/pub/message`, {}, JSON.stringify(payload));
+    scrollToBottom();
+    queryClient.invalidateQueries(["chat"]);
   };
 
   const sendMessage = () => {
@@ -136,7 +149,8 @@ const ChatRoom = () => {
       };
       client.send(`/pub/message`, {}, JSON.stringify(payload));
       setMessage("");
-      scrollToBot();
+      scrollToBottom();
+      queryClient.invalidateQueries(["chat"]);
     }
   };
 
@@ -153,10 +167,10 @@ const ChatRoom = () => {
         <p>{error.toString()}</p>
       </>
     );
-  console.log(chatList);
+
   return (
-    <div className="font-SUIT flex items-center justify-center ">
-      <div className=" shadow-xl relative h-[100vh]">
+    <div className="font-SUIT flex items-center justify-center">
+      <div className=" shadow-xl relative h-[100vh] ">
         <div className="ml-[20px]">
           <div className="w-[372px] flex flex-wrap ">
             <div className="flex flex-col mt-[40px]">
@@ -186,13 +200,22 @@ const ChatRoom = () => {
 
               <div className="flex flex-col items-center text-[14px] text-[#555]">
                 <div className="mb-[8px] mt-[16px]">대화를 시작해보세요</div>
-                <div>2023년 1월 13일</div>
+                <div>
+                  {Year[0].slice(0, 4)}년 {Year[0].slice(6, 7)}월{" "}
+                  {Year[0].slice(9, 10)}일
+                </div>
               </div>
               <div className="mt-[65px] relative">
-                <div className="w-[360px] sm:h-[400px] md:h-[400px] lg:h-[400px] 2xl:h-[600px] overflow-y-scroll scrollbar-hide">
-                  {chatList?.message?.map((List) =>
+                <div
+                  ref={messageBoxRef}
+                  className="w-[360px] max-h-[420px] min-h-[580px] sm:min-h-[420px] md:h-[350px] lg:h-[360px] xl:-h-[580px] 2xl:min-h-[620px] overflow-y-scroll scrollbar-hide"
+                >
+                  {chatList?.message?.map((List, idx) =>
                     List?.senderId === Number(myNickName) ? (
-                      <div className="flex flex-col items-end mb-[20px] mr-[10px]">
+                      <div
+                        className="flex flex-col items-end mb-[20px] mr-[10px]"
+                        key={idx}
+                      >
                         <div className="flex">
                           <p className="text-[#B8B8B8] text-[12px] mr-1 flex items-end">
                             {List?.createdAt}
@@ -203,7 +226,7 @@ const ChatRoom = () => {
                         </div>
                       </div>
                     ) : (
-                      <div className="flex flex-col mb-[20px]">
+                      <div className="flex flex-col mb-[20px]" key={idx}>
                         <div className="flex items-center space-x-3">
                           <div
                             style={{
@@ -235,6 +258,7 @@ const ChatRoom = () => {
                       type="text"
                       className="w-[312px] h-[40px] rounded-lg bg-neutral-200 outline-1 p-2 focus:outline-[#28CC9E] text-xs"
                       placeholder="메세지 보내기"
+                      ref={talkListRef}
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                     />

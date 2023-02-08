@@ -90,7 +90,7 @@ const AddRecommend = () => {
                   type="text"
                   className="w-[350px] h-[40px] border border-[#eee] rounded-[8px] mt-3 font-[14px] pl-3 bg-[#eee]"
                 >
-                  <option value="" disabled selected hidden>
+                  <option defaultValue="" disabled selected hidden>
                     지역 선택
                   </option>
                   <option value="서울">서울</option>
@@ -114,9 +114,10 @@ const AddRecommend = () => {
                   value={age}
                   onChange={(e) => setAge(e.target.value)}
                   type="text"
+                  selected="selected"
                   className="w-[350px] h-[40px] border border-[#eee] rounded-[8px] mt-3 font-[14px] pl-3 bg-[#eee]"
                 >
-                  <option value="" disabled selected hidden>
+                  <option defaultValue="" disabled selected hidden>
                     나이대 선택
                   </option>
                   <option value="20-24세">20-24세</option>

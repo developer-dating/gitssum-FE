@@ -34,13 +34,13 @@ export const MypageMain = () => {
 
   return (
     <div className="shadow-xl w-[390px] h-[100vh] mx-auto font-SUIT">
-      <p className=" mx-auto flex  text-[24px] font-bold mb-2 pt-10 pl-4">
+      <div className=" mx-auto flex  text-[24px] font-bold mb-2 pt-10 pl-4">
         <div className="mx-1 flex title-font font-medium items-center pr-1 text-gray-900 md:mb-0">
           <img className="w-[34px] h-[30px]" src="img/heart.png " alt="logo" />
         </div>
         내 프로필
-      </p>
-      <div className="flex justify-center pr-24  items-center ">
+      </div>
+      <div className="flex ml-[20px] pr-24  items-center ">
         <div className="pt-5 flex">
           <img
             className="w-[80px] h-[80px]  mr-2 rounded-xl"
@@ -59,8 +59,11 @@ export const MypageMain = () => {
             </span>
             <div className="text-[12px]">
               <div className="flex pl-1.5">
-                {datas?.stackList.map((stack) => (
-                  <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
+                {datas?.stackList.map((stack, idx) => (
+                  <button
+                    className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full"
+                    key={idx}
+                  >
                     {stack}
                   </button>
                 ))}

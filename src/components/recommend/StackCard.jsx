@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const StackCard = ({ data, checkedItems, checkedItemHandler }) => {
+const StackCard = ({ data, checkedItems, checkedItemHandler, index }) => {
   const [isChecked, setIsChecked] = useState(null);
 
   const onCheck = ({ target }) => {
@@ -17,7 +17,7 @@ const StackCard = ({ data, checkedItems, checkedItemHandler }) => {
   // }, [checkedItems]);
 
   return (
-    <li className="font-SUIT">
+    <li className="font-SUIT" key={index}>
       <input
         type="checkbox"
         id={data}
@@ -30,7 +30,6 @@ const StackCard = ({ data, checkedItems, checkedItemHandler }) => {
         onChange={(e) => onCheck(e)}
       />
       <label
-        key={data}
         htmlFor={data}
         className=" bg-[#eee] px-3 py-2 mr-2 rounded-full mt-2 cursor-pointer inline-block peer-checked:bg-[#28CC9E] peer-checked:text-[#fff]"
       >

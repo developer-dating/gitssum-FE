@@ -72,7 +72,10 @@ const Main = () => {
               />
             </div>
             {datas?.profileList.map((post, index) => (
-              <div className="w-[359px] flex flex-wrap reletive mb-20">
+              <div
+                className="w-[359px] flex flex-wrap reletive mb-20"
+                key={index}
+              >
                 <div
                   className="w-[350px] h-[572px] mt-10 bg-center bg-cover bg-no-repeat relative mr-7 cursor-pointer hover:scale-110 duration-300 rounded-xl"
                   style={{
@@ -104,8 +107,11 @@ const Main = () => {
                     <p>{post.residence}</p>
                   </div>
                   <div className="flex text-[#fff] absolute bottom-[84px] left-[20px] space-x-2 text-xs flex-wrap">
-                    {post.stackList.map((stack) => (
-                      <p className=" bg-[#000]/[.3] px-3 py-2 rounded-full mt-2">
+                    {post.stackList.map((stack, idx) => (
+                      <p
+                        className=" bg-[#000]/[.3] px-3 py-2 rounded-full mt-2"
+                        key={idx}
+                      >
                         {stack}
                       </p>
                     ))}

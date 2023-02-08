@@ -71,7 +71,10 @@ const LikeMe = () => {
                   <p className="text-[#000] text-2xl font-bold ">받은 좋아요</p>
                 </div>
                 {data?.data.likeFeed.map((post, index) => (
-                  <div className="w-[370px] h-[130px] ml-[-10px] border-b-[2px] flex items-center ">
+                  <div
+                    className="w-[370px] h-[130px] ml-[-10px] border-b-[2px] flex items-center"
+                    key={index}
+                  >
                     <div className="flex flex-row ml-[10px]">
                       <div
                         style={{

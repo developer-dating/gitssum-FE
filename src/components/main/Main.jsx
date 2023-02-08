@@ -41,9 +41,6 @@ const Main = () => {
     setSelectedUserId(userId);
     toast.success("좋아요를 보냈어요! ");
   };
-  // const queryClient = useQueryClient();
-  // queryClient.clear();
-  // const queryCache = queryClient.getQueryCache();
 
   if (isLoading) return <h3>Loading...</h3>;
   if (isError)

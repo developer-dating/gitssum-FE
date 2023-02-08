@@ -12,17 +12,16 @@ const Kakao = () => {
   const cookies = new Cookies();
   // 인가코드
   let code = new URL(window.location.href).searchParams.get("code");
-  console.log(code);
 
   useQuery(["kakaoLogin", code], () => memberApis.kakaoLoginAX(code), {
     //options
     refetchOnWindowFocus: false,
     onSuccess: (res) => {
-      console.log(res);
       if (res.data.statusCode === 200) {
         toast.success("로그인 성공!");
         localStorage.setItem("accessToken", res.headers.authorization);
         localStorage.setItem("nickname", res.data.userId);
+        localStorage.setItem("state", res.data.profile);
         setCookie("refreshToken", res.headers.authorization);
         window.location.replace("/setprofile");
       }

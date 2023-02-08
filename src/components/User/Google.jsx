@@ -10,7 +10,6 @@ const Google = () => {
   // 인가 코드
 
   let code = new URL(window.location.href).searchParams.get("code");
-  console.log(code);
 
   useQuery(["googleLogin", code], () => memberApis.googleLoginAX(code), {
     //options
@@ -19,6 +18,7 @@ const Google = () => {
       if (res.data.statusCode === 200) {
         localStorage.setItem("accessToken", res.headers.authorization);
         localStorage.setItem("nickname", res.data.userId);
+        localStorage.setItem("state", res.data.profile);
         setCookie("refreshToken", res.headers.authorization);
         toast.success("로그인 성공!");
         window.location.replace("/setprofile");

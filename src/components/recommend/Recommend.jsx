@@ -40,7 +40,9 @@ const Recommend = () => {
 
   useEffect(() => {
     queryClient.invalidateQueries(["recommend"]);
-  });
+
+  }, []);
+
 
   if (isLoading) return toast("Waiting...");
   if (isError)

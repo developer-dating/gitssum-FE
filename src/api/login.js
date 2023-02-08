@@ -10,4 +10,4 @@ export const GOOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?cli
 
 export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=a3ccfe1c212ee4bdbf12736ae762c79a&redirect_uri=https://main.d20iwpsyv6d6f7.amplifyapp.com/login/oauth2/kakao1&response_type=code`;
 
-export const GITHUB_AUTH_URL = `https://github.com/login/oauth/authorize?client_id=d83af89cb38b172425e9&redirect_uri=http://https://main.d20iwpsyv6d6f7.amplifyapp.com/login/oauth2/github`;
+export const GITHUB_AUTH_URL = `https://github.com/login/oauth/authorize?client_id=d83af89cb38b172425e9&redirect_uri=https://main.d20iwpsyv6d6f7.amplifyapp.com/login/oauth2/github`;

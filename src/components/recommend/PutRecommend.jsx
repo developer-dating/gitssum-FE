@@ -96,7 +96,7 @@ const PutRecommend = () => {
                   type="text"
                   className="w-[350px] h-[40px] border border-[#eee] rounded-[8px] mt-3 font-[14px] pl-3 bg-[#eee]"
                 >
-                  <option value="" disabled selected hidden>
+                  <option value="" selected>
                     지역 선택
                   </option>
                   <option value="서울">서울</option>
@@ -122,7 +122,7 @@ const PutRecommend = () => {
                   type="text"
                   className="w-[350px] h-[40px] border border-[#eee] rounded-[8px] mt-3 font-[14px] pl-3 bg-[#eee]"
                 >
-                  <option value="" disabled selected hidden>
+                  <option value="" selected hidden>
                     나이대 선택
                   </option>
                   <option value="20-24세">20-24세</option>

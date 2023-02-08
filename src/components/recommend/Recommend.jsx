@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModalBasic from "../main/Modal";
 import { Toaster, toast } from "react-hot-toast";
 import { instance } from "../../api/instance";
+import { useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
 async function fetchRecommend() {
@@ -23,6 +24,7 @@ async function fetchRecommend() {
 
 const Recommend = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const { data, isError, error, isLoading } = useQuery(
     ["recommend"],
@@ -36,6 +38,10 @@ const Recommend = () => {
     setModalOpen(true);
   };
 
+  useEffect(() => {
+    queryClient.invalidateQueries(["recommend"]);
+  }, []);
+
   if (isLoading) return toast("Waiting...");
   if (isError)
     return (
@@ -47,9 +53,6 @@ const Recommend = () => {
 
   const onClickHandler = () => {
     navigate("/addrecommend");
-  };
-  const onClicksHandler = () => {
-    navigate("/putrecommend");
   };
 
   return (
@@ -91,7 +94,7 @@ const Recommend = () => {
                   <>
                     <div className="w-[350px] h-[100px] flex pt-[28px]">
                       <button
-                        onClick={onClicksHandler}
+                        onClick={onClickHandler}
                         className="flex w-[89px] h-[34px] justify-center items-center rounded-full px-[8px] py-[12px] border border-[#28CC9E] text-[#28CC9E] font-medium hover:bg-[#28CC9E] hover:text-[#fff] duration-300 text-[14px]"
                       >
                         <p>취향 재설정</p>

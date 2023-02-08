@@ -18,7 +18,6 @@ const SetProfile = () => {
   return (
     <>
       <Profile />
-      <Nav />
     </>
   );
 };

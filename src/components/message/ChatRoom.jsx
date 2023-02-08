@@ -213,7 +213,7 @@ const ChatRoom = () => {
                   {chatList?.message?.map((List, idx) =>
                     List?.senderId === Number(myNickName) ? (
                       <div
-                        className="flex flex-col items-end mb-[20px] mr-[10px]"
+                        className=" flex flex-col items-end mb-[20px] mr-[10px]"
                         key={idx}
                       >
                         <div className="flex">

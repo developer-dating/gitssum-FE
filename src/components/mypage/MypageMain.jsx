@@ -52,7 +52,7 @@ export const MypageMain = () => {
               <div className="mr-1 font-bold text-[18px] pr-1">
                 {datas.username}
               </div>
-              <div className="text-[16px]">29</div>
+              <div className="text-[16px]">{datas.age}</div>
             </div>
             <span className="pl-2 text-[12px]">
               {datas.job} ∙ {datas.residence}

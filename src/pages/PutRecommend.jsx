@@ -1,11 +1,11 @@
 import React from "react";
-import AddRecommends from "../components/recommend/AddRecommend";
+import PutRecommends from "../components/recommend/PutRecommend";
 import Nav from "../components/nav/Nav";
 
 const AddRecommend = () => {
   return (
     <>
-      <AddRecommends />
+      <PutRecommends />
       <Nav />
     </>
   );

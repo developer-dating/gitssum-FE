@@ -1,28 +1,37 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import StackCard from "./StackCard";
 import { Toaster, toast } from "react-hot-toast";
 import { instance } from "../../api/instance";
 
-const AddRecommend = () => {
+const PutRecommend = () => {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  queryClient.clear();
-  const mutationCache = queryClient.getMutationCache();
-  mutationCache.clear();
 
   const mutation = useMutation((rocm) => {
-    return (
-      instance.post("https://gitssum.com/api/user/save/recommendation", rocm),
-      {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
-      },
-      toast.success("취향 설정 완료!")
-    );
+    return instance({
+      method: "put",
+      url: "https://gitssum.com/api/user/modify/recommendation",
+      headers: { "Access-Control-Allow-Origin": "*" },
+      data: rocm,
+    })
+      .then((result) => {
+        console.log("요청성공");
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log("요청실패");
+        console.log(error);
+      });
+    //   instance.put("https://gitssum.com/api/user/modify/recommendation", rocm),
+    //   {
+    //     headers: {
+    //       "Access-Control-Allow-Origin": "*",
+    //     },
+    //   },
+    //   toast.success("취향 수정 완료!")
+    // );
   });
 
   const [checkedItems, setCheckedItems] = useState("");
@@ -90,7 +99,7 @@ const AddRecommend = () => {
                   type="text"
                   className="w-[350px] h-[40px] border border-[#eee] rounded-[8px] mt-3 font-[14px] pl-3 bg-[#eee]"
                 >
-                  <option defaultValue="" disabled selected hidden>
+                  <option value="" disabled selected hidden>
                     지역 선택
                   </option>
                   <option value="서울">서울</option>
@@ -114,10 +123,9 @@ const AddRecommend = () => {
                   value={age}
                   onChange={(e) => setAge(e.target.value)}
                   type="text"
-                  selected="selected"
                   className="w-[350px] h-[40px] border border-[#eee] rounded-[8px] mt-3 font-[14px] pl-3 bg-[#eee]"
                 >
-                  <option defaultValue="" disabled selected hidden>
+                  <option value="" disabled selected hidden>
                     나이대 선택
                   </option>
                   <option value="20-24세">20-24세</option>
@@ -134,7 +142,7 @@ const AddRecommend = () => {
               </p>
               <div>
                 <ul className="flex text-[#555] left-5 text-xs flex-wrap">
-                  {datas?.map((data, index) => (
+                  {datas.map((data, index) => (
                     <StackCard
                       key={index}
                       data={data.title}
@@ -146,7 +154,7 @@ const AddRecommend = () => {
                 <button
                   className="flex w-[350px] h-[48px] justify-center items-center rounded-md border hover:border-[#28CC9E] text-[#fff] font-bold bg-[#28CC9E] hover:bg-[#fff] hover:text-[#28CC9E] duration-300 my-[80px]"
                   onClick={() => {
-                    mutation?.mutate({
+                    mutation.mutate({
                       age: age,
                       residence: residence,
                       stacks: checkedItems,
@@ -165,4 +173,4 @@ const AddRecommend = () => {
   );
 };
 
-export default AddRecommend;
+export default PutRecommend;

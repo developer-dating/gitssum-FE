@@ -1,12 +1,12 @@
 {
   "posts": [
     {
-      "user": "송민호",
+      "username": "송민호",
       "age": "29",
       "gender": "여자 ",
-      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuu-lX95MTp5GArTlHR71PwUEcZ0N9zYdUfA&usqp=CAU",
-      "job": "프리랜서 개발자",
-      "home": "서울특별시 강서구",
+      "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuu-lX95MTp5GArTlHR71PwUEcZ0N9zYdUfA&usqp=CAU",
+      "job": "프리랜서",
+      "residence": "서울특별시 강서구",
       "stack": [
         {
           "content": "C"
@@ -21,16 +21,19 @@
           "content": "C#"
         }
       ],
+      "myImage": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuu-lX95MTp5GArTlHR71PwUEcZ0N9zYdUfA&usqp=CAU"
+      ],
       "id": 1
     },
     {
       "id": 2,
-      "user": "류준열",
+      "username": "류준열",
       "age": "33",
       "gender": "남자",
-      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO9cSWlp0jnM8pIsmuaHWWVXxI-kRe4jgpbw&usqp=CAU",
-      "job": "프론트엔드 개발자",
-      "home": "서울특별시 강남구",
+      "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO9cSWlp0jnM8pIsmuaHWWVXxI-kRe4jgpbw&usqp=CAU",
+      "job": "프론트엔드",
+      "residence": "서울특별시 강남구",
       "stack": [
         {
           "content": "REACT"
@@ -38,16 +41,19 @@
         {
           "content": "JavaScript"
         }
+      ],
+      "myImage": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO9cSWlp0jnM8pIsmuaHWWVXxI-kRe4jgpbw&usqp=CAU"
       ]
     },
     {
       "id": 3,
-      "user": "박준원",
+      "username": "박준원",
       "age": "33",
       "gender": "남자",
-      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9MxOJhyiepDB_jsUG8f985Qf_fish9Vf2Fg&usqp=CAU",
-      "job": "백엔드 개발자",
-      "home": "서울특별시 은평구",
+      "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9MxOJhyiepDB_jsUG8f985Qf_fish9Vf2Fg&usqp=CAU",
+      "job": "백엔드",
+      "residence": "서울특별시 은평구",
       "stack": [
         {
           "content": "Java"
@@ -58,16 +64,19 @@
         {
           "content": "Swift"
         }
+      ],
+      "myImage": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9MxOJhyiepDB_jsUG8f985Qf_fish9Vf2Fg&usqp=CAU"
       ]
     },
     {
       "id": 4,
-      "user": "송강",
+      "username": "송강",
       "age": "26",
       "gender": "여자 ",
-      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAMUgT1KxmjefTvJfrnqiMcQ-NOIzsAWbfcQ&usqp=CAU",
-      "job": "프론트엔드 개발자",
-      "home": "서울특별시 서초구",
+      "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAMUgT1KxmjefTvJfrnqiMcQ-NOIzsAWbfcQ&usqp=CAU",
+      "job": "프론트엔드",
+      "residence": "서울특별시 서초구",
       "stack": [
         {
           "content": "REACT"
@@ -81,30 +90,36 @@
         {
           "content": "Redux"
         }
+      ],
+      "myImage": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAMUgT1KxmjefTvJfrnqiMcQ-NOIzsAWbfcQ&usqp=CAU"
       ]
     },
     {
       "id": 5,
-      "user": "남주혁",
+      "username": "남주혁",
       "age": "28",
       "gender": "남자",
-      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK6b4VovI6eUnVjmpvAwaQcTXhgAqKKqU1jQ&usqp=CAU",
+      "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK6b4VovI6eUnVjmpvAwaQcTXhgAqKKqU1jQ&usqp=CAU",
       "job": "디자이너",
-      "home": "서울특별시 서대문구",
+      "residence": "서울특별시 서대문구",
       "stack": [
         {
           "content": "HTML/CSS"
         }
+      ],
+      "myImage": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK6b4VovI6eUnVjmpvAwaQcTXhgAqKKqU1jQ&usqp=CAU"
       ]
     },
     {
       "id": 6,
-      "user": "박보검",
+      "username": "박보검",
       "age": "30",
       "gender": "여자 ",
-      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToyNPrD7KV2I-6l5KJfV1LzwnGBE_iVIgjvQ&usqp=CAU",
-      "job": "프론트엔드 개발자",
-      "home": "서울특별시 송파구",
+      "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToyNPrD7KV2I-6l5KJfV1LzwnGBE_iVIgjvQ&usqp=CAU",
+      "job": "프론트엔드",
+      "residence": "서울특별시 송파구",
       "stack": [
         {
           "content": "REACT"
@@ -112,7 +127,202 @@
         {
           "content": "JavaScript"
         }
+      ],
+      "myImage": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToyNPrD7KV2I-6l5KJfV1LzwnGBE_iVIgjvQ&usqp=CAU"
       ]
+    },
+    {
+      "username": "정현규",
+      "age": "26",
+      "introduction": "안녕하세요",
+      "link": "https://github.com/MJ-Dev92",
+      "gender": "남자",
+      "education": "대졸",
+      "job": "백엔드",
+      "residence": "경기",
+      "stack": [
+        {
+          "content": "REACT"
+        },
+        {
+          "content": "JavaScript"
+        }
+      ],
+      "myImage": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToyNPrD7KV2I-6l5KJfV1LzwnGBE_iVIgjvQ&usqp=CAU"
+      ],
+      "id": 7
+    },
+    {
+      "user": "하영",
+      "age": "ㅇ",
+      "introduction": "ㅇㄹㅇㄹㅇㄹ",
+      "url": [
+        "blob:http://localhost:3000/12bb7037-a89f-402f-a47b-1ba91084363c"
+      ],
+      "gender": "여자",
+      "education": "고졸",
+      "job": "프론트",
+      "home": "강원",
+      "stack": [
+        "C++",
+        "Assembly language",
+        "Delphi/Objective Pascal"
+      ],
+      "id": 8
+    },
+    {
+      "username": "dfdf",
+      "age": "23",
+      "introduction": "dgdfgfg",
+      "link": "fwdsf",
+      "gender": "여자",
+      "education": "고졸",
+      "job": "백엔드",
+      "home": "대전",
+      "imageList": "",
+      "stack": [
+        "Python",
+        "Assembly language",
+        "Object-C"
+      ],
+      "id": 9
+    },
+    {
+      "username": "ㅇㅇㅎ",
+      "age": "22",
+      "introduction": "ㅇㅇㄹ",
+      "link": "ㄴㅍㄴㅍ",
+      "gender": "남자",
+      "education": "대졸",
+      "job": "풀스택",
+      "home": "광주",
+      "imageList": "",
+      "stack": [
+        "Python",
+        "C++",
+        "GO"
+      ],
+      "showImages": [
+        "blob:http://localhost:3000/f52fccce-780c-4b17-ae9e-0df1632d94ec",
+        "blob:http://localhost:3000/d69b7efd-d313-4401-aad0-034e2826ce35",
+        "blob:http://localhost:3000/eb2d332b-4277-4bc7-ba40-0c2687563bd6"
+      ],
+      "id": 10
+    },
+    {
+      "username": "ㅇㄴㅇㄹㅇㄴ",
+      "age": "ㄴㅇㄹ",
+      "introduction": "",
+      "link": "ㄴㅇㄹㄴㅇㄹ",
+      "gender": "여자",
+      "education": "초대졸",
+      "job": "풀스택",
+      "home": "광주",
+      "stack": [
+        "Java",
+        "GO",
+        "Pearl"
+      ],
+      "imageList": [
+        "blob:http://localhost:3000/e1985823-20f9-4a9e-abf3-42e3ab207e5f"
+      ],
+      "id": 11
+    },
+    {
+      "username": "안뇽",
+      "age": "22",
+      "introduction": "ㅇㄹㅇㄹ",
+      "link": "ㄹㅇㄴㄹㅇㄹㅇㄹ",
+      "gender": "여자",
+      "education": "초대졸",
+      "job": "백엔드",
+      "residence": "광주",
+      "stacks": [
+        "GO",
+        "Assembly language",
+        "C++"
+      ],
+      "multipartFile": [
+        "blob:http://localhost:3000/a16470fa-c5bb-433c-8118-8d084bb0197b",
+        "blob:http://localhost:3000/edf91767-27cc-4dc1-aec6-e6a4cd3e90ce",
+        "blob:http://localhost:3000/926cd0bb-1bd4-4502-8c33-ac32d99fd4a3"
+      ],
+      "id": 12
+    }
+  ],
+  "recommends": [
+    {
+      "id": 1,
+      "age": "26",
+      "residence": "서울"
+    },
+    {
+      "age": "25-29세",
+      "residence": "경남",
+      "stack": "Java",
+      "id": 2
+    },
+    {
+      "age": "25-29세",
+      "residence": "서울",
+      "stack": [
+        "C",
+        "C++",
+        "C#"
+      ],
+      "id": 3
+    },
+    {
+      "age": "30-34세",
+      "residence": "경남",
+      "stack": [
+        "C",
+        "C++",
+        "C#"
+      ],
+      "id": 4
+    },
+    {
+      "age": "30-34세",
+      "residence": "경북",
+      "stack": [
+        "Python",
+        "C",
+        "C++"
+      ],
+      "id": 5
+    },
+    {
+      "age": "30-34세",
+      "residence": "전남",
+      "stack": [
+        "C",
+        "C++",
+        "C#"
+      ],
+      "id": 6
+    },
+    {
+      "age": "30-34세",
+      "residence": "경남",
+      "stack": [
+        "Python",
+        "C",
+        "C++"
+      ],
+      "id": 7
+    },
+    {
+      "age": "25-29세",
+      "residence": "서울",
+      "stack": [
+        "Python",
+        "Java",
+        "Assembly language"
+      ],
+      "id": 8
     }
   ]
 }

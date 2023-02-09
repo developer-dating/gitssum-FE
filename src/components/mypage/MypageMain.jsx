@@ -72,7 +72,7 @@ export const MypageMain = () => {
           </div>
         </div>
       </div>
-      <Link to="/setprofile" style={{ textDecoration: "none" }}>
+      <Link to="/putrecommend" style={{ textDecoration: "none" }}>
         <button className="mx-auto group relative flex justify-center items-center text-[16px] rounded-lg bg-[#28CC9E] text-white w-[350px] h-[48px] hover:bg-[#fff] hover:text-[#28CC9E] border hover:border-[#28CC9E]  duration-300 mt-5 mb-20">
           정보 수정하기
         </button>{" "}

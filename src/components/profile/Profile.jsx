@@ -232,7 +232,7 @@ export default function Profile() {
                 <img
                   src="/img/backarrow.png"
                   alt="BackArrowIcon"
-                  className="w-[8px] h-[16px] mr-[13px]"
+                  className="w-[8px] h-[16px] mr-[15px]"
                 />
               </a>
               <div className="mx-1 flex title-font font-medium items-center  text-gray-900 md:mb-0">

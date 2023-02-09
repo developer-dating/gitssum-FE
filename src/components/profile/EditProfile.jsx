@@ -248,7 +248,7 @@ export default function Profile() {
               <div className="mx-auto  items-center mb-3">
                 <div className="mr-1 font-bold text-sm mb-1">프로필 사진</div>
                 <div className="text-xs text-[#FF4E4E]">
-                  (※프로필에 표시되는 이미지로, 3장 이상 업로드해주세요.)
+                  (※프로필에 표시되는 이미지로, 최소 1장을 업로드해주세요.)
                 </div>
               </div>
               {/* {file.map((image, id) => (
@@ -370,6 +370,7 @@ export default function Profile() {
                     <option value="초대졸">초대졸</option>
                     <option value="대졸">대졸</option>
                     <option value="대학원">대학원</option>
+                    <option value="비공개">비공개</option>
                   </select>
                 </div>
               </div>

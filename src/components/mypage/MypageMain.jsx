@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { instance } from "../../api/instance";
+import { quitLogin } from "../../api/instance";
 
 async function fetchMypage() {
   try {
@@ -19,6 +20,21 @@ async function fetchMypage() {
 }
 
 export const MypageMain = () => {
+  const mutation = useMutation((userId) => {
+    return (
+      instance.delete(`https://gitssum.com/user/remove/${userId}`),
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    );
+  });
+
+  const LogoutHandler = (payload) => {
+    quitLogin(payload);
+  };
+
   const { data, isError, error, isLoading } = useQuery(["posts"], fetchMypage);
 
   if (isLoading) return <h3>Loading...</h3>;
@@ -31,6 +47,7 @@ export const MypageMain = () => {
     );
 
   const datas = data.data;
+  console.log(datas.userId);
 
   return (
     <div className="shadow-xl w-[390px] h-[100vh] mx-auto font-SUIT">
@@ -73,8 +90,18 @@ export const MypageMain = () => {
         </div>
       </div>
       <Link to="/editmyprofile" style={{ textDecoration: "none" }}>
-        <button className="mx-auto group relative flex justify-center items-center text-[16px] rounded-lg bg-[#28CC9E] text-white w-[350px] h-[48px] hover:bg-[#fff] hover:text-[#28CC9E] border hover:border-[#28CC9E]  duration-300 mt-5 mb-20">
+        <button className="mx-auto group relative flex justify-center items-center text-[16px] rounded-lg bg-[#28CC9E] text-white w-[350px] h-[48px] hover:bg-[#fff] hover:text-[#28CC9E] border hover:border-[#28CC9E]  duration-300 mt-5 ">
           정보 수정하기
+        </button>{" "}
+      </Link>
+      <Link to="" style={{ textDecoration: "none" }}>
+        <button
+          onClick={() => {
+            mutation?.mutate(datas.userId);
+          }}
+          className="mx-auto group relative flex justify-center items-center text-[16px] rounded-lg bg-[#28CC9E] text-white w-[350px] h-[48px] hover:bg-[#fff] hover:text-[#28CC9E] border hover:border-[#28CC9E]  duration-300 mt-2 mb-20"
+        >
+          회원 탈퇴
         </button>{" "}
       </Link>
     </div>

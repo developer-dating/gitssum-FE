@@ -3,13 +3,6 @@
 
 ![1](https://user-images.githubusercontent.com/110834052/217885730-dd289a50-7207-4a89-bfd5-f9f6bf34047f.png)
 
-![2](https://user-images.githubusercontent.com/110834052/217886141-c7e8c1ed-2cc9-44ab-9d9f-0beff1091acc.png)
-
-![3](https://user-images.githubusercontent.com/110834052/217886152-a73d1f18-0336-45f0-ba72-d9cad4eaafbe.png)
-
-![4](https://user-images.githubusercontent.com/110834052/217886160-b36682c6-a2b1-4a3c-8475-ecb89c7f4a1f.png)
-
-![5](https://user-images.githubusercontent.com/110834052/217886181-7d571d0e-6815-42d0-b25f-853f9cb5f88a.png)
 
 ## 개발자들을 위한 소셜 데이팅 웹
 
@@ -92,7 +85,8 @@
     ubuntu 서버 상에 있는 localtime을 확인해보니 미국 기준이어서 "sudo timedatectl set-timezone Asia/Seoul"를 통해 한국 기준으로 바꾸어 해결하였습니다.
     
 
-![Untitled](%E1%84%80%E1%85%B5%E1%86%BA%E1%84%8A%E1%85%A5%E1%86%B7%20-%20%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF%E1%84%8C%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB%20%E1%84%89%E1%85%A9%E1%84%89%E1%85%A7%E1%86%AF%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B5%E1%86%BC%20%E1%84%8B%E1%85%B0%E1%86%B8%E1%84%8B%E1%85%A2%E1%86%B8%20051c687f0b7245368ba77165a32264be/Untitled%202.png)
+![Untitled](https://user-images.githubusercontent.com/110834052/217888533-74e903b2-6eb8-4056-bf3f-c97b89daf46f.png)
+
 
 [👩🏻‍💻제작자들🧑🏻‍💻](https://www.notion.so/55612a1e3fee471cb575b33fd59cb371)
 

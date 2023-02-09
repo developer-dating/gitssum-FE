@@ -41,6 +41,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/setprofile" element={<SetProfile />} />
+        <Route path="/editmyprofile" element={<EditMyProfile />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/" element={<Main />} />
@@ -52,7 +53,6 @@ const Router = () => {
         <Route path="/addrecommend" element={<AddRecommend />} />
         <Route path="/putrecommend" element={<PutRecommend />} />
         <Route path="/likeme" element={<LikeMe />} />
-        <Route path="/editmyprofile" element={<EditMyProfile />} />
         <Route path="/message" element={<Message />} />
         <Route path="/messageRoom/:id" element={<MessageRoom />} />
       </Routes>

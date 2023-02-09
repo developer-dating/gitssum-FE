@@ -229,6 +229,13 @@ export default function Profile() {
           <div className="ml-[20px]">
             <p className="w-[372px] mt-5 flex flex-wrap  md:flex-row items-center text-[24px] font-bold mb-10">
               <div className="mx-1 flex title-font font-medium items-center  text-gray-900 md:mb-0">
+                <a href="/mypage">
+                  <img
+                    src="/img/backarrow.png"
+                    alt="BackArrowIcon"
+                    className="w-[8px] h-[16px] mr-[15px]"
+                  />
+                </a>
                 <img
                   className="w-[34px] h-[30px] mr-1"
                   src="img/heart.png "

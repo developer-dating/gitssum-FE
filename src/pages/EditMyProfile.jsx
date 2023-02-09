@@ -6,7 +6,6 @@ const EditMyProfile = () => {
   return (
     <>
       <EditProfile />
-      <Nav />
     </>
   );
 };

@@ -229,6 +229,13 @@ export default function Profile() {
           <div className="ml-[20px]">
             <p className="w-[372px] mt-5 flex flex-wrap  md:flex-row items-center text-[24px] font-bold mb-10">
               <div className="mx-1 flex title-font font-medium items-center  text-gray-900 md:mb-0">
+                <a href="/mypage">
+                  <img
+                    src="/img/backarrow.png"
+                    alt="BackArrowIcon"
+                    className="w-[8px] h-[16px] mr-[15px]"
+                  />
+                </a>
                 <img
                   className="w-[34px] h-[30px] mr-1"
                   src="img/heart.png "
@@ -241,7 +248,7 @@ export default function Profile() {
               <div className="mx-auto  items-center mb-3">
                 <div className="mr-1 font-bold text-sm mb-1">프로필 사진</div>
                 <div className="text-xs text-[#FF4E4E]">
-                  (※프로필에 표시되는 이미지로, 3장 이상 업로드해주세요.)
+                  (※프로필에 표시되는 이미지로, 최소 1장을 업로드해주세요.)
                 </div>
               </div>
               {/* {file.map((image, id) => (
@@ -363,6 +370,7 @@ export default function Profile() {
                     <option value="초대졸">초대졸</option>
                     <option value="대졸">대졸</option>
                     <option value="대학원">대학원</option>
+                    <option value="비공개">비공개</option>
                   </select>
                 </div>
               </div>

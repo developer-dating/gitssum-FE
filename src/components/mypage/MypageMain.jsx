@@ -31,10 +31,6 @@ export const MypageMain = () => {
     );
   });
 
-  const LogoutHandler = (payload) => {
-    quitLogin(payload);
-  };
-
   const { data, isError, error, isLoading } = useQuery(["posts"], fetchMypage);
 
   if (isLoading) return <h3>Loading...</h3>;

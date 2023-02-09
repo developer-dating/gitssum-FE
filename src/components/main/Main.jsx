@@ -39,7 +39,6 @@ const Main = () => {
   const toggleModal = (userId) => {
     setModal(!modal);
     setSelectedUserId(userId);
-    toast.success("좋아요를 보냈어요! ");
   };
 
   if (isLoading) return <h3>Loading...</h3>;
@@ -73,7 +72,9 @@ const Main = () => {
                 className="w-[359px] flex flex-wrap reletive mb-20"
                 key={index}
               >
+                {" "}
                 <div
+                  onClick=""
                   className="w-[350px] h-[572px] mt-10 bg-center bg-cover bg-no-repeat relative mr-7 cursor-pointer hover:scale-110 duration-300 rounded-xl"
                   style={{
                     backgroundImage: `url(${post.imageList[0]})`,
@@ -154,7 +155,7 @@ const Main = () => {
                       <hr className="mx-auto w-[134px] h-[5px] bg-[#000000] rounded-3xl mt-3"></hr>
                     </div>
                   )}
-                </div>
+                </div>{" "}
               </div>
             ))}
           </div>

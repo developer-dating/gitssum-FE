@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
-import ModalBasic from "../main/Modal";
 import { Toaster, toast } from "react-hot-toast";
 import { instance } from "../../api/instance";
 import { useQueryClient } from "@tanstack/react-query";
@@ -31,18 +30,9 @@ const Recommend = () => {
     fetchRecommend
   );
 
-  const [modalOpen, setModalOpen] = useState(false);
-
-  // 모달창 노출
-  const showModal = () => {
-    setModalOpen(true);
-  };
-
   useEffect(() => {
     queryClient.invalidateQueries(["recommend"]);
-
   }, []);
-
 
   if (isLoading) return toast("Waiting...");
   if (isError)
@@ -117,7 +107,6 @@ const Recommend = () => {
                                 src="/img/like2.png"
                                 alt="LikeLogo"
                                 className="w-[32px] h-[32px] absolute right-[10px] bottom-[10px]"
-                                onClick={showModal}
                               />
                             </div>
                           </a>
@@ -155,9 +144,7 @@ const Recommend = () => {
           </div>
         </div>
       </div>
-      <div className="fixed bottom-6 z-10 w-[760px] min-w-[2030px] m-auto">
-        {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
-      </div>
+      <div className="fixed bottom-6 z-10 w-[760px] min-w-[2030px] m-auto"></div>
     </>
   );
 };

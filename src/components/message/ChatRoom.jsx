@@ -191,11 +191,6 @@ const ChatRoom = () => {
                   ></div>
                   <p className="text-[16px] font-bold">{otherUsername}</p>
                 </div>
-                <img
-                  src="/img/togglebtn.png"
-                  alt="ToggleBtn"
-                  className="w-[18px] h-[4px]"
-                />
               </div>
 
               <div className="flex flex-col items-center text-[14px] text-[#555]">

@@ -52,7 +52,6 @@ export const Detail = () => {
     );
 
   const datas = data.data;
-  console.log(datas);
 
   const settings = {
     dots: true,

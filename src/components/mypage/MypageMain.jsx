@@ -47,7 +47,6 @@ export const MypageMain = () => {
     );
 
   const datas = data.data;
-  console.log(datas.userId);
 
   return (
     <div className="shadow-xl w-[390px] h-[100vh] mx-auto font-SUIT">
@@ -99,7 +98,7 @@ export const MypageMain = () => {
           onClick={() => {
             mutation?.mutate(datas.userId);
           }}
-          className="mx-auto group relative flex justify-center items-center text-[16px] rounded-lg bg-[#28CC9E] text-white w-[350px] h-[48px] hover:bg-[#fff] hover:text-[#28CC9E] border hover:border-[#28CC9E]  duration-300 mt-2 mb-20"
+          className="mx-auto group relative flex justify-center items-center text-[16px] rounded-lg bg-[#FF4E4E] text-white w-[350px] h-[48px] hover:bg-[#fff] hover:text-[#FF4E4E] border hover:border-[#FF4E4E]  duration-300 mt-2 mb-20"
         >
           회원 탈퇴
         </button>{" "}

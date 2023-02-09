@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { instance } from "../../api/instance";
+import { quitLogin } from "../../api/instance";
 
 async function fetchMypage() {
   try {
@@ -29,6 +30,10 @@ export const MypageMain = () => {
         <p>{error.toString()}</p>
       </>
     );
+
+  const LogoutHandler = (payload) => {
+    quitLogin(payload);
+  };
 
   const datas = data.data;
 
@@ -72,6 +77,7 @@ export const MypageMain = () => {
           </div>
         </div>
       </div>
+      <button onClick={() => LogoutHandler({ userId: datas.userId })}></button>
       <Link to="/editmyprofile" style={{ textDecoration: "none" }}>
         <button className="mx-auto group relative flex justify-center items-center text-[16px] rounded-lg bg-[#28CC9E] text-white w-[350px] h-[48px] hover:bg-[#fff] hover:text-[#28CC9E] border hover:border-[#28CC9E]  duration-300 mt-5 mb-20">
           정보 수정하기

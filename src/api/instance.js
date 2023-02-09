@@ -43,9 +43,10 @@ export const createChatRoom = async (payload) => {
   return res.data;
 };
 
-export const quitChatRoom = async (payload) => {
-  const res = await instance.delete(`/api/chat${payload}`);
-  return (window.location.href = "/messageroom");
+export const quitLogin = async (payload) => {
+  const res = await instance.delete(`/user/remove`, payload);
+  return res;
+  // return (window.location.href = "/messageroom");
 };
 
 export const getChatList = async () => {

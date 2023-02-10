@@ -124,9 +124,9 @@ export const Detail = () => {
             <div className="mr-1 font-bold ml-[18px]  p-2">기술스택</div>
             <div className="pl-2 flex mb-3 ml-[18px] ">
               {datas?.stackList.map((stack) => (
-                <button className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
+                <div className="bg-[#EEEEEE] px-3 py-1 mr-1 rounded-full">
                   {stack}
-                </button>
+                </div>
               ))}
             </div>
             <button

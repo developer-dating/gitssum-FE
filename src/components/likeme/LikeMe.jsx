@@ -32,9 +32,10 @@ const LikeMe = () => {
 
   const { mutateAsync } = useMutation(createChatRoom, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["chat"]);
+      queryClient.invalidateQueries(["likes"]);
     },
   });
+
   const { data, isError, error, isLoading } = useQuery(["likes"], fetchLikes);
 
   if (isLoading) return <h3>Loading...</h3>;
@@ -50,6 +51,7 @@ const LikeMe = () => {
     toast?.success(`축하드려요 ${e.username}님과 연결되었습니다!`);
     mutateAsync({ toUserId: e.userId });
     setOtherNickName(e.userId);
+    navigate("/messagesge");
   };
 
   return (

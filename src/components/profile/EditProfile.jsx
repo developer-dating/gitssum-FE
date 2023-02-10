@@ -8,9 +8,27 @@ import { Toaster, toast } from "react-hot-toast";
 import { instance } from "../../api/instance";
 import { Link } from "react-router-dom";
 import { useCallback } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export default function Profile() {
-  const { id } = useParams();
+  const id = localStorage.getItem("nickname");
+
+  async function detailPosts() {
+    try {
+      const response = await instance.get(
+        `https://gitssum.com/api/user/get/profile/${id}`
+      );
+      // if (!response.ok) {
+      //   throw new Error("Network response was not ok");
+      // }
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const { data, isError, error, isLoading } = useQuery(["posts"], detailPosts);
+
   const navigate = useNavigate();
   // const mutation = useMutation((prof) => {
   //   return (
@@ -95,10 +113,6 @@ export default function Profile() {
       console.log("===useState===");
       console.log(file);
     }
-  };
-
-  const onPrint = () => {
-    console.log(file);
   };
 
   const onChangeName = (e) => {
@@ -219,6 +233,17 @@ export default function Profile() {
   //   formData.append("file", img);
   // };
 
+  if (isLoading) return <h3>Loading...</h3>;
+  if (isError)
+    return (
+      <>
+        <h3>Oops, something went wrong</h3>
+        <p>{error.toString()}</p>
+      </>
+    );
+
+  console.log(data);
+
   return (
     <div>
       <div>
@@ -296,7 +321,7 @@ export default function Profile() {
               >
                 <option
                   className="rounded-md"
-                  value=""
+                  value={data.data.gender}
                   disabled
                   selected
                   hidden
@@ -359,7 +384,7 @@ export default function Profile() {
                   >
                     <option
                       className="rounded-md"
-                      value=""
+                      value={data.data.education}
                       disabled
                       selected
                       hidden
@@ -385,7 +410,7 @@ export default function Profile() {
               >
                 <option
                   className="rounded-md"
-                  value=""
+                  value={data.data.job}
                   disabled
                   selected
                   hidden
@@ -421,7 +446,7 @@ export default function Profile() {
                 >
                   <option
                     className="rounded-md"
-                    value=""
+                    value={data.data.residence}
                     disabled
                     selected
                     hidden

@@ -321,7 +321,7 @@ export default function Profile() {
               >
                 <option
                   className="rounded-md"
-                  value={data.data.gender}
+                  value={gender}
                   disabled
                   selected
                   hidden
@@ -384,7 +384,7 @@ export default function Profile() {
                   >
                     <option
                       className="rounded-md"
-                      value={data.data.education}
+                      value={education}
                       disabled
                       selected
                       hidden
@@ -410,7 +410,7 @@ export default function Profile() {
               >
                 <option
                   className="rounded-md"
-                  value={data.data.job}
+                  value={job}
                   disabled
                   selected
                   hidden
@@ -446,7 +446,7 @@ export default function Profile() {
                 >
                   <option
                     className="rounded-md"
-                    value={data.data.residence}
+                    value={residence}
                     disabled
                     selected
                     hidden
